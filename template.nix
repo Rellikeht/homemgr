@@ -20,32 +20,34 @@
 
   homeDirectory = "/home/${name}";
 in {
-  packages = normalPackages ++ unstablePackages ++ jdks;
+  home = {
+    file =
+      {}
+      // b.listToAttrs (utils.configFiles [
+        ".alacritty.toml"
+      ])
+      // b.listToAttrs (utils.configDirs [
+        "Templates"
+      ])
+      // b.listToAttrs (utils.configCDirs [
+        "nim"
+      ]);
 
-  file =
-    {}
-    // b.listToAttrs (utils.configFiles [
-      ".alacritty.toml"
-    ])
-    // b.listToAttrs (utils.configDirs [
-      "Templates"
-    ])
-    // b.listToAttrs (utils.configCDirs [
-      "nim"
-    ]);
+    sessionVariables = {
+    };
 
-  sessionVariables = {
-  };
+    activation = {
+      dirs = dags.entryAfter ["writeBoundary"] (
+        (utils.createDirs [])
+        + ''
+        ''
+      );
 
-  activation = {
-    dirs =
-      dags.entryAfter ["writeBoundary"]
-      (utils.createDirs [])
-      + ''
-      '';
+      bins =
+        dags.entryAfter ["commonBins"] ''
+        '';
+    };
 
-    bins =
-      dags.entryAfter ["commonBins"] ''
-      '';
+    packages = normalPackages ++ unstablePackages ++ jdks;
   };
 }

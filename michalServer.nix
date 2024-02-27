@@ -29,25 +29,13 @@
     #   echo "Hello, ${config.home.username}!"
     # '')
 
-    shellcheck
-    checkbashisms
-    glow
-
-    nmap
-    lftp
-    megatools
-    rclone
-
     lua-language-server
     pylyzer
     ruff
     gopls
-    go
   ];
 
   unstable_packages = with unstable; [
-    gdown
-    nim
     nimlsp
     nimble
 
@@ -63,8 +51,6 @@
   homeDirectory = "/home/${name}";
 in {
   home = {
-    packages = normalPackages ++ unstable_packages ++ jdks;
-
     # Home Manager is pretty good at managing dotfiles. The primary way to manage
     # plain files is through 'home.file'.
     file =
@@ -74,10 +60,6 @@ in {
         #   org.gradle.console=verbose
         #   org.gradle.daemon.idletimeout=3600000
         # '';
-
-        # ".tmux.conf".source = "${dotfiles}/.tmux.conf";
-        # ".vimrc".source = "${dotfiles}/.vimrc";
-        # ".guile".source = "${dotfiles}/.guile";
       }
       // b.listToAttrs (utils.configFiles [
         ])
@@ -87,13 +69,8 @@ in {
       // b.listToAttrs (utils.configCDirs [
         "nvim"
         "kak"
-        "glow"
 
         "nim"
-
-        "yt-dlp"
-        "transmission"
-        "transmission-daemon"
       ])
       // (utils.jdkPaths jdks);
 
@@ -105,17 +82,8 @@ in {
     activation = {
       dirs = dags.entryAfter ["commonDirs"] (
         (utils.createDirs [
-          "backups"
-          "transmission/incomplete"
-          "transmission/download"
-
-          "Downloads"
-          "Share"
-          "Something"
-        ])
+          ])
         + ''
-          mkdir -p $HOME/Public
-          chmod 777 $HOME/Public
         ''
       );
 
@@ -123,5 +91,7 @@ in {
         dags.entryAfter ["commonBins"] ''
         '';
     };
+
+    packages = normalPackages ++ unstable_packages ++ jdks;
   };
 }

@@ -35,46 +35,50 @@
 
   homeDirectory = "/home/${name}";
 in {
-  inherit homeDirectory stateVersion;
-  username = name;
-  packages = normalPackages ++ unstablePackages;
+  home = {
+    file =
+      {}
+      // b.listToAttrs (utils.configFiles [
+        ".vimrc"
+        ".tmux.conf"
+        ".guile"
 
-  file =
-    {}
-    // b.listToAttrs (utils.configFiles [
-      ".vimrc"
-      ".tmux.conf"
-      ".guile"
+        ".zshrc"
+        ".bashrc"
+        ".aliasrc"
+        ".funcrc"
+        ".varrc"
+      ])
+      // b.listToAttrs (utils.configDirs [
+        ".vim"
+        ".w3m"
+      ])
+      // b.listToAttrs (utils.configCDirs [
+        "ocaml"
+      ]);
 
-      ".zshrc"
-      ".bashrc"
-      ".aliasrc"
-      ".funcrc"
-      ".varrc"
-    ])
-    // b.listToAttrs (utils.configDirs [
-      ".vim"
-      ".w3m"
-    ])
-    // b.listToAttrs (utils.configCDirs [
-      "ocaml"
-    ]);
+    activation = {
+      commonDirs = dags.entryAfter ["writeBoundary"] (
+        (utils.createDirs [
+          "bin"
+        ])
+        + ''
+          chmod 750 $HOME
+        ''
+      );
 
-  activation = {
-    commonDirs =
-      dags.entryAfter ["writeBoundary"]
-      (utils.createDirs ["bin"])
-      + ''
-        chmod 750 $HOME
+      commonBins = dags.entryAfter ["writeBoundary"] ''
+        find $HOME/bin -xtype l -delete
+        ln -fs ${dots}/global/bin/* $HOME/bin/
+
+        rm -rf ${homeDirectory}/bin/its_just_grep
+        ln -s ${pkgs.gnugrep}/bin/grep ${homeDirectory}/bin/its_just_grep
       '';
+    };
 
-    commonBins = dags.entryAfter ["writeBoundary"] ''
-      find $HOME/bin -xtype l -delete
-      ln -fs ${dots}/global/bin/* $HOME/bin/
-
-      rm -rf ${homeDirectory}/bin/its_just_grep
-      ln -s ${pkgs.gnugrep}/bin/grep ${homeDirectory}/bin/its_just_grep
-    '';
+    inherit homeDirectory stateVersion;
+    username = name;
+    packages = normalPackages ++ unstablePackages;
   };
 
   # Let Home Manager install and manage itself.
