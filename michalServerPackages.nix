@@ -14,14 +14,6 @@
   dots = "${dotfiles}";
 
   normalPackages = with pkgs; [
-    aria
-    rsync
-    iperf3
-
-    xz
-    gnutar
-    zip
-    unzip
   ];
 
   unstablePackages = with unstable; [

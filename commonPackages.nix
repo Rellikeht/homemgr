@@ -13,19 +13,8 @@
   b = builtins;
   dots = "${dotfiles}";
 
-  normalPackages = with pkgs; [
-    aria
-    rsync
-    iperf3
-
-    xz
-    gnutar
-    zip
-    unzip
-  ];
-
-  unstablePackages = with unstable; [
-  ];
+  normalPackages = with pkgs; [];
+  unstablePackages = with unstable; [];
 in {
   home = {
     packages = normalPackages ++ unstablePackages;

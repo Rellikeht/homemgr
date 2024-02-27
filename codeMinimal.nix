@@ -11,12 +11,39 @@
   ...
 }: let
   b = builtins;
-  dots = "${dotfiles}";
 
-  normalPackages = with pkgs; [];
-  unstablePackages = with unstable; [];
+  normalPackages = with pkgs; [
+    lua-language-server
+    pylyzer
+    ruff
+    gopls
+  ];
+
+  unstablePackages = with unstable; [
+    ocamlPackages.ocaml-lsp
+    ocamlPackages.utop
+    ocamlformat
+
+    nim
+    nimlsp
+    nimble
+  ];
+
+  # todo guile
+
+  dots = "${dotfiles}";
 in {
   home = {
+    files =
+      {}
+      // b.listToAttrs (utils.configDirs [
+        "Templates"
+      ])
+      // b.listToAttrs (utils.configCDirs [
+        "nvim"
+        "nim"
+      ]);
+
     packages = normalPackages ++ unstablePackages;
   };
 }

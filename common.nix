@@ -21,11 +21,11 @@
     alejandra
     silver-searcher
     gnugrep
+    dash
 
-    iperf3
-    aria
-    rsync
     jq
+    delta
+    rlwrap
   ];
 
   unstablePackages = with unstable; [
@@ -55,6 +55,7 @@ in {
       ])
       // b.listToAttrs (utils.configCDirs [
         "ocaml"
+        "vifm"
       ]);
 
     activation = {

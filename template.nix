@@ -24,7 +24,7 @@ in {
     file =
       {}
       // b.listToAttrs (utils.configFiles [
-        ".alacritty.toml"
+        ".screenrc"
       ])
       // b.listToAttrs (utils.configDirs [
         "Templates"

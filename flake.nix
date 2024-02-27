@@ -37,16 +37,16 @@
       dags = lib.hm.dag;
       b = builtins;
     in rec {
-      jdkPaths = jdks:
+      javaPaths = packages:
         b.listToAttrs (map (n: {
             name = n.name;
             value = {
-              target = ".jdks/" + n.name;
+              target = ".java/" + n.name;
               recursive = true;
               source = "${n}/";
             };
           })
-          jdks);
+          packages);
       # (map (x: b.trace x.outPath x) jdks));
       # TODO jdk vars, version is long, there should be something shorter
 

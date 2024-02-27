@@ -28,24 +28,13 @@
     # (pkgs.writeShellScriptBin "my-hello" ''
     #   echo "Hello, ${config.home.username}!"
     # '')
-
-    lua-language-server
-    pylyzer
-    ruff
-    gopls
   ];
 
   unstable_packages = with unstable; [
-    nimlsp
-    nimble
-
-    ocamlPackages.ocaml-lsp
-    ocamlPackages.utop
-    ocamlformat
   ];
 
-  jdks = with pkgs; [
-    jdk17_headless
+  java = with pkgs; [
+    jre_minimal
   ];
 
   homeDirectory = "/home/${name}";
@@ -64,15 +53,11 @@ in {
       // b.listToAttrs (utils.configFiles [
         ])
       // b.listToAttrs (utils.configDirs [
-        "Templates"
-      ])
+        ])
       // b.listToAttrs (utils.configCDirs [
-        "nvim"
         "kak"
-
-        "nim"
       ])
-      // (utils.jdkPaths jdks);
+      // (utils.javaPaths java);
 
     sessionVariables = {
       # why the fuck doesn't this work??
@@ -92,6 +77,6 @@ in {
         '';
     };
 
-    packages = normalPackages ++ unstable_packages ++ jdks;
+    packages = normalPackages ++ unstable_packages ++ java;
   };
 }

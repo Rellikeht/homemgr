@@ -19,17 +19,17 @@
     checkbashisms
     glow
 
-    go
-
     nmap
     lftp
     megatools
     rclone
+    transmission
   ];
 
   unstablePackages = with unstable; [
     gdown
     nim
+    go
   ];
 
   homeDirectory = "/home/${name}";
