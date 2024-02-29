@@ -70,13 +70,15 @@ in rec {
     mkdir -p ${gitsDir}/${parent}
     cd ${gitsDir}/${parent}
 
-    if [ "$(git ls-remote --get-url 2>/dev/null)" == "git@${provider}:${user}/${name}.git" ]
-    [ "$(find 2>/dev/null | sed 2q | wc -l)" -gt 1 ] && \
-      echo Cannot clone ${name} from ${provider} to nonempty directory >&2 && \
-      exit 1
+    if ! [ "$(git ls-remote --get-url 2>/dev/null)" == "git@${provider}:${user}/${name}.git" ]
+    then
+      [ "$(find 2>/dev/null | sed 2q | wc -l)" -gt 1 ] && \
+        echo "Cannot clone ${name} from ${provider} to nonempty directory" >&2 && \
+        exit 1
 
-    git clone "https://${provider}/${user}/${name}
-    git remote set-url origin git@${provider}:${user}/${name}.git
+      git clone "https://${provider}/${user}/${name}"
+      git remote set-url origin "git@${provider}:${user}/${name}.git"
+    fi
 
     cd $HOME
   '';

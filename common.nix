@@ -59,14 +59,19 @@ in {
       ]);
 
     activation = {
-      commonDirs = dags.entryAfter ["writeBoundary"] (
-        (utils.createDirs [
-          "bin"
-        ])
-        + ''
-          chmod 750 $HOME
-        ''
-      );
+      commonDirs =
+        dags.entryAfter ["writeBoundary"]
+        (
+          ''
+            [ -e "$HOME/bin" ] && exit 1
+          ''
+          + (utils.createDirs [
+            "bin"
+          ])
+          + ''
+            chmod 750 $HOME
+          ''
+        );
 
       commonBins = dags.entryAfter ["writeBoundary"] ''
         find $HOME/bin -xtype l -delete

@@ -48,7 +48,7 @@ in {
         (map (l: "${l}/${siteDir}") guile-libs));
     };
 
-    files =
+    file =
       {}
       // b.listToAttrs (utils.configDirs [
         "Templates"

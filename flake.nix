@@ -89,6 +89,14 @@
       "codePkgsFull" = homeConf "michal" [
         ./codePkgsFull.nix
       ];
+
+      "fullTest" = homeConf "test" [
+        ./common.nix
+        ./serverMinimal.nix
+        ./codeMinimal.nix
+        ./codeFull.nix
+        ./gits.nix
+      ];
     };
 
     inherit utils;
