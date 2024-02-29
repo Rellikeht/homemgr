@@ -12,11 +12,18 @@
 }: let
   b = builtins;
 
+  guile-libs = with pkgs; [
+    guile-git
+    guile-ssh
+    guile-gnutls
+  ];
+
   normalPackages = with pkgs; [
+    guile
+
     lua-language-server
     pylyzer
     ruff
-    gopls
   ];
 
   unstablePackages = with unstable; [
@@ -27,13 +34,20 @@
     nim
     nimlsp
     nimble
-  ];
 
-  # todo guile
+    gopls
+  ];
 
   dots = "${dotfiles}";
 in {
   home = {
+    sessionVariables = {
+      GUILE_LOAD_PATH = let
+        siteDir = "${pkgs.guile.siteDir}";
+      in (b.concatStringsSep ";"
+        (map (l: "${l}/${siteDir}") guile-libs));
+    };
+
     files =
       {}
       // b.listToAttrs (utils.configDirs [
@@ -44,6 +58,6 @@ in {
         "nim"
       ]);
 
-    packages = normalPackages ++ unstablePackages;
+    packages = normalPackages ++ unstablePackages ++ guile-libs;
   };
 }

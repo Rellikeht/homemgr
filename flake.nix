@@ -32,72 +32,62 @@
     pkgs = nixpkgs.legacyPackages.${system};
     unstable = nixpkgs-unstable.legacyPackages.${system};
 
-    utils = let
-      lib = home-manager.lib;
-      dags = lib.hm.dag;
-      b = builtins;
-    in rec {
-      javaPaths = packages:
-        b.listToAttrs (map (n: {
-            name = n.name;
-            value = {
-              target = ".java/" + n.name;
-              recursive = true;
-              source = "${n}/";
-            };
-          })
-          packages);
-      # (map (x: b.trace x.outPath x) jdks));
-      # TODO jdk vars, version is long, there should be something shorter
+    name = "michal";
+    stateVersion = "23.11";
 
-      configFiles = map (f: {
-        name = f;
-        value = {source = "${dotfiles}/" + f;};
-      });
+    utils =
+      import ./utils.nix
+      {
+        inherit
+          pkgs
+          unstable
+          home-manager
+          dotfiles
+          stateVersion
+          ;
+      };
 
-      configDirs = map (f: {
-        name = f;
-        value = {
-          recursive = true;
-          source = "${dotfiles}/" + f;
-        };
-      });
-
-      configCDirs = map (f: {
-        name = ".config/" + f;
-        value = {
-          recursive = true;
-          source = "${dotfiles}/.config/" + f;
-        };
-      });
-
-      dirMode = "750";
-      createDir = n: ''
-        mkdir -p $HOME/${n}
-        chmod ${dirMode} $HOME/${n}
-      '';
-      createDirs = l: b.concatStringsSep "\n" (map createDir l);
-    };
-
-    confFunc = home-manager.lib.homeManagerConfiguration;
     homeConf = (
-      name: modules:
-        confFunc {
-          inherit pkgs modules;
+      name: mods:
+        utils.confFunc {
+          inherit pkgs;
+          modules = mods;
           extraSpecialArgs = {
             inherit dotfiles unstable name stateVersion utils;
           };
         }
     );
-
-    name = "michal";
-    stateVersion = "23.11";
   in {
+    # TODO versions for development: dotfiles repo cloned
+    # somewhere and files from there symlinked
+    # to home
+
     homeConfigurations = {
       # "${name}" = homeConf [./home.nix];
+
+      # Somehow finished
       "michalServer" = homeConf "michal" [
         ./common.nix
+        ./serverMinimal.nix
         ./michalServer.nix
+      ];
+
+      "michalCode" = homeConf "michal" [
+        ./common.nix
+        ./serverMinimal.nix
+        ./codeMinimal.nix
+        ./michalServer.nix
+      ];
+
+      "michalFull" = homeConf "michal" [
+        ./common.nix
+        ./michalServer.nix
+        ./codeMinimal.nix
+        ./codeFull.nix
+      ];
+
+      "codePkgsFull" = homeConf "michal" [
+        ./codePkgsFull.nix
       ];
     };
 
