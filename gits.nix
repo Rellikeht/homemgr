@@ -14,7 +14,10 @@
   b = builtins;
   dots = "${dotfiles}";
 
-  normalPackages = with pkgs; [];
+  normalPackages = with pkgs; [
+    git
+  ];
+
   unstablePackages = with unstable; [];
 
   homeDirectory = "/home/${name}";
@@ -25,13 +28,29 @@ in {
     activation = {
       gits =
         dags.entryAfter ["dirs"]
-        (b.concatStringsSep "\n"
-          (map utils.cloneMyGithub [
-            {
-              parent = "";
-              name = "nix-config";
-            }
-          ]));
+        (
+          b.concatStringsSep "\n" (
+            (utils.cloneGithubs "configs" [
+              "nix-config"
+              "dotfiles"
+            ])
+            ++ (
+              utils.cloneGithubs "programs" [
+                "nix-builds"
+                "st"
+                "dwm"
+                "tabbed"
+                "dmenu"
+                "dmenu"
+              ]
+            )
+            ++ (
+              utils.cloneGitlabs "configs" [
+                "homemgr"
+              ]
+            )
+          )
+        );
     };
 
     sessionVariables = {};

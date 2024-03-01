@@ -84,6 +84,7 @@
         ./michalServer.nix
         ./codeMinimal.nix
         ./codeFull.nix
+        ./gits.nix
       ];
 
       "codePkgsFull" = homeConf "michal" [
@@ -93,8 +94,8 @@
       "fullTest" = homeConf "test" [
         ./common.nix
         ./serverMinimal.nix
-        ./codeMinimal.nix
-        ./codeFull.nix
+        # ./codeMinimal.nix
+        # ./codeFull.nix
         ./gits.nix
       ];
     };

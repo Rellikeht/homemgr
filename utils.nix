@@ -66,18 +66,27 @@ in rec {
     name,
     provider,
     parent,
-  }: ''
+  }: let
+    git = "${pkgs.git}/bin/git";
+  in ''
     mkdir -p ${gitsDir}/${parent}
     cd ${gitsDir}/${parent}
 
-    if ! [ "$(git ls-remote --get-url 2>/dev/null)" == "git@${provider}:${user}/${name}.git" ]
-    then
-      [ "$(find 2>/dev/null | sed 2q | wc -l)" -gt 1 ] && \
-        echo "Cannot clone ${name} from ${provider} to nonempty directory" >&2 && \
-        exit 1
+    # if ! [
+    #   "$(${git} config --get remote.origin.url 2>/dev/null)" ==
+    #     "git@${provider}:${user}/${name}.git"
+    #   ]
+    # then
+    #   [ "$(find 2>/dev/null | sed 2q | wc -l)" -gt 1 ] && \
+    #     echo "Cannot clone ${name} from ${provider} to nonempty directory" >&2
+    #     # echo "Cannot clone ${name} from ${provider} to nonempty directory" >&2 && \
+    #     # exit 1
 
-      git clone "https://${provider}/${user}/${name}"
-      git remote set-url origin "git@${provider}:${user}/${name}.git"
+    if ! [ -e "${name}" ]
+    then
+      ${git} clone "https://${provider}/${user}/${name}"
+      cd ${name}
+      ${git} remote set-url origin "git@${provider}:${user}/${name}.git"
     fi
 
     cd $HOME
@@ -102,4 +111,9 @@ in rec {
       user = me;
       provider = gitlab;
     };
+
+  cloneGithubs = parent: names:
+    map (name: cloneMyGithub {inherit name parent;}) names;
+  cloneGitlabs = parent: names:
+    map (name: cloneMyGitlab {inherit name parent;}) names;
 }

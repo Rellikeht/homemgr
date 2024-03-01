@@ -63,7 +63,7 @@ in {
         dags.entryAfter ["writeBoundary"]
         (
           ''
-            [ -e "$HOME/bin" ] && exit 1
+            # [ -e "$HOME/bin" ] && exit 1
           ''
           + (utils.createDirs [
             "bin"
@@ -73,8 +73,8 @@ in {
           ''
         );
 
-      commonBins = dags.entryAfter ["writeBoundary"] ''
-        find $HOME/bin -xtype l -delete
+      commonBins = dags.entryAfter ["commonDirs"] ''
+        find $HOME/bin -xtype l -delete || true
         ln -fs ${dots}/global/bin/* $HOME/bin/
 
         rm -rf ${homeDirectory}/bin/its_just_grep
