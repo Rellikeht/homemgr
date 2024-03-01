@@ -14,8 +14,26 @@
   b = builtins;
   dots = "${dotfiles}";
 
-  normalPackages = with pkgs; [];
-  unstablePackages = with unstable; [];
+  normalPackages = with pkgs; [
+    tesseract
+    pypy310
+    jdt-language-server
+
+    julia
+    pforth
+  ];
+
+  unstablePackages = with unstable;
+    [
+      ghc
+    ]
+    ++ (with unstable.haskellPackages; [
+      cabal-install
+      stack
+      vector
+      hashtables
+      unordered-containers
+    ]);
 
   homeDirectory = "/home/${name}";
 in {

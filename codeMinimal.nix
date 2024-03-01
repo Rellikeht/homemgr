@@ -20,10 +20,7 @@
 
   normalPackages = with pkgs; [
     guile
-
     lua-language-server
-    pylyzer
-    ruff
   ];
 
   unstablePackages = with unstable; [
@@ -35,17 +32,16 @@
     nimlsp
     nimble
 
+    tree-sitter
     gopls
   ];
 
+  # TODO python
   dots = "${dotfiles}";
 in {
   home = {
     sessionVariables = {
-      GUILE_LOAD_PATH = let
-        siteDir = "${pkgs.guile.siteDir}";
-      in (b.concatStringsSep ";"
-        (map (l: "${l}/${siteDir}") guile-libs));
+      GUILE_LOAD_PATH = utils.guileLoadPath guile-libs;
     };
 
     file =
@@ -54,6 +50,7 @@ in {
         "Templates"
       ])
       // b.listToAttrs (utils.configCDirs [
+        "bpython"
         "nvim"
         "nim"
       ]);

@@ -6,7 +6,6 @@
   lib,
   dotfiles,
   name,
-  # homeDirectory ? "/home/${name}",
   stateVersion,
   utils,
   ...
@@ -24,8 +23,11 @@
     dash
 
     jq
+    git
     delta
     rlwrap
+    lua
+    python313
   ];
 
   unstablePackages = with unstable; [
@@ -36,28 +38,6 @@
   homeDirectory = "/home/${name}";
 in {
   home = {
-    file =
-      {}
-      // b.listToAttrs (utils.configFiles [
-        ".vimrc"
-        ".tmux.conf"
-        ".guile"
-
-        ".zshrc"
-        ".bashrc"
-        ".aliasrc"
-        ".funcrc"
-        ".varrc"
-      ])
-      // b.listToAttrs (utils.configDirs [
-        ".vim"
-        ".w3m"
-      ])
-      // b.listToAttrs (utils.configCDirs [
-        "ocaml"
-        "vifm"
-      ]);
-
     activation = {
       commonDirs =
         dags.entryAfter ["writeBoundary"]
@@ -74,11 +54,9 @@ in {
         );
 
       commonBins = dags.entryAfter ["commonDirs"] ''
-        find $HOME/bin -xtype l -delete || true
-        ln -fs ${dots}/global/bin/* $HOME/bin/
-
-        rm -rf ${homeDirectory}/bin/its_just_grep
-        ln -s ${pkgs.gnugrep}/bin/grep ${homeDirectory}/bin/its_just_grep
+        find "$HOME/bin" -xtype l -delete || true
+        rm -rf "$HOME/bin/its_just_grep"
+        ln -s "${pkgs.gnugrep}/bin/grep" "${homeDirectory}/bin/its_just_grep"
       '';
     };
 

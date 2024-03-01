@@ -25,6 +25,11 @@ in rec {
   # (map (x: b.trace x.outPath x) jdks));
   # TODO jdk vars, version is long, there should be something shorter
 
+  guileLoadPath = libs: let
+    siteDir = "${pkgs.guile.siteDir}";
+  in (b.concatStringsSep ";"
+    (map (l: "${l}/${siteDir}") libs));
+
   configFiles = map (f: {
     name = f;
     value = {source = "${dotfiles}/" + f;};
@@ -69,9 +74,10 @@ in rec {
   }: let
     git = "${pkgs.git}/bin/git";
   in ''
-    mkdir -p ${gitsDir}/${parent}
-    cd ${gitsDir}/${parent}
+    mkdir -p "${gitsDir}/${parent}"
+    cd "${gitsDir}/${parent}"
 
+    # TODO maybe more tests and proper replacing
     # if ! [
     #   "$(${git} config --get remote.origin.url 2>/dev/null)" ==
     #     "git@${provider}:${user}/${name}.git"
@@ -84,7 +90,19 @@ in rec {
 
     if ! [ -e "${name}" ]
     then
-      ${git} clone "https://${provider}/${user}/${name}"
+      mkdir "${name}"
+    fi
+
+    if ! [ -d "${name}" ]
+    then
+      echo "${name} is not a directory" >&2
+      exit 1
+    fi
+
+    if [ -z "$(ls -A ${name})" ]
+    then
+      # TODO hide part of the progress
+      ${git} clone "https://${provider}/${user}/${name}" "${name}"
       cd ${name}
       ${git} remote set-url origin "git@${provider}:${user}/${name}.git"
     fi

@@ -19,6 +19,7 @@
     checkbashisms
     glow
 
+    # yt-dlp
     nmap
     lftp
     megatools
@@ -61,8 +62,6 @@ in {
         ''
       );
     };
-
-    sessionVariables = {};
 
     packages = normalPackages ++ unstablePackages;
   };

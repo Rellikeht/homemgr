@@ -15,16 +15,14 @@
   dots = "${dotfiles}";
 
   normalPackages = with pkgs; [
-    git
   ];
 
-  unstablePackages = with unstable; [];
+  unstablePackages = with unstable; [
+  ];
 
   homeDirectory = "/home/${name}";
 in {
   home = {
-    file = {};
-
     activation = {
       gits =
         dags.entryAfter ["dirs"]
@@ -45,15 +43,24 @@ in {
               ]
             )
             ++ (
+              utils.cloneGithubs "projects" [
+                "advent-of-code"
+                "moderncv.typst"
+                "project_euler"
+                "Random-code"
+                "zadanka"
+              ]
+            )
+            ++ (
               utils.cloneGitlabs "configs" [
                 "homemgr"
               ]
             )
           )
+          + ''
+          ''
         );
     };
-
-    sessionVariables = {};
 
     packages = normalPackages ++ unstablePackages;
   };

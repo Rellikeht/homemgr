@@ -68,34 +68,52 @@
       # Somehow finished
       "michalServer" = homeConf "michal" [
         ./common.nix
+        ./commonLinks.nix
         ./serverMinimal.nix
-        ./michalServer.nix
+        ./userServer.nix
       ];
 
       "michalCode" = homeConf "michal" [
         ./common.nix
         ./serverMinimal.nix
         ./codeMinimal.nix
-        ./michalServer.nix
+        ./userServer.nix
       ];
 
       "michalFull" = homeConf "michal" [
         ./common.nix
-        ./michalServer.nix
+        ./commonLinks.nix
+        ./userServer.nix
         ./codeMinimal.nix
         ./codeFull.nix
         ./gits.nix
       ];
 
-      "codePkgsFull" = homeConf "michal" [
-        ./codePkgsFull.nix
+      "testUser" = homeConf "test" [
+        ./common.nix
+        ./commonLinks.nix
+        ./serverMinimal.nix
+        ./codeMinimal.nix
+        ./codeFull.nix
+        ./pythonMinimal.nix
+        ./gits.nix
       ];
 
-      "fullTest" = homeConf "test" [
+      "testServer" = homeConf "test" [
         ./common.nix
+        ./commonLinks.nix
         ./serverMinimal.nix
-        # ./codeMinimal.nix
-        # ./codeFull.nix
+        ./pythonMinimal.nix
+        ./minecraftServer.nix
+      ];
+
+      "testDev" = homeConf "test" [
+        ./common.nix
+        ./gitLinks.nix
+        ./serverMinimal.nix
+        ./codeMinimal.nix
+        ./codeFull.nix
+        ./pythonMinimal.nix
         ./gits.nix
       ];
     };
