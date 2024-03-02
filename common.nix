@@ -27,7 +27,7 @@
     delta
     rlwrap
     lua
-    python313
+    (lib.setPrio 100 python313)
   ];
 
   unstablePackages = with unstable; [

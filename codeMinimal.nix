@@ -36,7 +36,6 @@
     gopls
   ];
 
-  # TODO python
   dots = "${dotfiles}";
 in {
   home = {

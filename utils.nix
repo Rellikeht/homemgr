@@ -12,6 +12,10 @@
 in rec {
   inherit confFunc;
 
+  # TODO cron here, because it isn't available
+  # somehow, no idea how hard this will be
+  # TODO maybe some division
+
   javaPaths = packages:
     b.listToAttrs (map (n: {
         name = n.name;

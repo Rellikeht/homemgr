@@ -32,6 +32,12 @@
       flake8
       autopep8
       yt-dlp
+
+      # TODO more useless packages
+      matplotlib
+      numpy
+      pandas
+      sympy
     ];
 in {
   home = {

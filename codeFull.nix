@@ -35,6 +35,7 @@
       unordered-containers
     ]);
 
+  # TODO julia, ocaml, nim packages
   homeDirectory = "/home/${name}";
 in {
   home = {
@@ -47,3 +48,5 @@ in {
     packages = normalPackages ++ unstablePackages;
   };
 }
+# TODO maybe some R, totally useless so can wait
+

@@ -53,17 +53,28 @@
           inherit pkgs;
           modules = mods;
           extraSpecialArgs = {
-            inherit dotfiles unstable name stateVersion utils;
+            inherit dotfiles unstable utils;
+            inherit name stateVersion;
+            pythonProv = pkgs.python311;
           };
         }
     );
   in {
-    # TODO versions for development: dotfiles repo cloned
-    # somewhere and files from there symlinked
-    # to home
-
     homeConfigurations = {
       # "${name}" = homeConf [./home.nix];
+
+      # Because systemd can't be assured and
+      # home manager may not be so useful with it
+      # it has to be used carefully
+
+      # TODO better python handling
+      # TODO procedural creation
+      # TODO Packages files, that may be super hard
+      # TODO at the end activation should land here
+      # TODO server
+      # TODO root
+      # TODO generating for user named from environmental
+      # variable with --impure
 
       # Somehow finished
       "michalServer" = homeConf "michal" [
@@ -95,7 +106,6 @@
         ./serverMinimal.nix
         ./codeMinimal.nix
         ./codeFull.nix
-        ./pythonMinimal.nix
         ./gits.nix
       ];
 
@@ -113,7 +123,7 @@
         ./serverMinimal.nix
         ./codeMinimal.nix
         ./codeFull.nix
-        ./pythonMinimal.nix
+        ./pythonFull.nix
         ./gits.nix
       ];
     };

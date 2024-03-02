@@ -15,6 +15,7 @@
   dots = "${dotfiles}";
 
   normalPackages = with pkgs; [
+    git
   ];
 
   unstablePackages = with unstable; [
@@ -60,6 +61,8 @@ in {
           + ''
           ''
         );
+
+      # TODO not everything is here
     };
 
     packages = normalPackages ++ unstablePackages;

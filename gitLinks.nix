@@ -19,10 +19,11 @@ in {
   home = {
     file = {};
 
+    # TODO dotfile links
     activation = {
-      gitLinks = dags.entryAfter ["gits"] ''
-        # TODO dotfile links
-      '';
+      gitLinks =
+        dags.entryAfter ["gits"] ''
+        '';
     };
 
     sessionVariables = {};
