@@ -80,51 +80,109 @@
       "michalServer" = homeConf "michal" [
         ./common.nix
         ./commonLinks.nix
-        ./serverMinimal.nix
-        ./userServer.nix
+
+        ./server/minimal.nix
+        ./server/user.nix
+      ];
+
+      "michalServerPkgs" = homeConf "michal" [
+        ./common.nix
+        ./commonLinks.nix
+
+        ./server/minimal.nix
+        ./server/user.nix
+
+        ./pkgs/common.nix
+        ./pkgs/userServer.nix
+
+        ./code/pythonMinimal.nix
       ];
 
       "michalCode" = homeConf "michal" [
         ./common.nix
-        ./serverMinimal.nix
-        ./codeMinimal.nix
-        ./userServer.nix
+        ./commonLinks.nix
+
+        ./server/minimal.nix
+        ./server/user.nix
+
+        ./code/minimal.nix
+      ];
+
+      "michalCodePkgs" = homeConf "michal" [
+        ./common.nix
+        ./commonLinks.nix
+        ./server/minimal.nix
+        ./server/user.nix
+
+        ./pkgs/common.nix
+        ./pkgs/userServer.nix
+        ./pkgs/codeMinimal.nix
+
+        ./code/minimal.nix
+        ./code/pythonFull.nix
       ];
 
       "michalFull" = homeConf "michal" [
         ./common.nix
         ./commonLinks.nix
-        ./userServer.nix
-        ./codeMinimal.nix
-        ./codeFull.nix
-        ./gits.nix
+
+        ./code/minimal.nix
+        ./code/full.nix
+
+        ./server/user.nix
+        ./user/gits.nix
+      ];
+
+      "michalFullPkgs" = homeConf "michal" [
+        ./common.nix
+        ./commonLinks.nix
+
+        ./server/user.nix
+        ./user/gits.nix
+
+        ./code/minimal.nix
+        ./code/full.nix
+        ./code/pythonFull.nix
+
+        ./pkgs/common.nix
+        ./pkgs/userServer.nix
+        ./pkgs/codeMinimal.nix
+        ./pkgs/codeFull.nix
       ];
 
       "testUser" = homeConf "test" [
         ./common.nix
         ./commonLinks.nix
-        ./serverMinimal.nix
-        ./codeMinimal.nix
-        ./codeFull.nix
-        ./gits.nix
+
+        ./code/minimal.nix
+        ./code/full.nix
+
+        ./server/minimal.nix
+        ./user/gits.nix
       ];
 
       "testServer" = homeConf "test" [
         ./common.nix
         ./commonLinks.nix
-        ./serverMinimal.nix
-        ./pythonMinimal.nix
-        ./minecraftServer.nix
+
+        ./server/minimal.nix
+        ./server/minecraft.nix
+
+        ./code/pythonMinimal.nix
       ];
 
       "testDev" = homeConf "test" [
         ./common.nix
-        ./gitLinks.nix
-        ./serverMinimal.nix
-        ./codeMinimal.nix
-        ./codeFull.nix
-        ./pythonFull.nix
-        ./gits.nix
+
+        ./user/gits.nix
+        ./user/gitLinks.nix
+
+        ./server/minimal.nix
+        ./server/user.nix
+
+        ./code/minimal.nix
+        ./code/full.nix
+        ./code/pythonFull.nix
       ];
     };
 
