@@ -32,9 +32,7 @@
     pkgs = nixpkgs.legacyPackages.${system};
     unstable = nixpkgs-unstable.legacyPackages.${system};
 
-    name = "michal";
     stateVersion = "23.11";
-
     utils =
       import ./utils.nix
       {

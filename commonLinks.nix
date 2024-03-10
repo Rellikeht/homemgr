@@ -1,19 +1,19 @@
 # vim: set et sw=2 ts=2:
 {
-  config,
-  pkgs,
-  unstable,
+  # config,
+  # pkgs,
+  # unstable,
   lib,
   dotfiles,
-  name,
-  stateVersion,
+  # name,
+  # stateVersion,
   utils,
   ...
 }: let
   dags = lib.hm.dag;
   b = builtins;
   dots = "${dotfiles}";
-  homeDirectory = "/home/${name}";
+  # homeDirectory = "/home/${name}";
 in {
   home = {
     file =
@@ -25,6 +25,7 @@ in {
 
         ".zshrc"
         ".bashrc"
+        ".commonrc"
         ".aliasrc"
         ".funcrc"
         ".varrc"
