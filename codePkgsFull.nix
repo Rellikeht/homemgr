@@ -37,13 +37,13 @@ in {
     };
 
     activation = {
-      dirs = dags.entryAfter ["writeBoundary"] (
+      codeDirs = dags.entryAfter ["writeBoundary"] (
         (utils.createDirs [])
         + ''
         ''
       );
 
-      bins =
+      codeBins =
         dags.entryAfter ["commonBins"] ''
         '';
     };

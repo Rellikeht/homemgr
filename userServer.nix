@@ -34,7 +34,7 @@
   ];
 
   java = with pkgs; [
-    jre_minimal
+    (lib.setPrio 200 jre_minimal)
   ];
 
   homeDirectory = "/home/${name}";

@@ -25,10 +25,10 @@
   unstablePackages = with unstable; [];
 
   java = with pkgs; [
-    jre8_headless
-    jdk11_headless
-    jdk17_headless
-    jdk21_headless
+    (lib.setPrio 100 jre8_headless)
+    (lib.setPrio 110 jdk11_headless)
+    (lib.setPrio 120 jdk17_headless)
+    (lib.setPrio 130 jdk21_headless)
   ];
 in {
   home = {
