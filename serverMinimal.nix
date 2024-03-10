@@ -46,7 +46,7 @@ in {
       ]);
 
     activation = {
-      dirs = dags.entryAfter ["commonDirs"] (
+      serverDirs = dags.entryAfter ["commonDirs"] (
         (utils.createDirs [
           "Backups"
           "transmission/incomplete"

@@ -65,14 +65,14 @@ in {
     };
 
     activation = {
-      dirs = dags.entryAfter ["commonDirs"] (
+      userServerDirs = dags.entryAfter ["serverDirs"] (
         (utils.createDirs [
           ])
         + ''
         ''
       );
 
-      bins =
+      userServerBins =
         dags.entryAfter ["commonBins"] ''
         '';
     };
