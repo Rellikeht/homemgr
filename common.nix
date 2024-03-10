@@ -1,18 +1,18 @@
 # vim: set et sw=2 ts=2:
 {
-  config,
+  # config,
   pkgs,
   unstable,
   lib,
-  dotfiles,
+  # dotfiles,
   name,
   stateVersion,
   utils,
   ...
 }: let
   dags = lib.hm.dag;
-  b = builtins;
-  dots = "${dotfiles}";
+  # b = builtins;
+  # dots = "${dotfiles}";
 
   normalPackages = with pkgs; [
     direnv
@@ -22,6 +22,7 @@
     gnugrep
     dash
 
+    nil
     jq
     git
     delta
@@ -31,7 +32,7 @@
   ];
 
   unstablePackages = with unstable; [
-    nixd
+    # nixd
     ocaml
   ];
 

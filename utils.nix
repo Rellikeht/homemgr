@@ -5,8 +5,8 @@
   dotfiles,
   stateVersion,
 }: let
-  lib = home-manager.lib;
-  dags = lib.hm.dag;
+  # lib = home-manager.lib;
+  # dags = lib.hm.dag;
   b = builtins;
   confFunc = home-manager.lib.homeManagerConfiguration;
 in rec {
@@ -138,4 +138,7 @@ in rec {
     map (name: cloneMyGithub {inherit name parent;}) names;
   cloneGitlabs = parent: names:
     map (name: cloneMyGitlab {inherit name parent;}) names;
+
+  # TODO
+  # git links
 }

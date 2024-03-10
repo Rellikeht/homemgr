@@ -1,18 +1,18 @@
 # vim: set et sw=2 ts=2:
 {
-  config,
+  # config,
   pkgs,
   unstable,
   lib,
-  dotfiles,
-  name,
-  stateVersion,
+  # dotfiles,
+  # name,
+  # stateVersion,
   utils,
   ...
 }: let
   dags = lib.hm.dag;
   b = builtins;
-  dots = "${dotfiles}";
+  # dots = "${dotfiles}";
 
   normalPackages = with pkgs; [
     git
@@ -20,8 +20,7 @@
 
   unstablePackages = with unstable; [
   ];
-
-  homeDirectory = "/home/${name}";
+  # homeDirectory = "/home/${name}";
 in {
   home = {
     activation = {
@@ -40,7 +39,7 @@ in {
                 "dwm"
                 "tabbed"
                 "dmenu"
-                "dmenu"
+                "svim-comptools"
               ]
             )
             ++ (
@@ -61,8 +60,6 @@ in {
           + ''
           ''
         );
-
-      # TODO not everything is here
     };
 
     packages = normalPackages ++ unstablePackages;

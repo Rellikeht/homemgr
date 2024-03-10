@@ -3,9 +3,9 @@
   description = "Home Manager configuration of michal";
 
   inputs = {
-    nixpkgs.url = github:nixos/nixpkgs/nixos-23.11;
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-23.11";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
-    flakeUtils.url = github:numtide/flake-utils;
+    # flakeUtils.url = "github:numtide/flake-utils";
 
     home-manager = {
       url = "github:nix-community/home-manager/release-23.11";
@@ -13,17 +13,17 @@
     };
 
     dotfiles = {
-      url = github:Rellikeht/dotfiles;
+      url = "github:Rellikeht/dotfiles";
       flake = false;
     };
 
-    builds.url = github:Rellikeht/nix-builds;
+    builds.url = "github:Rellikeht/nix-builds";
   };
 
   outputs = {
     nixpkgs,
     nixpkgs-unstable,
-    flakeUtils,
+    # flakeUtils,
     home-manager,
     dotfiles,
     ...
@@ -68,15 +68,14 @@
       # it has to be used carefully
 
       # TODO better python handling
-      # TODO procedural creation
       # TODO Packages files, that may be super hard
       # TODO at the end activation should land here
       # TODO server
       # TODO root
+      # TODO procedural creation
       # TODO generating for user named from environmental
       # variable with --impure
 
-      # Somehow finished
       "michalServer" = homeConf "michal" [
         ./common.nix
         ./commonLinks.nix
@@ -121,6 +120,8 @@
         ./code/minimal.nix
         ./code/pythonFull.nix
       ];
+
+      # Somehow finished ↑
 
       "michalFull" = homeConf "michal" [
         ./common.nix
