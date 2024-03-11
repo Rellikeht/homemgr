@@ -36,8 +36,7 @@
   java = with pkgs; [
     (lib.setPrio 200 jre_minimal)
   ];
-
-  homeDirectory = "/home/${name}";
+  # homeDirectory = "/home/${name}";
 in {
   home = {
     # Home Manager is pretty good at managing dotfiles. The primary way to manage
@@ -62,6 +61,8 @@ in {
     sessionVariables = {
       # why the fuck doesn't this work??
       # PATH = "$PATH:${homeDirectory}/bin";
+      # Maybe...
+      # PATH = "$PATH:$HOME/bin";
     };
 
     activation = {

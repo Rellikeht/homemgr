@@ -178,6 +178,7 @@
         ./commonLinks.nix
 
         ./server/minimal.nix
+        ./server/user.nix
         ./server/minecraft.nix
 
         ./code/pythonMinimal.nix
