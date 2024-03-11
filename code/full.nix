@@ -1,18 +1,18 @@
 # vim: set et sw=2 ts=2:
 {
-  config,
+  # config,
   pkgs,
   unstable,
   lib,
-  dotfiles,
-  name,
-  stateVersion,
-  utils,
+  # dotfiles,
+  # name,
+  # stateVersion,
+  # utils,
   ...
 }: let
   dags = lib.hm.dag;
-  b = builtins;
-  dots = "${dotfiles}";
+  # b = builtins;
+  # dots = "${dotfiles}";
 
   normalPackages = with pkgs; [
     tesseract
@@ -34,9 +34,8 @@
       hashtables
       unordered-containers
     ]);
-
   # TODO julia, ocaml, nim packages
-  homeDirectory = "/home/${name}";
+  # homeDirectory = "/home/${name}";
 in {
   home = {
     file = {};

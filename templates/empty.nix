@@ -16,8 +16,6 @@
 
   normalPackages = with pkgs; [];
   unstablePackages = with unstable; [];
-
-  homeDirectory = "/home/${name}";
 in {
   home = {
     file = {};

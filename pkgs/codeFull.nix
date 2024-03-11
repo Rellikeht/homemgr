@@ -1,24 +1,22 @@
 # vim: set et sw=2 ts=2:
 {
-  config,
+  # config,
   pkgs,
   unstable,
   lib,
   dotfiles,
-  name,
-  stateVersion,
+  # name,
+  # stateVersion,
   utils,
   ...
 }: let
   dags = lib.hm.dag;
   b = builtins;
-  dots = "${dotfiles}";
+  # dots = "${dotfiles}";
 
   normalPackages = with pkgs; [];
   unstablePackages = with unstable; [];
   jdks = with pkgs; [];
-
-  homeDirectory = "/home/${name}";
 in {
   home = {
     file =

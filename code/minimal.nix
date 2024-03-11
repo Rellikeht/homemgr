@@ -35,8 +35,7 @@
     tree-sitter
     gopls
   ];
-
-  dots = "${dotfiles}";
+  # dots = "${dotfiles}";
 in {
   home = {
     sessionVariables = {
