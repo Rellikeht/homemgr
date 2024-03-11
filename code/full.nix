@@ -3,6 +3,7 @@
   # config,
   pkgs,
   unstable,
+  builds,
   lib,
   # dotfiles,
   # name,
@@ -14,23 +15,54 @@
   # b = builtins;
   # dots = "${dotfiles}";
 
-  normalPackages = with pkgs; [
-    tesseract
-    pypy310
-    jdt-language-server
+  myR = pkgs.rWrapper.override {
+    packages = with pkgs.rPackages;
+      [
+        ggplot2
+        units
+        languageserver
+        vioplot
+      ]
+      ++ (with pkgs; [udunits]);
+  };
 
-    pforth
+  normalPackages = with pkgs;
+    [
+      tesseract
+      pypy310
+      java-language-server
+      # jdt-language-server
 
-    dhall-nix
-    dhall-nixpkgs
-    dhall-bash
-    dhall-docs
-  ];
+      pforth
+
+      dhall-nixpkgs
+      dhall-bash
+      dhall-docs
+    ]
+    ++ [
+      myR
+    ];
 
   unstablePackages = with unstable;
     [
       ghc
+      tree-sitter
       julia
+
+      # Not cached enough :(
+      # And read only file system
+      # This may be job for home manager activation
+      # (julia.withPackages [
+      #   "LanguageServer"
+      #   "OhMyREPL"
+      #   "Revise"
+
+      #   #   "BenchmarkTools"
+      #   #   "Plots"
+      #   #   "Unitful"
+      #   #   "JSON3"
+      #   #   "CSV"
+      # ])
     ]
     ++ (with unstable.haskellPackages; [
       cabal-install
@@ -49,7 +81,12 @@ in {
 
     sessionVariables = {};
 
-    packages = normalPackages ++ unstablePackages;
+    packages =
+      normalPackages
+      ++ unstablePackages
+      ++ (with builds; [
+        minizinc-ide-bin
+      ]);
   };
 }
 # TODO maybe some R, totally useless so can wait

@@ -26,20 +26,24 @@
     dhall-yaml
     dhall-json
     dhall-lsp-server
+    dhall-nix
   ];
 
-  unstablePackages = with unstable; [
-    ocamlPackages.ocaml-lsp
-    ocamlPackages.utop
-    ocamlformat
+  unstablePackages = with unstable; ([
+      ocamlPackages.ocaml-lsp
+      ocamlPackages.utop
+      ocamlformat
 
-    nim
-    nimlsp
-    nimble
+      nim
+      nimlsp
+      nimble
 
-    tree-sitter
-    gopls
-  ];
+      tree-sitter
+      gopls
+    ]
+    ++ (with haskellPackages; [
+      dhall-toml
+    ]));
   # dots = "${dotfiles}";
 in {
   home = {

@@ -26,6 +26,7 @@
     # flakeUtils,
     home-manager,
     dotfiles,
+    builds,
     ...
   }: let
     system = "x86_64-linux";
@@ -51,7 +52,7 @@
           inherit pkgs;
           modules = mods;
           extraSpecialArgs = {
-            inherit dotfiles unstable utils;
+            inherit dotfiles unstable utils builds;
             inherit name homeDir stateVersion;
             pythonProv = pkgs.python311;
           };

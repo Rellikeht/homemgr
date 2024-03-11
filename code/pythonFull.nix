@@ -14,11 +14,12 @@
   # b = builtins;
   # dots = "${dotfiles}";
   normalPackages = with pkgs; [
-    pylyzer
-    ruff
+    pypy310
   ];
 
   unstablePackages = with unstable; [
+    pylyzer
+    ruff
   ];
 
   python = pythonProv.withPackages pythonPackages;

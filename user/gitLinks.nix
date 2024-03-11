@@ -20,9 +20,12 @@ in {
 
     # TODO dotfile links
     activation = {
-      gitLinks =
-        dags.entryAfter ["gits"] ''
-        '';
+      gitLinks = dags.entryAfter ["gits"] (
+        (utils.makeDotsLinks ''"$HOME"'' [])
+        + (utils.makeDotsLinks ''"$HOME/.config"'' [])
+        + (utils.makeDotsLinks ''"$HOME/bin"'' [])
+        + ''''
+      );
     };
 
     sessionVariables = {};
