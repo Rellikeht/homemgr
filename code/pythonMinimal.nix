@@ -1,19 +1,17 @@
 # vim: set et sw=2 ts=2:
 {
   pkgs,
-  config,
+  # config,
   unstable,
   lib,
-  dotfiles,
-  name,
-  stateVersion,
-  utils,
+  # dotfiles,
+  # name,
+  # utils,
   pythonProv,
   ...
 }: let
-  b = builtins;
-  dots = "${dotfiles}";
-
+  # b = builtins;
+  # dots = "${dotfiles}";
   normalPackages = with pkgs; [
     pylyzer
     ruff

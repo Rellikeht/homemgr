@@ -6,6 +6,7 @@
   lib,
   # dotfiles,
   name,
+  homeDir ? "",
   stateVersion,
   utils,
   ...
@@ -36,7 +37,11 @@
     ocaml
   ];
 
-  homeDirectory = "/home/${name}";
+  defHomeDir = "/home/${name}";
+  homeDirectory =
+    if homeDir == ""
+    then defHomeDir
+    else homeDir;
 in {
   home = {
     activation = {

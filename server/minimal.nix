@@ -1,18 +1,18 @@
 # vim: set et sw=2 ts=2:
 {
-  config,
+  # config,
   pkgs,
   unstable,
   lib,
-  dotfiles,
+  # dotfiles,
   name,
-  stateVersion,
+  # stateVersion,
   utils,
   ...
 }: let
   dags = lib.hm.dag;
   b = builtins;
-  dots = "${dotfiles}";
+  # dots = "${dotfiles}";
 
   normalPackages = with pkgs; [
     shellcheck
@@ -32,8 +32,7 @@
     nim
     go
   ];
-
-  homeDirectory = "/home/${name}";
+  # homeDirectory = "/home/${name}";
 in {
   home = {
     file =

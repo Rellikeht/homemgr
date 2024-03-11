@@ -45,18 +45,20 @@
           ;
       };
 
-    homeConf = (
-      name: mods:
+    homeDConf = (
+      name: homeDir: mods:
         utils.confFunc {
           inherit pkgs;
           modules = mods;
           extraSpecialArgs = {
             inherit dotfiles unstable utils;
-            inherit name stateVersion;
+            inherit name homeDir stateVersion;
             pythonProv = pkgs.python311;
           };
         }
     );
+
+    homeConf = name: mods: homeDConf name "" mods;
   in {
     homeConfigurations = {
       # "${name}" = homeConf [./home.nix];
@@ -70,9 +72,15 @@
       # TODO at the end activation should land here
       # TODO server
       # TODO root
-      # TODO procedural creation
+      # TODO procedural creation ???
       # TODO generating for user named from environmental
       # variable with --impure
+
+      "simpleRoot" = homeDConf "root" "/root" [
+        ./common.nix
+        ./commonLinks.nix
+        ./code/minimal.nix
+      ];
 
       "michalServer" = homeConf "michal" [
         ./common.nix

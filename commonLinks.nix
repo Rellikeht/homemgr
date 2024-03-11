@@ -13,7 +13,6 @@
   dags = lib.hm.dag;
   b = builtins;
   dots = "${dotfiles}";
-  # homeDirectory = "/home/${name}";
 in {
   home = {
     file =
