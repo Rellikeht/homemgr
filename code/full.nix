@@ -19,13 +19,18 @@
     pypy310
     jdt-language-server
 
-    julia
     pforth
+
+    dhall-nix
+    dhall-nixpkgs
+    dhall-bash
+    dhall-docs
   ];
 
   unstablePackages = with unstable;
     [
       ghc
+      julia
     ]
     ++ (with unstable.haskellPackages; [
       cabal-install

@@ -97,6 +97,7 @@
         ./server/minimal.nix
         ./server/user.nix
 
+        # TODO
         ./pkgs/common.nix
         ./pkgs/userServer.nix
 
@@ -110,6 +111,7 @@
         ./server/minimal.nix
         ./server/user.nix
 
+        # TODO
         ./code/minimal.nix
       ];
 
@@ -119,6 +121,7 @@
         ./server/minimal.nix
         ./server/user.nix
 
+        # TODO
         ./pkgs/common.nix
         ./pkgs/userServer.nix
         ./pkgs/codeMinimal.nix
@@ -133,6 +136,7 @@
         ./common.nix
         ./commonLinks.nix
 
+        # TODO
         ./code/minimal.nix
         ./code/full.nix
 
@@ -147,6 +151,7 @@
         ./server/user.nix
         ./user/gits.nix
 
+        # TODO
         ./code/minimal.nix
         ./code/full.nix
         ./code/pythonFull.nix

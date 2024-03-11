@@ -1,12 +1,12 @@
 # vim: set et sw=2 ts=2:
 {
-  config,
+  # config,
   pkgs,
   unstable,
-  lib,
-  dotfiles,
-  name,
-  stateVersion,
+  # lib,
+  # dotfiles,
+  # name,
+  # stateVersion,
   utils,
   ...
 }: let
@@ -21,6 +21,11 @@
   normalPackages = with pkgs; [
     guile
     lua-language-server
+
+    dhall
+    dhall-yaml
+    dhall-json
+    dhall-lsp-server
   ];
 
   unstablePackages = with unstable; [

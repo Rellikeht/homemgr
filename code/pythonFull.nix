@@ -1,19 +1,18 @@
 # vim: set et sw=2 ts=2:
 {
   pkgs,
-  config,
+  # config,
   unstable,
   lib,
-  dotfiles,
-  name,
-  stateVersion,
-  utils,
+  # dotfiles,
+  # name,
+  # stateVersion,
+  # utils,
   pythonProv,
   ...
 }: let
-  b = builtins;
-  dots = "${dotfiles}";
-
+  # b = builtins;
+  # dots = "${dotfiles}";
   normalPackages = with pkgs; [
     pylyzer
     ruff
@@ -28,6 +27,8 @@
       bpython
       pip
       python-lsp-server
+      mypy
+      pylsp-mypy
       pynvim
       flake8
       autopep8

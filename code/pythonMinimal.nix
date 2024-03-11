@@ -26,6 +26,8 @@
       bpython
       pip
       python-lsp-server
+      mypy
+      pylsp-mypy
       pynvim
       flake8
       autopep8
