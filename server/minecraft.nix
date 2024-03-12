@@ -1,18 +1,17 @@
 # vim: set et sw=2 ts=2:
 {
-  config,
+  # config,
   pkgs,
   unstable,
   lib,
-  dotfiles,
-  name,
-  stateVersion,
+  # dotfiles,
+  # name,
+  # stateVersion,
   utils,
   ...
 }: let
   b = builtins;
-  dots = "${dotfiles}";
-
+  # dots = "${dotfiles}";
   normalPackages = with pkgs; [
     xz
     gnutar
@@ -36,6 +35,9 @@ in {
       {}
       // (utils.javaPaths java);
 
+    sessionVariables =
+      {}
+      // (utils.javaVars java);
     packages = normalPackages ++ unstablePackages ++ java;
   };
 }

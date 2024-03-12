@@ -9,44 +9,12 @@
       "locked": {
         "lastModified": 1,
         "narHash": "sha256-U3cabyli8MeswHYgLKqvA1qn8WSpXltLjPqQeZAkKG4=",
-        "path": "/nix/store/dini3ccppr1l3gscx1wl9b62hzpvz939-source/breeze-hacked",
+        "path": "/nix/store/acrxjsvdzbj11qnbck2i6d6gy7b35kap-source/breeze-hacked",
         "type": "path"
       },
       "original": {
-        "path": "/nix/store/dini3ccppr1l3gscx1wl9b62hzpvz939-source/breeze-hacked",
+        "path": "/nix/store/acrxjsvdzbj11qnbck2i6d6gy7b35kap-source/breeze-hacked",
         "type": "path"
-      }
-    },
-    "builds": {
-      "inputs": {
-        "breeze-hacked": "breeze-hacked",
-        "chuffed": "chuffed",
-        "dmenu": "dmenu",
-        "dwm": "dwm",
-        "flakeUtils": "flakeUtils_3",
-        "minizinc": "minizinc",
-        "minizinc-ide-bin": "minizinc-ide-bin",
-        "nixpkgs": "nixpkgs_8",
-        "playit": "playit",
-        "playit-bin": "playit-bin",
-        "scheme-langserver-bin": "scheme-langserver-bin",
-        "st": "st",
-        "svim": "svim",
-        "tabbed": "tabbed",
-        "xinit-xsession": "xinit-xsession"
-      },
-      "locked": {
-        "lastModified": 1709371269,
-        "narHash": "sha256-XWSB0DaVVAvpS75nKc1IX3baij1tTR93n1UzBE0jhoI=",
-        "owner": "Rellikeht",
-        "repo": "nix-builds",
-        "rev": "19cfc7e616118ce2d54de3d6c4453100f727b4c6",
-        "type": "github"
-      },
-      "original": {
-        "owner": "Rellikeht",
-        "repo": "nix-builds",
-        "type": "github"
       }
     },
     "chuffed": {
@@ -58,11 +26,11 @@
       "locked": {
         "lastModified": 1,
         "narHash": "sha256-6GlUoOidGl2PJQKEzt3IMk0f9VH33BhqWzvvoOvFqmw=",
-        "path": "/nix/store/dini3ccppr1l3gscx1wl9b62hzpvz939-source/chuffed",
+        "path": "/nix/store/acrxjsvdzbj11qnbck2i6d6gy7b35kap-source/chuffed",
         "type": "path"
       },
       "original": {
-        "path": "/nix/store/dini3ccppr1l3gscx1wl9b62hzpvz939-source/chuffed",
+        "path": "/nix/store/acrxjsvdzbj11qnbck2i6d6gy7b35kap-source/chuffed",
         "type": "path"
       }
     },
@@ -88,6 +56,18 @@
         "type": "github"
       }
     },
+    "dhallPrelude": {
+      "flake": false,
+      "locked": {
+        "narHash": "sha256-wcltzvgJcXxS2WaAYfkXnesN6BYUQ3Y+P4Dx1mxIxJY=",
+        "type": "file",
+        "url": "https://prelude.dhall-lang.org/v22.0.0/package.dhall"
+      },
+      "original": {
+        "type": "file",
+        "url": "https://prelude.dhall-lang.org/v22.0.0/package.dhall"
+      }
+    },
     "dmenu": {
       "inputs": {
         "flake-utils": "flake-utils",
@@ -110,11 +90,11 @@
     "dotfiles": {
       "flake": false,
       "locked": {
-        "lastModified": 1710156297,
-        "narHash": "sha256-vJyKqTFSbxh6ggLtgmgyu2M3F6WP31TkULiobS7L9EY=",
+        "lastModified": 1710187592,
+        "narHash": "sha256-zEBP6CW9gJ0qYzPqUPjj158/wyVyUZJk6INJBxU+wdE=",
         "owner": "Rellikeht",
         "repo": "dotfiles",
-        "rev": "895b732918f51c01c29159d3b9eeeac5c9d89049",
+        "rev": "ee1009945cb15438aceff0281c433b5bd4b7566c",
         "type": "github"
       },
       "original": {
@@ -237,11 +217,11 @@
         "systems": "systems_13"
       },
       "locked": {
-        "lastModified": 1709126324,
-        "narHash": "sha256-q6EQdSeUZOG26WelxqkmR7kArjgWCdw5sfJVHPH/7j8=",
+        "lastModified": 1710146030,
+        "narHash": "sha256-SZ5L6eA7HJ/nmkzGG7/ISclqe6oZdOZTNoesiInkXPQ=",
         "owner": "numtide",
         "repo": "flake-utils",
-        "rev": "d465f4819400de7c8d874d50b982301f28a84605",
+        "rev": "b1d9ab70662946ef0850d488da1c9019f3a9752a",
         "type": "github"
       },
       "original": {
@@ -291,11 +271,11 @@
         "systems": "systems_5"
       },
       "locked": {
-        "lastModified": 1709126324,
-        "narHash": "sha256-q6EQdSeUZOG26WelxqkmR7kArjgWCdw5sfJVHPH/7j8=",
+        "lastModified": 1710146030,
+        "narHash": "sha256-SZ5L6eA7HJ/nmkzGG7/ISclqe6oZdOZTNoesiInkXPQ=",
         "owner": "numtide",
         "repo": "flake-utils",
-        "rev": "d465f4819400de7c8d874d50b982301f28a84605",
+        "rev": "b1d9ab70662946ef0850d488da1c9019f3a9752a",
         "type": "github"
       },
       "original": {
@@ -345,11 +325,11 @@
         "systems": "systems_8"
       },
       "locked": {
-        "lastModified": 1705309234,
-        "narHash": "sha256-uNRRNRKmJyCRC/8y1RqBkqWBLM034y4qN7EprSdmgyA=",
+        "lastModified": 1710146030,
+        "narHash": "sha256-SZ5L6eA7HJ/nmkzGG7/ISclqe6oZdOZTNoesiInkXPQ=",
         "owner": "numtide",
         "repo": "flake-utils",
-        "rev": "1ef2e671c3b0c19053962c07dbda38332dcebf26",
+        "rev": "b1d9ab70662946ef0850d488da1c9019f3a9752a",
         "type": "github"
       },
       "original": {
@@ -381,11 +361,11 @@
         "systems": "systems_10"
       },
       "locked": {
-        "lastModified": 1705309234,
-        "narHash": "sha256-uNRRNRKmJyCRC/8y1RqBkqWBLM034y4qN7EprSdmgyA=",
+        "lastModified": 1710146030,
+        "narHash": "sha256-SZ5L6eA7HJ/nmkzGG7/ISclqe6oZdOZTNoesiInkXPQ=",
         "owner": "numtide",
         "repo": "flake-utils",
-        "rev": "1ef2e671c3b0c19053962c07dbda38332dcebf26",
+        "rev": "b1d9ab70662946ef0850d488da1c9019f3a9752a",
         "type": "github"
       },
       "original": {
@@ -443,11 +423,11 @@
       "locked": {
         "lastModified": 1,
         "narHash": "sha256-DRM7IFE8ckeKnHmFF8w52wKpJ7KITTaBq0qPRy/y5R8=",
-        "path": "/nix/store/dini3ccppr1l3gscx1wl9b62hzpvz939-source/minizinc",
+        "path": "/nix/store/acrxjsvdzbj11qnbck2i6d6gy7b35kap-source/minizinc",
         "type": "path"
       },
       "original": {
-        "path": "/nix/store/dini3ccppr1l3gscx1wl9b62hzpvz939-source/minizinc",
+        "path": "/nix/store/acrxjsvdzbj11qnbck2i6d6gy7b35kap-source/minizinc",
         "type": "path"
       }
     },
@@ -459,13 +439,45 @@
       },
       "locked": {
         "lastModified": 1,
-        "narHash": "sha256-lwYFkTKKPGITUCXKPUzmleBgJYsiyJSsalsRerL8RA8=",
-        "path": "/nix/store/dini3ccppr1l3gscx1wl9b62hzpvz939-source/minizinc-ide-bin",
+        "narHash": "sha256-vJGHtrPN3Nq4oYtkpW1HfS2gs8GSqrSIQ01xjF2G/h0=",
+        "path": "/nix/store/acrxjsvdzbj11qnbck2i6d6gy7b35kap-source/minizinc-ide-bin",
         "type": "path"
       },
       "original": {
-        "path": "/nix/store/dini3ccppr1l3gscx1wl9b62hzpvz939-source/minizinc-ide-bin",
+        "path": "/nix/store/acrxjsvdzbj11qnbck2i6d6gy7b35kap-source/minizinc-ide-bin",
         "type": "path"
+      }
+    },
+    "my-builds": {
+      "inputs": {
+        "breeze-hacked": "breeze-hacked",
+        "chuffed": "chuffed",
+        "dmenu": "dmenu",
+        "dwm": "dwm",
+        "flakeUtils": "flakeUtils_3",
+        "minizinc": "minizinc",
+        "minizinc-ide-bin": "minizinc-ide-bin",
+        "nixpkgs": "nixpkgs_8",
+        "playit": "playit",
+        "playit-bin": "playit-bin",
+        "scheme-langserver-bin": "scheme-langserver-bin",
+        "st": "st",
+        "svim": "svim",
+        "tabbed": "tabbed",
+        "xinit-xsession": "xinit-xsession"
+      },
+      "locked": {
+        "lastModified": 1710164284,
+        "narHash": "sha256-eRg1v6Z40KIP0KXD9uV0B5Y28I4VvgSMZiabrrIj48c=",
+        "owner": "Rellikeht",
+        "repo": "nix-builds",
+        "rev": "76415689201679ca88bb7e7b5324c4553bd371f9",
+        "type": "github"
+      },
+      "original": {
+        "owner": "Rellikeht",
+        "repo": "nix-builds",
+        "type": "github"
       }
     },
     "nixpkgs": {
@@ -501,11 +513,11 @@
     },
     "nixpkgs_10": {
       "locked": {
-        "lastModified": 1709116111,
-        "narHash": "sha256-V7BbC39cGDOzJsCsmg+hCdBu1Tuhqs7kLcPxw86STh4=",
+        "lastModified": 1710163406,
+        "narHash": "sha256-Bm+sR2BldtO6RxHl6oVvWHQmdvUGms3p03igWU0woDo=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "b84d9f029fa675d5ef312f032f322889149daa82",
+        "rev": "fc405ec2d865736e49f747699f21e0eacdf5ea7d",
         "type": "github"
       },
       "original": {
@@ -546,11 +558,11 @@
     },
     "nixpkgs_13": {
       "locked": {
-        "lastModified": 1709218635,
-        "narHash": "sha256-nytX/MkfqeTD4z7bMq4QRXcHxO9B3vRo9tM6fMtPFA8=",
+        "lastModified": 1710021367,
+        "narHash": "sha256-FuMVdWqXMT38u1lcySYyv93A7B8wU0EGzUr4t4jQu8g=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "068d4db604958d05d0b46c47f79b507d84dbc069",
+        "rev": "b94a96839afcc56de3551aa7472b8d9a3e77e05d",
         "type": "github"
       },
       "original": {
@@ -592,11 +604,11 @@
     },
     "nixpkgs_16": {
       "locked": {
-        "lastModified": 1710021367,
-        "narHash": "sha256-FuMVdWqXMT38u1lcySYyv93A7B8wU0EGzUr4t4jQu8g=",
+        "lastModified": 1710162809,
+        "narHash": "sha256-i2R2bcnQp+85de67yjgZVvJhd6rRnJbSYNpGmB6Leb8=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "b94a96839afcc56de3551aa7472b8d9a3e77e05d",
+        "rev": "ddcd7598b2184008c97e6c9c6a21c5f37590b8d2",
         "type": "github"
       },
       "original": {
@@ -683,11 +695,11 @@
     },
     "nixpkgs_7": {
       "locked": {
-        "lastModified": 1709116111,
-        "narHash": "sha256-V7BbC39cGDOzJsCsmg+hCdBu1Tuhqs7kLcPxw86STh4=",
+        "lastModified": 1710163406,
+        "narHash": "sha256-Bm+sR2BldtO6RxHl6oVvWHQmdvUGms3p03igWU0woDo=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "b84d9f029fa675d5ef312f032f322889149daa82",
+        "rev": "fc405ec2d865736e49f747699f21e0eacdf5ea7d",
         "type": "github"
       },
       "original": {
@@ -698,11 +710,11 @@
     },
     "nixpkgs_8": {
       "locked": {
-        "lastModified": 1709369638,
-        "narHash": "sha256-tMNlYcL8OYL6c7GtnOotBs3F+mdtPPysQCBdUVN1uXE=",
+        "lastModified": 1710163406,
+        "narHash": "sha256-Bm+sR2BldtO6RxHl6oVvWHQmdvUGms3p03igWU0woDo=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "7e1f7217d50441101706ddd9db20c8b8f1e40979",
+        "rev": "fc405ec2d865736e49f747699f21e0eacdf5ea7d",
         "type": "github"
       },
       "original": {
@@ -821,25 +833,25 @@
     "pkg-linux-a32": {
       "flake": false,
       "locked": {
-        "narHash": "sha256-IdVq7tOx5bPLgDxTzPU/Cx2chY+gvSJINkg74QjTYk4=",
+        "narHash": "sha256-xykdXw4WvK5EQ9tOKllOrdWW8j11HlFUWQxTEjBa98s=",
         "type": "file",
-        "url": "https://github.com/playit-cloud/playit-agent/releases/download/v0.15.12/playit-linux-armv7"
+        "url": "https://github.com/playit-cloud/playit-agent/releases/download/v0.15.13/playit-linux-armv7"
       },
       "original": {
         "type": "file",
-        "url": "https://github.com/playit-cloud/playit-agent/releases/download/v0.15.12/playit-linux-armv7"
+        "url": "https://github.com/playit-cloud/playit-agent/releases/download/v0.15.13/playit-linux-armv7"
       }
     },
     "pkg-linux-a64": {
       "flake": false,
       "locked": {
-        "narHash": "sha256-kjs5gHJTsD+pI9AcBzeykZcLeWJxrTt5rrmd6Rjw1G0=",
+        "narHash": "sha256-6dCEjRw/TwUEmcoJzcGcgUj5KISjLFpx14N8tfs2HLI=",
         "type": "file",
-        "url": "https://github.com/playit-cloud/playit-agent/releases/download/v0.15.12/playit-linux-aarch64"
+        "url": "https://github.com/playit-cloud/playit-agent/releases/download/v0.15.13/playit-linux-aarch64"
       },
       "original": {
         "type": "file",
-        "url": "https://github.com/playit-cloud/playit-agent/releases/download/v0.15.12/playit-linux-aarch64"
+        "url": "https://github.com/playit-cloud/playit-agent/releases/download/v0.15.13/playit-linux-aarch64"
       }
     },
     "pkg-linux-x64": {
@@ -858,25 +870,25 @@
     "pkg-linux-x64_2": {
       "flake": false,
       "locked": {
-        "narHash": "sha256-kXImWxR6Ln83Jc97t9wusijZIs3NW4b5QQOa3s3QH1U=",
+        "narHash": "sha256-uU/jHFwxEmdd/YdfJkhZ0rDUkJJ/3T5vThsc4GNOqoE=",
         "type": "file",
-        "url": "https://github.com/playit-cloud/playit-agent/releases/download/v0.15.12/playit-linux-amd64"
+        "url": "https://github.com/playit-cloud/playit-agent/releases/download/v0.15.13/playit-linux-amd64"
       },
       "original": {
         "type": "file",
-        "url": "https://github.com/playit-cloud/playit-agent/releases/download/v0.15.12/playit-linux-amd64"
+        "url": "https://github.com/playit-cloud/playit-agent/releases/download/v0.15.13/playit-linux-amd64"
       }
     },
     "pkg-linux-x86": {
       "flake": false,
       "locked": {
-        "narHash": "sha256-ME8PpqheNKXPNLev8qck9HprHnjaSgBxz7O0zMoUNfI=",
+        "narHash": "sha256-K4KcIGmX8GF/NzaaOq8lte63SMXe0TH0tHYbeat08ww=",
         "type": "file",
-        "url": "https://github.com/playit-cloud/playit-agent/releases/download/v0.15.12/playit-linux-i686"
+        "url": "https://github.com/playit-cloud/playit-agent/releases/download/v0.15.13/playit-linux-i686"
       },
       "original": {
         "type": "file",
-        "url": "https://github.com/playit-cloud/playit-agent/releases/download/v0.15.12/playit-linux-i686"
+        "url": "https://github.com/playit-cloud/playit-agent/releases/download/v0.15.13/playit-linux-i686"
       }
     },
     "playit": {
@@ -888,11 +900,11 @@
       "locked": {
         "lastModified": 1,
         "narHash": "sha256-M6xUBAmYn4FFuXYWMQ+n75FO/iUttlDHi8IkefHWt5Y=",
-        "path": "/nix/store/dini3ccppr1l3gscx1wl9b62hzpvz939-source/playit",
+        "path": "/nix/store/acrxjsvdzbj11qnbck2i6d6gy7b35kap-source/playit",
         "type": "path"
       },
       "original": {
-        "path": "/nix/store/dini3ccppr1l3gscx1wl9b62hzpvz939-source/playit",
+        "path": "/nix/store/acrxjsvdzbj11qnbck2i6d6gy7b35kap-source/playit",
         "type": "path"
       }
     },
@@ -907,20 +919,21 @@
       },
       "locked": {
         "lastModified": 1,
-        "narHash": "sha256-Ijexz2pmEl6a4ESDJkh3H4nnU50k/mN8MD5nei7yQqg=",
-        "path": "/nix/store/dini3ccppr1l3gscx1wl9b62hzpvz939-source/playit-bin",
+        "narHash": "sha256-zDbyoI5wTZypLiYEUW8JWL4HwGCDUYK8MsKwCP0bNBQ=",
+        "path": "/nix/store/acrxjsvdzbj11qnbck2i6d6gy7b35kap-source/playit-bin",
         "type": "path"
       },
       "original": {
-        "path": "/nix/store/dini3ccppr1l3gscx1wl9b62hzpvz939-source/playit-bin",
+        "path": "/nix/store/acrxjsvdzbj11qnbck2i6d6gy7b35kap-source/playit-bin",
         "type": "path"
       }
     },
     "root": {
       "inputs": {
-        "builds": "builds",
+        "dhallPrelude": "dhallPrelude",
         "dotfiles": "dotfiles",
         "home-manager": "home-manager",
+        "my-builds": "my-builds",
         "nixpkgs": "nixpkgs_16",
         "nixpkgs-unstable": "nixpkgs-unstable"
       }
@@ -934,11 +947,11 @@
       "locked": {
         "lastModified": 1,
         "narHash": "sha256-uQwTOkWHIZA2jHYQgZFfoeF9WL+yaMinDK8sBhC2yls=",
-        "path": "/nix/store/dini3ccppr1l3gscx1wl9b62hzpvz939-source/scheme-langserver-bin",
+        "path": "/nix/store/acrxjsvdzbj11qnbck2i6d6gy7b35kap-source/scheme-langserver-bin",
         "type": "path"
       },
       "original": {
-        "path": "/nix/store/dini3ccppr1l3gscx1wl9b62hzpvz939-source/scheme-langserver-bin",
+        "path": "/nix/store/acrxjsvdzbj11qnbck2i6d6gy7b35kap-source/scheme-langserver-bin",
         "type": "path"
       }
     },
@@ -968,11 +981,11 @@
         "vim": "vim"
       },
       "locked": {
-        "lastModified": 1709332625,
-        "narHash": "sha256-HT3MlBd4Yoyzc5xa0OQkqLNVMjrvnouAS6eAmPL1z+A=",
+        "lastModified": 1710164137,
+        "narHash": "sha256-4V6ldQiN/DIU2zbhHE4J/nESSIvq6D09JVliB8l3HXM=",
         "owner": "Rellikeht",
         "repo": "svim-comptools",
-        "rev": "ef9c0d72bbbd8becec37cb359bb2bc7651a9b886",
+        "rev": "f5e1f0722815f913091190471ab1dacbc6d49189",
         "type": "github"
       },
       "original": {
@@ -1228,11 +1241,11 @@
     "vim": {
       "flake": false,
       "locked": {
-        "lastModified": 1709331074,
-        "narHash": "sha256-mFZbZ3QWrnmSKnUqxH/V+24c+5URP0sw6k4vPIllnsY=",
+        "lastModified": 1710095672,
+        "narHash": "sha256-aXs4O6CfA2I0xTXrCz96E0ss7gzua/1f+DplE+k8TSQ=",
         "owner": "vim",
         "repo": "vim",
-        "rev": "100a665634a0a2edbc755daf453c4915800684dd",
+        "rev": "675cbfb47f03c65b2a5c245b632bdd7a0bf10e4f",
         "type": "github"
       },
       "original": {
@@ -1249,11 +1262,11 @@
       "locked": {
         "lastModified": 1,
         "narHash": "sha256-NVVE/fjfaKjSbyZ1yTy3v0jXy8WVnR+k7OWp6MEMnzw=",
-        "path": "/nix/store/dini3ccppr1l3gscx1wl9b62hzpvz939-source/xinit-xsession",
+        "path": "/nix/store/acrxjsvdzbj11qnbck2i6d6gy7b35kap-source/xinit-xsession",
         "type": "path"
       },
       "original": {
-        "path": "/nix/store/dini3ccppr1l3gscx1wl9b62hzpvz939-source/xinit-xsession",
+        "path": "/nix/store/acrxjsvdzbj11qnbck2i6d6gy7b35kap-source/xinit-xsession",
         "type": "path"
       }
     }

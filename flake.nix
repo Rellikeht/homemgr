@@ -17,7 +17,13 @@
       flake = false;
     };
 
-    builds.url = "github:Rellikeht/nix-builds";
+    my-builds.url = "github:Rellikeht/nix-builds";
+
+    dhallPrelude = {
+      url = "https://prelude.dhall-lang.org/v22.0.0/package.dhall";
+      flake = false;
+      type = "file";
+    };
   };
 
   outputs = {
@@ -26,18 +32,22 @@
     # flakeUtils,
     home-manager,
     dotfiles,
-    builds,
+    my-builds,
+    dhallPrelude,
     ...
   }: let
     system = "x86_64-linux";
     pkgs = nixpkgs.legacyPackages.${system};
+    lib = nixpkgs.lib;
     unstable = nixpkgs-unstable.legacyPackages.${system};
+    builds = my-builds.packages.${system};
 
     stateVersion = "23.11";
     utils =
       import ./utils.nix
       {
         inherit
+          lib
           pkgs
           unstable
           home-manager
@@ -49,11 +59,13 @@
     homeDConf = (
       name: homeDir: mods:
         utils.confFunc {
-          inherit pkgs;
+          inherit pkgs lib;
           modules = mods;
           extraSpecialArgs = {
-            inherit dotfiles unstable utils builds;
+            inherit dotfiles utils;
+            inherit unstable builds;
             inherit name homeDir stateVersion;
+            inherit dhallPrelude;
             pythonProv = pkgs.python311;
           };
         }
@@ -72,8 +84,8 @@
       # TODO Packages files, that may be super hard
       # TODO at the end activation should land here
       # TODO server
-      # TODO root
       # TODO procedural creation ???
+      # TODO roots
       # TODO generating for user named from environmental
       # variable with --impure
 

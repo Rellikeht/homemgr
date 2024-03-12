@@ -15,16 +15,17 @@
   # b = builtins;
   # dots = "${dotfiles}";
 
-  myR = pkgs.rWrapper.override {
-    packages = with pkgs.rPackages;
-      [
-        ggplot2
-        units
-        languageserver
-        vioplot
-      ]
-      ++ (with pkgs; [udunits]);
-  };
+  # I won't use this anyway
+  # myR = pkgs.rWrapper.override {
+  #   packages = with pkgs.rPackages;
+  #     [
+  #       ggplot2
+  #       units
+  #       languageserver
+  #       vioplot
+  #     ]
+  #     ++ (with pkgs; [udunits]);
+  # };
 
   normalPackages = with pkgs;
     [
@@ -34,17 +35,12 @@
       # jdt-language-server
 
       pforth
-
-      dhall-nixpkgs
-      dhall-bash
-      dhall-docs
     ]
     ++ [
-      myR
+      # myR
     ];
 
-  unstablePackages = with unstable;
-    [
+  unstablePackages = with unstable; ([
       ghc
       tree-sitter
       julia
@@ -64,13 +60,17 @@
       #   #   "CSV"
       # ])
     ]
-    ++ (with unstable.haskellPackages; [
+    ++ (with haskellPackages; [
       cabal-install
       stack
       vector
       hashtables
       unordered-containers
-    ]);
+
+      dhall-nixpkgs
+      dhall-bash
+      dhall-docs
+    ]));
   # TODO julia, ocaml, nim packages
   # homeDirectory = "/home/${name}";
 in {

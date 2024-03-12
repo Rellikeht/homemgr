@@ -1,4 +1,5 @@
 {
+  lib,
   pkgs,
   unstable,
   home-manager,
@@ -22,12 +23,27 @@ in rec {
         value = {
           target = ".java/" + n.name;
           recursive = true;
-          source = "${n}/";
+          source = "${n.home}";
         };
       })
       packages);
-  # (map (x: b.trace x.outPath x) jdks));
-  # TODO jdk vars, version is long, there should be something shorter
+
+  javaVars = packages:
+    b.listToAttrs (map (n: let
+        mf = c:
+          if (c == "+" || c == "-" || c == ".")
+          then "_"
+          else c;
+        listed =
+          # b.filter (c: (c != "+" && c != "-" && c != "."))
+          b.map mf (lib.stringToCharacters n.name);
+
+        cname = b.concatStringsSep "" listed;
+      in {
+        name = lib.toUpper ("java_" + cname + "_home");
+        value = "${n.home}";
+      })
+      packages);
 
   guileLoadPath = libs: let
     siteDir = "${pkgs.guile.siteDir}";

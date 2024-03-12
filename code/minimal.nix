@@ -8,6 +8,7 @@
   # name,
   # stateVersion,
   utils,
+  dhallPrelude,
   ...
 }: let
   b = builtins;
@@ -21,17 +22,9 @@
   normalPackages = with pkgs; [
     guile
     lua-language-server
-
-    dhall
-    dhall-yaml
-    dhall-json
-    dhall-lsp-server
-    dhall-nix
   ];
 
   unstablePackages = with unstable; ([
-      ocamlPackages.ocaml-lsp
-      ocamlPackages.utop
       ocamlformat
 
       nim
@@ -41,7 +34,16 @@
       tree-sitter
       gopls
     ]
+    ++ (with ocamlPackages; [
+      ocaml-lsp
+      utop
+    ])
     ++ (with haskellPackages; [
+      dhall
+      dhall-yaml
+      dhall-json
+      dhall-lsp-server
+      dhall-nix
       dhall-toml
     ]));
   # dots = "${dotfiles}";
@@ -52,7 +54,11 @@ in {
     };
 
     file =
-      {}
+      {
+        ".dhall/Prelude" = {
+          source = dhallPrelude;
+        };
+      }
       // b.listToAttrs (utils.configDirs [
         "Templates"
       ])
@@ -62,6 +68,7 @@ in {
         "nim"
       ]);
 
+    # TODO dhall prelude
     packages = normalPackages ++ unstablePackages ++ guile-libs;
   };
 }
