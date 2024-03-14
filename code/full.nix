@@ -43,7 +43,7 @@
   unstablePackages = with unstable; ([
       ghc
       tree-sitter
-      julia
+      julia-bin
 
       # Not cached enough :(
       # And read only file system
@@ -89,5 +89,3 @@ in {
       ]);
   };
 }
-# TODO maybe some R, totally useless so can wait
-

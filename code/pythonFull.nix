@@ -22,8 +22,7 @@
     ruff
   ];
 
-  python = pythonProv.withPackages pythonPackages;
-  pythonPackages = ps:
+  python = pythonProv.withPackages (ps:
     with ps; [
       bpython
       pip
@@ -40,7 +39,7 @@
       numpy
       pandas
       sympy
-    ];
+    ]);
 in {
   home = {
     packages =

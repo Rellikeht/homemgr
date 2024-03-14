@@ -22,6 +22,8 @@
   normalPackages = with pkgs; [
     guile
     lua-language-server
+    nickel
+    nls
   ];
 
   unstablePackages = with unstable; ([
@@ -68,7 +70,6 @@ in {
         "nim"
       ]);
 
-    # TODO dhall prelude
     packages = normalPackages ++ unstablePackages ++ guile-libs;
   };
 }

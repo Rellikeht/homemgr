@@ -20,8 +20,7 @@
   unstablePackages = with unstable; [
   ];
 
-  python = pythonProv.withPackages pythonPackages;
-  pythonPackages = ps:
+  python = pythonProv.withPackages (ps:
     with ps; [
       bpython
       pip
@@ -32,7 +31,7 @@
       flake8
       autopep8
       yt-dlp
-    ];
+    ]);
 in {
   home = {
     packages =

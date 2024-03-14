@@ -9,6 +9,7 @@
   # lib = home-manager.lib;
   # dags = lib.hm.dag;
   b = builtins;
+
   confFunc = home-manager.lib.homeManagerConfiguration;
 in rec {
   inherit confFunc;
@@ -16,6 +17,11 @@ in rec {
   # TODO cron here, because it isn't available
   # somehow, no idea how hard this will be
   # TODO maybe some division
+
+  guileLoadPath = libs: let
+    siteDir = "${pkgs.guile.siteDir}";
+  in (b.concatStringsSep ";"
+    (map (l: "${l}/${siteDir}") libs));
 
   javaPaths = packages:
     b.listToAttrs (map (n: {
@@ -44,11 +50,6 @@ in rec {
         value = "${n.home}";
       })
       packages);
-
-  guileLoadPath = libs: let
-    siteDir = "${pkgs.guile.siteDir}";
-  in (b.concatStringsSep ";"
-    (map (l: "${l}/${siteDir}") libs));
 
   configFiles = map (f: {
     name = f;
@@ -157,4 +158,10 @@ in rec {
 
   # TODO
   # git links
+
+  mpv-unwrapped-full = final: prev: {
+    mpv-unwrapped = prev.mpv-unwrapped.override {
+      ffmpeg = pkgs.ffmpeg-full;
+    };
+  };
 }
