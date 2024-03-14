@@ -27,24 +27,21 @@
   ];
 
   unstablePackages = with unstable; ([
-      ocamlformat
-
       nim
       nimlsp
       nimble
 
+      dune_3
+
       tree-sitter
-      gopls
     ]
     ++ (with ocamlPackages; [
       ocaml-lsp
-      utop
     ])
     ++ (with haskellPackages; [
       dhall
       dhall-yaml
       dhall-json
-      dhall-lsp-server
       dhall-nix
       dhall-toml
     ]));
@@ -65,7 +62,6 @@ in {
         "Templates"
       ])
       // b.listToAttrs (utils.configCDirs [
-        "bpython"
         "nvim"
         "nim"
       ]);

@@ -124,8 +124,9 @@
         ./server/minimal.nix
         ./server/user.nix
 
-        # TODO
         ./code/minimal.nix
+        # TODO
+        ./code/normal.nix
       ];
 
       "michalCodePkgs" = homeConf "michal" [
@@ -140,6 +141,7 @@
         ./pkgs/codeMinimal.nix
 
         ./code/minimal.nix
+        ./code/normal.nix
         ./code/pythonFull.nix
       ];
 
@@ -151,6 +153,7 @@
 
         # TODO
         ./code/minimal.nix
+        ./code/normal.nix
         ./code/full.nix
 
         ./server/user.nix
@@ -166,6 +169,7 @@
 
         # TODO
         ./code/minimal.nix
+        ./code/normal.nix
         ./code/full.nix
         ./code/pythonFull.nix
 
@@ -180,6 +184,7 @@
         ./commonLinks.nix
 
         ./code/minimal.nix
+        ./code/normal.nix
         ./code/full.nix
 
         ./server/minimal.nix
@@ -207,6 +212,7 @@
         ./server/user.nix
 
         ./code/minimal.nix
+        ./code/normal.nix
         ./code/full.nix
         ./code/pythonFull.nix
       ];
