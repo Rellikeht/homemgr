@@ -34,6 +34,7 @@ in {
         ".w3m"
       ])
       // b.listToAttrs (utils.configCDirs [
+        "nvim"
         "ocaml"
         "vifm"
         "git"

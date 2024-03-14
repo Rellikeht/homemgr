@@ -63,7 +63,6 @@ in {
       ])
       // b.listToAttrs (utils.configCDirs [
         "bpython"
-        "nvim"
         "nim"
       ]);
 
