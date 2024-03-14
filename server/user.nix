@@ -3,6 +3,7 @@
   # config,
   pkgs,
   unstable,
+  builds,
   lib,
   # dotfiles,
   # name,
@@ -14,7 +15,6 @@
   b = builtins;
   # dots = "${dotfiles}";
 
-  # TODO bpython
   normalPackages = with pkgs; [
     # # It is sometimes useful to fine-tune packages, for example, by applying
     # # overrides. You can do that directly here, just don't forget the
@@ -31,6 +31,9 @@
   ];
 
   unstable_packages = with unstable; [
+  ];
+
+  myBuilds = with builds; [
   ];
 
   java = with pkgs; [
@@ -78,6 +81,6 @@ in {
         '';
     };
 
-    packages = normalPackages ++ unstable_packages ++ java;
+    packages = normalPackages ++ unstable_packages ++ java ++ myBuilds;
   };
 }

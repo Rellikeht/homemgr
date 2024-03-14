@@ -14,11 +14,10 @@
   dots = "${dotfiles}";
 
   normalPackages = with pkgs; [
-    kakoune
+    vim-vint
   ];
 
-  unstablePackages = with unstable; [
-  ];
+  unstablePackages = with unstable; [];
 in {
   home = {
     packages = normalPackages ++ unstablePackages;

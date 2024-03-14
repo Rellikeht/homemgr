@@ -19,6 +19,7 @@
     dash
     bash
     zsh
+    go
 
     tmux
     vim

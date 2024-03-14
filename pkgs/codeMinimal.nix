@@ -13,7 +13,10 @@
   b = builtins;
   dots = "${dotfiles}";
 
-  normalPackages = with pkgs; [];
+  normalPackages = with pkgs; [
+    shfmt
+  ];
+
   unstablePackages = with unstable; [];
 in {
   home = {

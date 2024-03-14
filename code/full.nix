@@ -32,16 +32,18 @@
       java-language-server
       # jdt-language-server
 
-      pforth
+      # pforth
     ]
     ++ [
       # myR
     ];
 
   unstablePackages = with unstable; ([
-      # tree-sitter
-      ghc
+      rustc
+      rust-analyzer
       julia-bin
+
+      gdb
 
       # Not cached enough :(
       # And read only file system
@@ -59,8 +61,6 @@
       # ])
     ]
     ++ (with haskellPackages; [
-      cabal-install
-      stack
       vector
       hashtables
       unordered-containers

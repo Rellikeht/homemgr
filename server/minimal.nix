@@ -3,6 +3,7 @@
   # config,
   pkgs,
   unstable,
+  builds,
   lib,
   # dotfiles,
   name,
@@ -31,6 +32,10 @@
     gdown
     nim
     go
+  ];
+
+  myBuilds = with builds; [
+    playit-bin
   ];
   # homeDirectory = "/home/${name}";
 in {
@@ -62,6 +67,6 @@ in {
       );
     };
 
-    packages = normalPackages ++ unstablePackages;
+    packages = normalPackages ++ unstablePackages ++ myBuilds;
   };
 }
