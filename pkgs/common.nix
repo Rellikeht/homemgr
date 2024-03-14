@@ -1,20 +1,32 @@
 # vim: set et sw=2 ts=2:
 {
-  config,
+  # config,
   pkgs,
   unstable,
-  lib,
-  dotfiles,
-  name,
-  stateVersion,
-  utils,
+  # lib,
+  # dotfiles,
+  # name,
+  # stateVersion,
+  # utils,
   ...
 }: let
-  b = builtins;
-  dots = "${dotfiles}";
+  # b = builtins;
+  # dots = "${dotfiles}";
+  normalPackages = with pkgs; [
+    lua
+    luajit
 
-  normalPackages = with pkgs; [];
-  unstablePackages = with unstable; [];
+    dash
+    bash
+    zsh
+
+    tmux
+    vim
+    neovim
+  ];
+
+  unstablePackages = with unstable; [
+  ];
 in {
   home = {
     packages = normalPackages ++ unstablePackages;

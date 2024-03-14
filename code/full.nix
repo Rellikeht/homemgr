@@ -4,17 +4,16 @@
   pkgs,
   unstable,
   builds,
-  lib,
+  # lib,
   # dotfiles,
   # name,
   # stateVersion,
   # utils,
   ...
 }: let
-  dags = lib.hm.dag;
+  # dags = lib.hm.dag;
   # b = builtins;
   # dots = "${dotfiles}";
-
   # I won't use this anyway
   # myR = pkgs.rWrapper.override {
   #   packages = with pkgs.rPackages;
@@ -26,7 +25,6 @@
   #     ]
   #     ++ (with pkgs; [udunits]);
   # };
-
   normalPackages = with pkgs;
     [
       tesseract
@@ -41,8 +39,8 @@
     ];
 
   unstablePackages = with unstable; ([
+      # tree-sitter
       ghc
-      tree-sitter
       julia-bin
 
       # Not cached enough :(

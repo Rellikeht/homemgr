@@ -8,12 +8,12 @@
   # name,
   # stateVersion,
   utils,
-  dhallPrelude,
   ...
 }: let
   b = builtins;
 
   normalPackages = with pkgs; [
+    luajit
   ];
 
   unstablePackages = with unstable; ([

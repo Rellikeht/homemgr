@@ -28,7 +28,6 @@
     git
     delta
     rlwrap
-    lua
     (lib.setPrio 100 python313)
   ];
 
