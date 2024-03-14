@@ -80,6 +80,8 @@
       # home manager may not be so useful with it
       # it has to be used carefully
 
+      # TODO MINIMALISATION
+
       # TODO better python handling
       # TODO Packages files, that may be super hard
       # TODO at the end activation should land here

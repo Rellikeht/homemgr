@@ -37,8 +37,7 @@ in {
       // b.listToAttrs (utils.configDirs [
         ])
       // b.listToAttrs (utils.configCDirs [
-        "bpython"
-      ]);
+        ]);
 
     packages = normalPackages ++ unstablePackages;
   };

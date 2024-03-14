@@ -6,11 +6,11 @@
   lib,
   # dotfiles,
   # name,
-  # utils,
+  utils,
   pythonProv,
   ...
 }: let
-  # b = builtins;
+  b = builtins;
   # dots = "${dotfiles}";
   normalPackages = with pkgs; [
     pylyzer
@@ -34,6 +34,15 @@
     ]);
 in {
   home = {
+    file =
+      {
+      }
+      // b.listToAttrs (utils.configDirs [
+        ])
+      // b.listToAttrs (utils.configCDirs [
+        # "bpython"
+      ]);
+
     packages =
       normalPackages
       ++ unstablePackages
