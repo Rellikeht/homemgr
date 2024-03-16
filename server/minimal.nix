@@ -40,14 +40,7 @@
   # homeDirectory = "/home/${name}";
 in {
   home = {
-    file =
-      {}
-      // b.listToAttrs (utils.configCDirs [
-        "glow"
-        "yt-dlp"
-        "transmission"
-        "transmission-daemon"
-      ]);
+    file = {};
 
     activation = {
       serverDirs = dags.entryAfter ["commonDirs"] (

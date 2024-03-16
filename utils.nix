@@ -53,7 +53,10 @@ in rec {
 
   configFiles = map (f: {
     name = f;
-    value = {source = "${dotfiles}/" + f;};
+    value = {
+      source = "${dotfiles}/" + f;
+      force = true;
+    };
   });
 
   configDirs = map (f: {
@@ -61,14 +64,18 @@ in rec {
     value = {
       recursive = true;
       source = "${dotfiles}/" + f;
+      force = true;
     };
   });
+
+  # configCDirs = l: configDirs (map (n: ".config/" + n) l);
 
   configCDirs = map (f: {
     name = ".config/" + f;
     value = {
       recursive = true;
       source = "${dotfiles}/.config/" + f;
+      force = true;
     };
   });
 
@@ -98,30 +105,54 @@ in rec {
     mkdir -p "${gitsDir}/${parent}"
     cd "${gitsDir}/${parent}"
 
-    # TODO maybe more tests and proper replacing
-    # if ! [
-    #   "$(${git} config --get remote.origin.url 2>/dev/null)" ==
-    #     "git@${provider}:${user}/${name}.git"
-    #   ]
+    # if ! [ -e "${name}" ]
     # then
-    #   [ "$(find 2>/dev/null | sed 2q | wc -l)" -gt 1 ] && \
-    #     echo "Cannot clone ${name} from ${provider} to nonempty directory" >&2
-    #     # echo "Cannot clone ${name} from ${provider} to nonempty directory" >&2 && \
-    #     # exit 1
+    #   mkdir "${name}"
+    # fi
 
-    if ! [ -e "${name}" ]
-    then
+    # if ! [ -d "${name}" ]
+    # then
+    #   echo "${name} is not a directory" >&2
+    #   exit 1
+    # fi
+
+    # if [ -z "$(ls -A ${name})" ]
+    # then
+    #   # TODO hide part of the progress
+    #   ${git} clone "https://${provider}/${user}/${name}" "${name}"
+    #   cd ${name}
+    #   ${git} remote set-url origin "git@${provider}:${user}/${name}.git"
+    # fi
+
+    DONE=0
+    if [ -e "${name}" ]; then
+      if ! [ -d "${name}" ]; then
+        echo "${name} is not a directory" >&2
+        exit 1
+      fi
+
+      if [ "$(find 2>/dev/null | sed 2q | wc -l)" -gt 1 ]; then
+        cd "${name}"
+
+        if ! [ "$(${git} config --get remote.origin.url 2>/dev/null)" =\
+          "git@${provider}:${user}/${name}.git" ]; then
+          echo "There is another repo in the way of ${name} from ${provider}" >&2
+          exit 1
+        else
+          DONE=1
+        fi
+
+        cd ..
+      else
+        echo "Cannot clone ${name} from ${provider} to nonempty directory" >&2
+        exit 1
+      fi
+
+    else
       mkdir "${name}"
     fi
 
-    if ! [ -d "${name}" ]
-    then
-      echo "${name} is not a directory" >&2
-      exit 1
-    fi
-
-    if [ -z "$(ls -A ${name})" ]
-    then
+    if [ "$DONE" -eq 0 ]; then
       # TODO hide part of the progress
       ${git} clone "https://${provider}/${user}/${name}" "${name}"
       cd ${name}
@@ -155,9 +186,6 @@ in rec {
     map (name: cloneMyGithub {inherit name parent;}) names;
   cloneGitlabs = parent: names:
     map (name: cloneMyGitlab {inherit name parent;}) names;
-
-  # TODO
-  # git links
 
   mpv-unwrapped-full = final: prev: {
     mpv-unwrapped = prev.mpv-unwrapped.override {

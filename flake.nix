@@ -95,6 +95,7 @@
         ./common.nix
         ./commonLinks.nix
         ./code/minimal.nix
+        ./code/links.nix
       ];
 
       "michalServer" = homeConf "michal" [
@@ -103,82 +104,110 @@
 
         ./server/minimal.nix
         ./server/user.nix
-      ];
-
-      "michalServerPkgs" = homeConf "michal" [
-        ./common.nix
-        ./commonLinks.nix
-
-        ./server/minimal.nix
-        ./server/user.nix
-
-        # TODO
-        ./pkgs/common.nix
-        ./pkgs/userServer.nix
-
-        ./code/pythonMinimal.nix
-      ];
-
-      "michalCode" = homeConf "michal" [
-        ./common.nix
-        ./commonLinks.nix
-
-        ./server/minimal.nix
-        ./server/user.nix
-
+        ./server/links.nix
         ./code/minimal.nix
-        # TODO
-        ./code/normal.nix
+        ./code/links.nix
       ];
 
-      "michalCodePkgs" = homeConf "michal" [
-        ./common.nix
-        ./commonLinks.nix
-        ./server/minimal.nix
-        ./server/user.nix
+      # "michalServerPkgs" = homeConf "michal" [
+      #   ./common.nix
+      #   ./commonLinks.nix
 
-        # TODO
-        ./pkgs/common.nix
-        ./pkgs/userServer.nix
-        ./pkgs/codeMinimal.nix
+      #   ./server/minimal.nix
+      #   ./server/user.nix
 
-        ./code/minimal.nix
-        ./code/normal.nix
-        ./code/pythonFull.nix
-      ];
+      #   # TODO
+      #   ./pkgs/common.nix
+      #   ./pkgs/userServer.nix
+
+      #   ./code/pythonMinimal.nix
+      # ];
+
+      # "michalCode" = homeConf "michal" [
+      #   ./common.nix
+      #   ./commonLinks.nix
+
+      #   ./server/minimal.nix
+      #   ./server/user.nix
+
+      #   ./code/minimal.nix
+      #   # TODO
+      #   ./code/normal.nix
+      # ];
+
+      # "michalCodePkgs" = homeConf "michal" [
+      #   ./common.nix
+      #   ./commonLinks.nix
+      #   ./server/minimal.nix
+      #   ./server/user.nix
+
+      #   # TODO
+      #   ./pkgs/common.nix
+      #   ./pkgs/userServer.nix
+      #   ./pkgs/codeMinimal.nix
+
+      #   ./code/minimal.nix
+      #   ./code/normal.nix
+      #   ./code/pythonFull.nix
+      # ];
 
       # Somehow finished ↑
 
-      "michalFull" = homeConf "michal" [
+      # "michalFull" = homeConf "michal" [
+      #   ./common.nix
+      #   ./commonLinks.nix
+
+      #   # TODO
+      #   ./code/minimal.nix
+      #   ./code/normal.nix
+      #   ./code/full.nix
+
+      #   ./server/user.nix
+      #   ./user/gits.nix
+      # ];
+
+      # "michalFullPkgs" = homeConf "michal" [
+      #   ./common.nix
+      #   ./commonLinks.nix
+
+      #   ./server/user.nix
+      #   ./user/gits.nix
+
+      #   # TODO
+      #   ./code/minimal.nix
+      #   ./code/normal.nix
+      #   ./code/full.nix
+      #   ./code/pythonFull.nix
+
+      #   ./pkgs/common.nix
+      #   ./pkgs/userServer.nix
+      #   ./pkgs/codeMinimal.nix
+      #   ./pkgs/codeFull.nix
+      # ];
+
+      "testMinimal" = homeConf "test" [
         ./common.nix
         ./commonLinks.nix
 
-        # TODO
         ./code/minimal.nix
         ./code/normal.nix
-        ./code/full.nix
+        ./code/links.nix
 
+        ./server/minimal.nix
         ./server/user.nix
+        ./server/links.nix
         ./user/gits.nix
       ];
 
-      "michalFullPkgs" = homeConf "michal" [
+      "testGlinks" = homeConf "test" [
         ./common.nix
-        ./commonLinks.nix
-
-        ./server/user.nix
-        ./user/gits.nix
-
-        # TODO
         ./code/minimal.nix
         ./code/normal.nix
-        ./code/full.nix
-        ./code/pythonFull.nix
 
-        ./pkgs/common.nix
-        ./pkgs/userServer.nix
-        ./pkgs/codeMinimal.nix
-        ./pkgs/codeFull.nix
+        ./server/minimal.nix
+        ./server/user.nix
+        ./user/gits.nix
+        ./user/gitLinks.nix
       ];
 
       "testUser" = homeConf "test" [
@@ -190,6 +219,8 @@
         ./code/full.nix
 
         ./server/minimal.nix
+        ./server/user.nix
+        ./server/links.nix
         ./user/gits.nix
       ];
 

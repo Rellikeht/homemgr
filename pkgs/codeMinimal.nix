@@ -14,7 +14,6 @@
   dots = "${dotfiles}";
 
   normalPackages = with pkgs; [
-    shfmt
   ];
 
   unstablePackages = with unstable; [];

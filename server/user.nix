@@ -52,13 +52,6 @@ in {
         #   org.gradle.daemon.idletimeout=3600000
         # '';
       }
-      // b.listToAttrs (utils.configFiles [
-        ])
-      // b.listToAttrs (utils.configDirs [
-        ])
-      // b.listToAttrs (utils.configCDirs [
-        "kak"
-      ])
       // (utils.javaPaths java);
 
     sessionVariables = {

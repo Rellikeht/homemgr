@@ -15,7 +15,7 @@
   # dots = "${dotfiles}";
 
   normalPackages = with pkgs; [
-    git
+    # gitFull
   ];
 
   unstablePackages = with unstable; [
@@ -43,7 +43,7 @@ in {
               ]
             )
             ++ (
-              utils.cloneGithubs "projects" [
+              utils.cloneGithubs "random" [
                 "advent-of-code"
                 "moderncv.typst"
                 "project_euler"

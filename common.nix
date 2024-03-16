@@ -25,7 +25,7 @@
 
     nil
     jq
-    git
+    gitFull
     delta
     rlwrap
     (lib.setPrio 100 python313)
@@ -48,7 +48,6 @@ in {
         dags.entryAfter ["writeBoundary"]
         (
           ''
-            # [ -e "$HOME/bin" ] && exit 1
           ''
           + (utils.createDirs [
             "bin"
@@ -59,8 +58,7 @@ in {
         );
 
       commonBins = dags.entryAfter ["commonDirs"] ''
-        find "$HOME/bin" -xtype l -delete || true
-        rm -rf "$HOME/bin/its_just_grep"
+        find "$HOME/bin" -type l -delete || true
         ln -s "${pkgs.gnugrep}/bin/grep" "${homeDirectory}/bin/its_just_grep"
       '';
     };

@@ -20,6 +20,11 @@
     tcl
     sbcl
     clisp
+
+    gnumake
+    automake
+    cmake
+    cmake-format
   ];
 
   unstablePackages = with unstable; ([
@@ -28,17 +33,14 @@
       zls
       ghc
 
-      gnumake
-      automake
-      cmake
-
-      ocamlformat
       gopls
     ]
     ++ (with ocamlPackages; [
       # Almost all of that is one big ???
       utop
       git
+
+      ocamlformat
 
       ocaml_pcre
       re
@@ -62,14 +64,8 @@ in {
     sessionVariables = {
     };
 
-    file =
-      {
-      }
-      // b.listToAttrs (utils.configDirs [
-        ])
-      // b.listToAttrs (utils.configCDirs [
-        "kak"
-      ]);
+    file = {
+    };
 
     packages = normalPackages ++ unstablePackages;
   };

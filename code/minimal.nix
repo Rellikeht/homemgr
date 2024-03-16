@@ -20,6 +20,7 @@
   ];
 
   normalPackages = with pkgs; [
+    shfmt
     guile
     lua-language-server
     nickel
@@ -27,6 +28,8 @@
   ];
 
   unstablePackages = with unstable; ([
+      go
+
       nim
       nimlsp
       nimble
@@ -39,11 +42,11 @@
       ocaml-lsp
     ])
     ++ (with haskellPackages; [
-      dhall
-      dhall-yaml
-      dhall-json
-      dhall-nix
-      dhall-toml
+      # dhall
+      # dhall-yaml
+      # dhall-json
+      # dhall-nix
+      # dhall-toml
     ]));
   # dots = "${dotfiles}";
 in {
@@ -52,19 +55,11 @@ in {
       GUILE_LOAD_PATH = utils.guileLoadPath guile-libs;
     };
 
-    file =
-      {
-        ".dhall/Prelude" = {
-          source = dhallPrelude;
-        };
-      }
-      // b.listToAttrs (utils.configDirs [
-        "Templates"
-      ])
-      // b.listToAttrs (utils.configCDirs [
-        "bpython"
-        "nim"
-      ]);
+    file = {
+      ".dhall/Prelude" = {
+        source = dhallPrelude;
+      };
+    };
 
     packages = normalPackages ++ unstablePackages ++ guile-libs;
   };
