@@ -25,7 +25,7 @@ in {
   home = {
     activation = {
       gits =
-        dags.entryAfter ["dirs"]
+        dags.entryAfter ["commonBins"]
         (
           b.concatStringsSep "\n" (
             (utils.cloneGithubs "configs" [

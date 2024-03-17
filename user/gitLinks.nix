@@ -50,10 +50,13 @@ in {
       # ".Xresources" = {source = "${homeDirectory}/" + gits/configs/dotfiles/.Xresources;};
       # ".zshrc" = {source = "${homeDirectory}/" + gits/configs/dotfiles/.zshrc;};
 
-      # ".config" = {
-      #   source = "gits/configs/dotfiles/.config";
+      # ".config" = let
+      #   src = "$HOME/gits/configs/dotfiles/.config" + ./.;
+      # in {
+      #   source = b.trace src src;
       #   recursive = true;
       # };
+
       # ".dscripts" = {
       #   source = "gits/configs/dotfiles/.dscripts";
       #   recursive = true;
@@ -107,10 +110,11 @@ in {
         stow = "${pkgs.stow}/bin/stow";
       in
         dags.entryAfter ["gits"] ''
-          ${stow} -d "${dots}" . --ignore="^[^.].*|.config" -t "$HOME"
-          ${stow} -d "${dots}" .config -t "$HOME/.config"
-          ${stow} -R -d "${dots}/global/" bin -t "$HOME/bin"
-          # ln -fs ${dots}/global/bin/* "$HOME/bin/"
+          # ${stow} -R -d "${dots}" . --ignore="^[^.].*|.config" -t "$HOME"
+          # Here find -printf '%f\n' | grep -Ev | xargs -d '\n' cp -frs
+
+          cp -frs ${dots}/.config/* "$HOME/.config"
+          ln -fs ${dots}/global/bin/* "$HOME/bin/"
         '';
     };
 

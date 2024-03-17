@@ -13,7 +13,7 @@
   dags = lib.hm.dag;
   b = builtins;
   dots = "${dotfiles}";
-  stow = "${pkgs.stow}/bin/stow";
+  # stow = "${pkgs.stow}/bin/stow";
 in {
   home = {
     file =
@@ -43,7 +43,8 @@ in {
             "git"
           ]);
         in
-          b.trace cdirs cdirs
+          cdirs
+        # b.trace cdirs cdirs
       );
 
     activation = {
@@ -55,8 +56,7 @@ in {
       # '';
 
       commonBinLinks = dags.entryAfter ["commonBins"] ''
-        # ln -fs ${dots}/global/bin/* "$HOME/bin/"
-        ${stow} -R -d "${dots}/global/" bin -t "$HOME/bin"
+        ln -fs ${dots}/global/bin/* "$HOME/bin/"
       '';
     };
   };
