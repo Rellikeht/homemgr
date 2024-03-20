@@ -41,6 +41,7 @@ in {
             "ocaml"
             "vifm"
             "git"
+            "direnv"
           ]);
         in
           cdirs

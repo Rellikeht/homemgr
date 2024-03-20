@@ -65,9 +65,9 @@
       hashtables
       unordered-containers
 
-      dhall-nixpkgs
-      dhall-bash
-      dhall-docs
+      # dhall-nixpkgs
+      # dhall-bash
+      # dhall-docs
     ]));
   # TODO julia, ocaml, nim packages
   # homeDirectory = "/home/${name}";

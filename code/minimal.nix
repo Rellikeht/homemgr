@@ -8,7 +8,7 @@
   # name,
   # stateVersion,
   utils,
-  dhallPrelude,
+  # dhallPrelude,
   ...
 }: let
   b = builtins;
@@ -56,9 +56,9 @@ in {
     };
 
     file = {
-      ".dhall/Prelude" = {
-        source = dhallPrelude;
-      };
+      # ".dhall/Prelude" = {
+      #   source = dhallPrelude;
+      # };
     };
 
     packages = normalPackages ++ unstablePackages ++ guile-libs;
