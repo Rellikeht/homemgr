@@ -61,18 +61,18 @@ in {
       '';
     };
 
-    programs = {
-      direnv = {
-        enable = true;
-        nix-direnv.enable = true;
-      };
-    };
-
     inherit homeDirectory stateVersion;
     username = name;
     packages = normalPackages ++ unstablePackages;
   };
 
   # Let Home Manager install and manage itself.
-  programs.home-manager.enable = true;
+  programs = {
+    home-manager.enable = true;
+
+    direnv = {
+      enable = true;
+      nix-direnv.enable = true;
+    };
+  };
 }
