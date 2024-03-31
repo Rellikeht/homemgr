@@ -107,15 +107,22 @@ in {
     activation = {
       gitLinks = let
         dots = "$HOME/gits/configs/dotfiles";
-        stow = "${pkgs.stow}/bin/stow";
       in
         dags.entryAfter ["gits"] ''
-          # ${stow} -R -d "${dots}" . --ignore="^[^.].*|.config" -t "$HOME"
-          # Here find -printf '%f\n' | grep -Ev | xargs -d '\n' cp -frs
+          find -printf '%f\n' | \
+            grep -Ev '^[^.].*|.config' | \
+            xargs -d '\n' -I{} cp -frs "{}" "$HOME"
 
           cp -frs ${dots}/.config/* "$HOME/.config"
           ln -fs ${dots}/global/bin/* "$HOME/bin/"
         '';
+      vimUpdate =
+        dags.entryAfter ["gitLinks"]
+        (
+          utils.vimUpPrep
+          + utils.vimUp ''"$HOME/bin/svim"''
+          + utils.vimUp "${pkgs.neovim}/bin/nvim"
+        );
     };
 
     sessionVariables = {};
