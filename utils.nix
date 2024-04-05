@@ -105,25 +105,6 @@ in rec {
     mkdir -p "${gitsDir}/${parent}"
     cd "${gitsDir}/${parent}"
 
-    # if ! [ -e "${name}" ]
-    # then
-    #   mkdir "${name}"
-    # fi
-
-    # if ! [ -d "${name}" ]
-    # then
-    #   echo "${name} is not a directory" >&2
-    #   exit 1
-    # fi
-
-    # if [ -z "$(ls -A ${name})" ]
-    # then
-    #   # TODO hide part of the progress
-    #   ${git} clone "https://${provider}/${user}/${name}" "${name}"
-    #   cd ${name}
-    #   ${git} remote set-url origin "git@${provider}:${user}/${name}.git"
-    # fi
-
     DONE=0
     if [ -e "${name}" ]; then
       if ! [ -d "${name}" ]; then
@@ -192,4 +173,11 @@ in rec {
       ffmpeg = pkgs.ffmpeg-full;
     };
   };
+
+  vimUp = name: ''
+    ${name} -c ':norm ,qu,qP:qa!'
+  '';
+  vimUpPrep = ''
+    export PATH="$PATH:${pkgs.git}/bin:${pkgs.curl}/bin"
+  '';
 }

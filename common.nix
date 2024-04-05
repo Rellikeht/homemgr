@@ -55,7 +55,7 @@ in {
           ''
         );
 
-      commonBins = dags.entryAfter ["commonDirs"] ''
+      commonBins = dags.entryAfter ["installPackages"] ''
         find "$HOME/bin" -type l -delete || true
         ln -s "${pkgs.gnugrep}/bin/grep" "${homeDirectory}/bin/its_just_grep"
       '';

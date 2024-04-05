@@ -20,6 +20,8 @@ in {
         ".tmux.conf"
         ".guile"
 
+        ".zshrc"
+        ".p10k.zsh"
         ".bashrc"
         ".zshrc"
         ".p10k.zsh"
@@ -52,7 +54,15 @@ in {
     activation = {
       commonBinLinks = dags.entryAfter ["commonBins"] ''
         ln -fs ${dots}/global/bin/* "$HOME/bin/"
+        ln -fs ${pkgs.vim}/bin/vim "$HOME/bin/svim"
       '';
+      vimUpdate =
+        dags.entryAfter ["commonBinLinks"]
+        (
+          utils.vimUpPrep
+          + utils.vimUp ''"$HOME/bin/svim"''
+          + utils.vimUp "${pkgs.neovim}/bin/nvim"
+        );
     };
   };
 }
