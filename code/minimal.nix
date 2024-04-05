@@ -1,12 +1,10 @@
 # vim: set et sw=2 ts=2:
 {
-  # config,
   pkgs,
   unstable,
   # lib,
   # dotfiles,
   # name,
-  # stateVersion,
   utils,
   # dhallPrelude,
   ...

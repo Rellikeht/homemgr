@@ -7,7 +7,6 @@
   lib,
   # dotfiles,
   name,
-  # stateVersion,
   utils,
   ...
 }: let
@@ -18,7 +17,6 @@
   normalPackages = with pkgs; [
     shellcheck
     checkbashisms
-    glow
 
     # yt-dlp
     nmap

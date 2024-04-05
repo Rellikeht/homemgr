@@ -1,9 +1,6 @@
 # vim: set et sw=2 ts=2:
 {
-  # lib,
   # dotfiles,
-  # name,
-  # stateVersion,
   utils,
   ...
 }: let

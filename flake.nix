@@ -37,7 +37,6 @@
     ...
   }:
     flake-utils.lib.eachDefaultSystem (system: let
-      # system = "x86_64-linux";
       pkgs = nixpkgs.legacyPackages.${system};
       lib = nixpkgs.lib;
       unstable = nixpkgs-unstable.legacyPackages.${system};
@@ -75,8 +74,6 @@
       homeConf = name: mods: homeDConf name "" mods;
     in {
       packages.homeConfigurations = {
-        # "${name}" = homeConf [./home.nix];
-
         # Because systemd can't be assured and
         # home manager may not be so useful with it
         # it has to be used carefully

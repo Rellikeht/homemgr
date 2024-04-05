@@ -1,6 +1,5 @@
 # vim: set et sw=2 ts=2:
 {
-  # config,
   pkgs,
   unstable,
   lib,
@@ -21,6 +20,7 @@
     gnugrep
     dash
 
+    glow
     nil
     jq
     gitFull

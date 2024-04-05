@@ -15,6 +15,9 @@
 
   normalPackages = with pkgs; [
     vim-vint
+    clang-tools
+    rustfmt
+    astyle
   ];
 
   unstablePackages = with unstable; [];

@@ -1,19 +1,16 @@
 # vim: set et sw=2 ts=2:
 {
-  # config,
   pkgs,
   # unstable,
   lib,
   dotfiles,
   # name,
-  # stateVersion,
   utils,
   ...
 }: let
   dags = lib.hm.dag;
   b = builtins;
   dots = "${dotfiles}";
-  # stow = "${pkgs.stow}/bin/stow";
 in {
   home = {
     file =
@@ -23,8 +20,10 @@ in {
         ".tmux.conf"
         ".guile"
 
-        ".zshrc"
         ".bashrc"
+        ".zshrc"
+        ".p10k.zsh"
+
         ".commonrc"
         ".aliasrc"
         ".funcrc"
@@ -33,6 +32,7 @@ in {
       // b.listToAttrs (utils.configDirs [
         ".vim"
         ".w3m"
+        ".scrs"
       ])
       // (
         let
@@ -42,20 +42,14 @@ in {
             "vifm"
             "git"
             "direnv"
+            "fastfetch"
+            "glow"
           ]);
         in
           cdirs
-        # b.trace cdirs cdirs
       );
 
     activation = {
-      # configClean = dags.entryBefore ["checkLinkTargets"] ''
-      # configClean = dags.entryBefore ["checkFilesChanged"] ''
-      #   find "$HOME" -maxdepth 1 -type l -delete || true
-      #   find "$HOME/bin" -maxdepth 1 -type l -delete || true
-      #   find "$HOME/.config" -type l -delete || true
-      # '';
-
       commonBinLinks = dags.entryAfter ["commonBins"] ''
         ln -fs ${dots}/global/bin/* "$HOME/bin/"
       '';

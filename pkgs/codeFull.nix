@@ -25,11 +25,9 @@ in {
         ".screenrc"
       ])
       // b.listToAttrs (utils.configDirs [
-        "Templates"
-      ])
+        ])
       // b.listToAttrs (utils.configCDirs [
-        "nim"
-      ]);
+        ]);
 
     sessionVariables = {
     };

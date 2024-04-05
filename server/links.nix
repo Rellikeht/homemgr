@@ -21,7 +21,6 @@ in {
         ])
       // b.listToAttrs (utils.configCDirs [
         "kak"
-        "glow"
         "yt-dlp"
         "transmission"
         "transmission-daemon"
