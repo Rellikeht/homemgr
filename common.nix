@@ -66,8 +66,8 @@ in {
     packages = normalPackages ++ unstablePackages;
   };
 
-  # Let Home Manager install and manage itself.
   programs = {
+    # Let Home Manager install and manage itself.
     home-manager.enable = true;
 
     direnv = {
@@ -75,4 +75,6 @@ in {
       nix-direnv.enable = true;
     };
   };
+
+  news.display = "silent";
 }
