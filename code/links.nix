@@ -18,6 +18,8 @@ in {
         "Templates"
       ])
       // b.listToAttrs (utils.configCDirs [
+        "luaformat"
+        "clangd"
         "bpython"
         "nim"
         "kak"

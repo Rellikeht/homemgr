@@ -21,6 +21,7 @@ in {
         ])
       // b.listToAttrs (utils.configCDirs [
         "kak"
+        "luaformat"
         "yt-dlp"
         "transmission"
         "transmission-daemon"

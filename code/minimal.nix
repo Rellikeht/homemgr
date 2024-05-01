@@ -21,6 +21,7 @@
     shfmt
     guile
     lua-language-server
+    luaformatter
     nickel
     nls
   ];
