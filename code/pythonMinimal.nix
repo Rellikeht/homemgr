@@ -3,20 +3,17 @@
   pkgs,
   unstable,
   lib,
-  # dotfiles,
-  # name,
   utils,
   pythonProv,
   ...
 }: let
   b = builtins;
-  # dots = "${dotfiles}";
   normalPackages = with pkgs; [
-    pylyzer
-    ruff
   ];
 
   unstablePackages = with unstable; [
+    pylyzer
+    ruff
   ];
 
   python = pythonProv.withPackages (ps:

@@ -4,15 +4,11 @@
   # config,
   unstable,
   lib,
-  # dotfiles,
-  # name,
-  # stateVersion,
   # utils,
   pythonProv,
   ...
 }: let
   # b = builtins;
-  # dots = "${dotfiles}";
   normalPackages = with pkgs; [
     pypy310
   ];
@@ -34,7 +30,6 @@
       autopep8
       yt-dlp
 
-      # TODO more useless packages
       matplotlib
       numpy
       pandas

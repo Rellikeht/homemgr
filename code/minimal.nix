@@ -24,6 +24,7 @@
     luaformatter
     nickel
     nls
+    megatools
   ];
 
   unstablePackages = with unstable; ([

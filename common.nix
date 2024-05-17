@@ -26,6 +26,7 @@
     gitFull
     delta
     rlwrap
+    aria2
     (lib.setPrio 100 python313)
   ];
 

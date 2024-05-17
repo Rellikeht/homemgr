@@ -80,10 +80,8 @@
 
         # TODO MINIMALISATION
 
-        # TODO better python handling
         # TODO Packages files, that may be super hard
         # TODO at the end activation should land here
-        # TODO server
         # TODO generating for user named from environmental
         # variable with --impure
         # TODO procedural creation ???
@@ -104,6 +102,19 @@
           ./server/links.nix
           ./code/minimal.nix
           ./code/links.nix
+        ];
+
+        "nixDroidDev" = homeConf "nix-on-droid" [
+          ./common.nix
+          ./commonLinks.nix
+
+          ./server/minimal.nix
+          ./server/user.nix
+          ./server/links.nix
+          ./code/minimal.nix
+          ./code/links.nix
+          ./code/normal.nix
+          ./code/pythonMinimal.nix
         ];
 
         # "michalServerPkgs" = homeConf "michal" [
