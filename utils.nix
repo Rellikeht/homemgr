@@ -178,6 +178,7 @@ in rec {
     ${name} -c ':norm ,qu,qP:qa!'
   '';
   vimUpPrep = ''
+    echo "\$PATH is $PATH"
     export PATH="$PATH:${pkgs.git}/bin:${pkgs.curl}/bin"
   '';
 }
