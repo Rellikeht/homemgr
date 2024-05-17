@@ -175,7 +175,7 @@ in rec {
   };
 
   vimUp = name: ''
-    ${name} -c ':norm ,qu1gs,qP1gs:qa!'
+    ${name} -c ':norm ,qu,qP:qa!'
   '';
   vimUpPrep = ''
     # echo "\$PATH is $PATH"
