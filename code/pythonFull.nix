@@ -30,6 +30,8 @@
       autopep8
       yt-dlp
 
+      conda
+
       matplotlib
       numpy
       pandas

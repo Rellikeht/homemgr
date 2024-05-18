@@ -13,6 +13,7 @@
   b = builtins;
 
   normalPackages = with pkgs; [
+    pkgtop
     kakoune
     luajit
 

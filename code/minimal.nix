@@ -17,15 +17,18 @@
     guile-gnutls
   ];
 
-  normalPackages = with pkgs; [
-    shfmt
-    guile
-    lua-language-server
-    luaformatter
-    nickel
-    nls
-    megatools
-  ];
+  normalPackages = with pkgs; ([
+      shfmt
+      guile
+      lua-language-server
+      luaformatter
+      nickel
+      nls
+      megatools
+    ]
+    ++ (with lua54Packages; [
+      luacheck
+    ]));
 
   unstablePackages = with unstable; ([
       go
