@@ -1,21 +1,20 @@
 # vim: set et sw=2 ts=2:
 {
   pkgs,
-  # config,
   unstable,
   lib,
-  # utils,
+  utils,
   pythonProv,
   ...
 }: let
-  # b = builtins;
+  b = builtins;
   normalPackages = with pkgs; [
-    pypy310
   ];
 
   unstablePackages = with unstable; [
     pylyzer
     ruff
+    spotdl
   ];
 
   python = pythonProv.withPackages (ps:
@@ -26,22 +25,28 @@
       mypy
       pylsp-mypy
       pynvim
-      flake8
-      autopep8
+
       yt-dlp
+      spotipy
 
-      conda # ??
-
-      matplotlib
-      numpy
-      pandas
-      sympy
+      beautifulsoup4
+      types-beautifulsoup4
 
       aria2p
       pycurl
+      transmission-rpc
     ]);
 in {
   home = {
+    file =
+      {
+      }
+      // b.listToAttrs (utils.configDirs [
+        ])
+      // b.listToAttrs (utils.configCDirs [
+        # "bpython"
+      ]);
+
     packages =
       normalPackages
       ++ unstablePackages

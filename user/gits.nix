@@ -28,12 +28,12 @@ in {
         dags.entryAfter ["commonBins"]
         (
           b.concatStringsSep "\n" (
-            (utils.cloneGithubs "configs" [
+            (utils.git.cloneGithubs "configs" [
               "nix-config"
               "dotfiles"
             ])
             ++ (
-              utils.cloneGithubs "programs" [
+              utils.git.cloneGithubs "programs" [
                 "nix-builds"
                 "st"
                 "dwm"
@@ -43,7 +43,7 @@ in {
               ]
             )
             ++ (
-              utils.cloneGithubs "random" [
+              utils.git.cloneGithubs "random" [
                 "advent-of-code"
                 "moderncv.typst"
                 "project_euler"
@@ -52,7 +52,7 @@ in {
               ]
             )
             ++ (
-              utils.cloneGitlabs "configs" [
+              utils.git.cloneGitlabs "configs" [
                 "homemgr"
               ]
             )

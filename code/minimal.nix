@@ -55,7 +55,7 @@
 in {
   home = {
     sessionVariables = {
-      GUILE_LOAD_PATH = utils.guileLoadPath guile-libs;
+      GUILE_LOAD_PATH = utils.guile.guileLoadPath guile-libs;
     };
 
     file = {

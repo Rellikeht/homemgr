@@ -57,7 +57,7 @@ in {
         #   org.gradle.daemon.idletimeout=3600000
         # '';
       }
-      // (utils.javaPaths java);
+      // (utils.java.javaPaths java);
 
     sessionVariables = {
       # why the fuck doesn't this work??

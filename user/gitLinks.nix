@@ -119,9 +119,9 @@ in {
       vimUpdate =
         dags.entryAfter ["gitLinks"]
         (
-          utils.vimUpPrep
-          + utils.vimUp ''"$HOME/bin/svim"''
-          + utils.vimUp "${pkgs.neovim}/bin/nvim"
+          utils.apps.vimUpPrep
+          + utils.apps.vimUp ''"$HOME/bin/svim"''
+          + utils.apps.vimUp "${pkgs.neovim}/bin/nvim"
         );
     };
 

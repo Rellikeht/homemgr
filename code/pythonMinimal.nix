@@ -24,8 +24,6 @@
       mypy
       pylsp-mypy
       pynvim
-      flake8
-      autopep8
       yt-dlp
     ]);
 in {

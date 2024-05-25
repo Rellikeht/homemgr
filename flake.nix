@@ -44,7 +44,7 @@
 
       stateVersion = "23.11";
       utils =
-        import ./utils.nix
+        import ./utils/utils.nix
         {
           inherit
             lib
@@ -70,6 +70,19 @@
             };
           }
       );
+
+      nix-droid-files = [
+        ./common.nix
+        ./commonLinks.nix
+
+        ./server/minimal.nix
+        ./server/user.nix
+        ./server/links.nix
+        ./code/minimal.nix
+        ./code/links.nix
+        ./code/normal.nix
+        ./code/pythonMinimal.nix
+      ];
 
       homeConf = name: mods: homeDConf name "" mods;
     in {
@@ -104,18 +117,8 @@
           ./code/links.nix
         ];
 
-        "nixDroidDev" = homeConf "nix-on-droid" [
-          ./common.nix
-          ./commonLinks.nix
-
-          ./server/minimal.nix
-          ./server/user.nix
-          ./server/links.nix
-          ./code/minimal.nix
-          ./code/links.nix
-          ./code/normal.nix
-          ./code/pythonMinimal.nix
-        ];
+        "nixDroidDev" = homeConf "nix-on-droid" nix-droid-files;
+        "testDroidDev" = homeConf "test" nix-droid-files;
 
         # "michalServerPkgs" = homeConf "michal" [
         #   ./common.nix
@@ -197,6 +200,7 @@
           ./common.nix
           ./commonLinks.nix
 
+          ./code/pythonMinimal.nix
           ./code/minimal.nix
           ./code/normal.nix
           ./code/links.nix
@@ -222,6 +226,7 @@
           ./common.nix
           ./commonLinks.nix
 
+          ./code/pythonMinimal.nix
           ./code/minimal.nix
           ./code/normal.nix
           ./code/full.nix
@@ -240,7 +245,7 @@
           ./server/user.nix
           ./server/minecraft.nix
 
-          ./code/pythonMinimal.nix
+          ./code/pythonScraping.nix
         ];
 
         "testDev" = homeConf "test" [
