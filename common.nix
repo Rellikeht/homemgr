@@ -89,12 +89,13 @@ in {
       extraConfig = {};
 
       hooks = {};
-      includes = {};
+      includes = [];
 
       ignores = [
         "*~"
         "*.swp"
         ".direnv"
+        "*cache*/"
       ];
 
       delta = {
