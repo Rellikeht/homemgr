@@ -13,23 +13,50 @@
   # b = builtins;
   # dots = "${dotfiles}";
   normalPackages = with pkgs; [
+    tmux
+    vim
+
+    gnused
+  ];
+
+  unstablePackages = with unstable; [
+    neovim
     lua
     luajit
 
     dash
-    bash
-    zsh
-    go
-
-    tmux
-    vim
-    neovim
-  ];
-
-  unstablePackages = with unstable; [
   ];
 in {
   home = {
     packages = normalPackages ++ unstablePackages;
+  };
+
+  programs = {
+    bash = {
+      enable = true;
+      enableCompletion = true;
+    };
+
+    zsh = {
+      enable = true;
+      package = unstable.zsh;
+      enableCompletion = true;
+      defaultKeymap = "emacs";
+      syntaxHighlighting = {
+        enable = true;
+        package = unstable.zsh-syntax-highlighting;
+        # TODO settings
+      };
+      initExtra = ''
+        source ${unstable.zsh-powerlevel10k}/share/zsh-powerlevel10k/powerlevel10k.zsh-theme
+      '';
+    };
+
+    fzf = {
+      enable = true;
+      package = unstable.fzf;
+      enableBashIntegration = true;
+      enableZshIntegration = true;
+    };
   };
 }

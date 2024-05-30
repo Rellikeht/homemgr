@@ -70,4 +70,13 @@ in {
 
     packages = normalPackages ++ unstablePackages;
   };
+
+  programs = {
+    opam = {
+      enable = true;
+      package = unstable.opam;
+      enableBashIntegration = true;
+      enableZshIntegration = true;
+    };
+  };
 }

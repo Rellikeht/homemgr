@@ -78,10 +78,16 @@
         ./server/minimal.nix
         ./server/user.nix
         ./server/links.nix
+
         ./code/minimal.nix
         ./code/links.nix
         ./code/normal.nix
         ./code/pythonMinimal.nix
+      ];
+
+      nix-droid-pkgs = [
+        ./pkgs/common.nix
+        ./pkgs/codeMinimal.nix
       ];
 
       homeConf = name: mods: homeDConf name "" mods;
@@ -106,6 +112,17 @@
           ./code/links.nix
         ];
 
+        "simpleServer" = homeConf "server" [
+          ./common.nix
+          ./commonLinks.nix
+          ./code/links.nix
+          ./server/minecraft.nix
+
+          # ./code/minimal.nix
+          # ./server/links.nix
+          # ./server/minimal.nix
+        ];
+
         "michalServer" = homeConf "michal" [
           ./common.nix
           ./commonLinks.nix
@@ -119,6 +136,12 @@
 
         "nixDroidDev" = homeConf "nix-on-droid" nix-droid-files;
         "testDroidDev" = homeConf "test" nix-droid-files;
+        "nixDroidDevPkgs" = homeConf "nix-on-droid" (
+          nix-droid-files ++ nix-droid-pkgs
+        );
+        "testDroidDevPkgs" = homeConf "test" (
+          nix-droid-files ++ nix-droid-pkgs
+        );
 
         # "michalServerPkgs" = homeConf "michal" [
         #   ./common.nix
