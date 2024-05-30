@@ -80,11 +80,6 @@ in {
       enableZshIntegration = true;
       nix-direnv.enable = true;
     };
-
-    # ???
-    aria2 = {
-      enable = true;
-    };
   };
 
   news.display = "silent";
