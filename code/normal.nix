@@ -78,5 +78,10 @@ in {
       enableBashIntegration = true;
       enableZshIntegration = true;
     };
+
+    vim-vint = {
+      enable = true;
+      package = unstable.vim-vint;
+    };
   };
 }

@@ -14,7 +14,6 @@
   dots = "${dotfiles}";
 
   normalPackages = with pkgs; [
-    vim-vint
     clang-tools
     rustfmt
     astyle

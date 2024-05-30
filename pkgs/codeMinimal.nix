@@ -14,9 +14,11 @@
   dots = "${dotfiles}";
 
   normalPackages = with pkgs; [
+    w3m
   ];
 
-  unstablePackages = with unstable; [];
+  unstablePackages = with unstable; [
+  ];
 in {
   home = {
     packages = normalPackages ++ unstablePackages;

@@ -28,12 +28,12 @@
     gitFull
     delta
     rlwrap
-    aria2
     (lib.setPrio 100 python313)
   ];
 
   unstablePackages = with unstable; [
     # nixd
+    aria2
     ocaml
   ];
 
@@ -80,6 +80,11 @@ in {
       enableZshIntegration = true;
       nix-direnv.enable = true;
     };
+  };
+
+  # ???
+  aria2 = {
+    enable = true;
   };
 
   news.display = "silent";

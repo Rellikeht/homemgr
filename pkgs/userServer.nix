@@ -15,6 +15,7 @@
 
   normalPackages = with pkgs; [
     kakoune
+    w3m
   ];
 
   unstablePackages = with unstable; [

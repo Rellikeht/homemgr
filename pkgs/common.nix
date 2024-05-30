@@ -3,6 +3,7 @@
   # config,
   pkgs,
   unstable,
+  builds,
   # lib,
   # dotfiles,
   # name,
@@ -17,11 +18,9 @@
     gnugrep
 
     tmux
-    vim
   ];
 
   unstablePackages = with unstable; [
-    neovim
     lua
     luajit
 
@@ -61,6 +60,28 @@ in {
       package = unstable.fzf;
       enableBashIntegration = true;
       enableZshIntegration = true;
+    };
+
+    neovim = {
+      enable = true;
+      package = unstable.neovim-unwrapped;
+    };
+
+    vim = {
+      enable = true;
+      package = builds.svim;
+      # defaultEditor = true;
+    };
+
+    bat = {
+      enable = true;
+      extraPackages = with pkgs.bat-extras; [
+        batdiff
+        batman
+        batgrep
+        batwatch
+        prettybat
+      ];
     };
   };
 }
