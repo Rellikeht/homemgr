@@ -9,11 +9,11 @@
       "locked": {
         "lastModified": 1,
         "narHash": "sha256-qOCJObjhIyFu9XxFVVLcYw5NCY9HY2kjly9jnsjuVKo=",
-        "path": "./breeze-hacked",
+        "path": "breeze-hacked",
         "type": "path"
       },
       "original": {
-        "path": "./breeze-hacked",
+        "path": "breeze-hacked",
         "type": "path"
       }
     },
@@ -26,11 +26,11 @@
       "locked": {
         "lastModified": 1,
         "narHash": "sha256-9ekBJBu46mY5nGiVDbJ3lpr6wDMB6z6Bqv3AajtU4N0=",
-        "path": "./chuffed",
+        "path": "chuffed",
         "type": "path"
       },
       "original": {
-        "path": "./chuffed",
+        "path": "chuffed",
         "type": "path"
       }
     },
@@ -429,11 +429,11 @@
       "locked": {
         "lastModified": 1,
         "narHash": "sha256-8kZcyUlNa7L2sx8iELuoD6RGG2ajpVAJRxIMHxvYTOg=",
-        "path": "./minizinc",
+        "path": "minizinc",
         "type": "path"
       },
       "original": {
-        "path": "./minizinc",
+        "path": "minizinc",
         "type": "path"
       }
     },
@@ -446,11 +446,11 @@
       "locked": {
         "lastModified": 1,
         "narHash": "sha256-0y5PZutv/sWE8Xb+F+eMjyeQ7Ri3BcDbsguuOuA/Yjk=",
-        "path": "./minizinc-ide-bin",
+        "path": "minizinc-ide-bin",
         "type": "path"
       },
       "original": {
-        "path": "./minizinc-ide-bin",
+        "path": "minizinc-ide-bin",
         "type": "path"
       }
     },
@@ -473,11 +473,11 @@
         "xinit-xsession": "xinit-xsession"
       },
       "locked": {
-        "lastModified": 1716411003,
-        "narHash": "sha256-RdWkuAWYE7ayQar8WNZU/k1fj6et2CK5lc9ZKrUoT/0=",
+        "lastModified": 1717084510,
+        "narHash": "sha256-Sel7B/uoGN6pQvesWPpKPEjKxYYp350B3N2HUFUr6ww=",
         "owner": "Rellikeht",
         "repo": "nix-builds",
-        "rev": "4cbb2f682125d3200e36395053da7c3b7f2378df",
+        "rev": "22ec0e7ee884a69053b2552b456c47094d4f23e8",
         "type": "github"
       },
       "original": {
@@ -503,11 +503,11 @@
     },
     "nixpkgs-unstable": {
       "locked": {
-        "lastModified": 1716769173,
-        "narHash": "sha256-7EXDb5WBw+d004Agt+JHC/Oyh/KTUglOaQ4MNjBbo5w=",
+        "lastModified": 1716948383,
+        "narHash": "sha256-SzDKxseEcHR5KzPXLwsemyTR/kaM9whxeiJohbL04rs=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "9ca3f649614213b2aaf5f1e16ec06952fe4c2632",
+        "rev": "ad57eef4ef0659193044870c731987a6df5cf56b",
         "type": "github"
       },
       "original": {
@@ -716,11 +716,11 @@
     },
     "nixpkgs_8": {
       "locked": {
-        "lastModified": 1716410285,
-        "narHash": "sha256-Yed/hg1CwaLJSw9AuWZ9xFzjNOZVVx8AepgoIYJEhjQ=",
+        "lastModified": 1717080126,
+        "narHash": "sha256-QSnSNAus2RpFMq2S5VaT1GrmlBo3+RPYyaYKnuhhbZo=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "9eb52cbcad7766b0202fdc366e83fcf5178bda65",
+        "rev": "cf099def273a5c201a1b40de19c841769a73de7b",
         "type": "github"
       },
       "original": {
@@ -906,11 +906,11 @@
       "locked": {
         "lastModified": 1,
         "narHash": "sha256-IoSoP5e8nhheelW6uhLq3X2D5+kecRl60520h48pqKE=",
-        "path": "./playit",
+        "path": "playit",
         "type": "path"
       },
       "original": {
-        "path": "./playit",
+        "path": "playit",
         "type": "path"
       }
     },
@@ -926,11 +926,11 @@
       "locked": {
         "lastModified": 1,
         "narHash": "sha256-vGZKbWKv6dov6X+cTPDN7AT34DnA14FsypkyRnu9o4k=",
-        "path": "./playit-bin",
+        "path": "playit-bin",
         "type": "path"
       },
       "original": {
-        "path": "./playit-bin",
+        "path": "playit-bin",
         "type": "path"
       }
     },
@@ -953,11 +953,11 @@
       "locked": {
         "lastModified": 1,
         "narHash": "sha256-cShYcnKdLqaJQKSyJh/Pn9UkoE1AcVdNxDxZIyKLnPo=",
-        "path": "./scheme-langserver-bin",
+        "path": "scheme-langserver-bin",
         "type": "path"
       },
       "original": {
-        "path": "./scheme-langserver-bin",
+        "path": "scheme-langserver-bin",
         "type": "path"
       }
     },
@@ -987,11 +987,11 @@
         "vim": "vim"
       },
       "locked": {
-        "lastModified": 1716410259,
-        "narHash": "sha256-qJUJc6wcfIcceAXu3oMEafu8OMGSM7O5rXY4hS4KUK4=",
+        "lastModified": 1716414770,
+        "narHash": "sha256-mJhDIM59vpOkODosIM/UYeh70oGhOH9atFcQpwoU9pY=",
         "owner": "Rellikeht",
         "repo": "svim-comptools",
-        "rev": "35434934eb4b53e9decf82fc6e6ea9e402fdb831",
+        "rev": "6da8521fb6696b6e896367f636d5d01759199306",
         "type": "github"
       },
       "original": {
@@ -1283,11 +1283,11 @@
       "locked": {
         "lastModified": 1,
         "narHash": "sha256-SOlR6aNHjdCEp67/MYJZ3whlKwesWeg6rxCGbg8JetY=",
-        "path": "./xinit-xsession",
+        "path": "xinit-xsession",
         "type": "path"
       },
       "original": {
-        "path": "./xinit-xsession",
+        "path": "xinit-xsession",
         "type": "path"
       }
     }
