@@ -97,8 +97,6 @@
         # home manager may not be so useful with it
         # it has to be used carefully
 
-        # TODO MINIMALISATION
-
         # TODO Packages files, that may be super hard
         # TODO at the end activation should land here
         # TODO generating for user named from environmental
@@ -117,10 +115,6 @@
           ./commonLinks.nix
           ./code/links.nix
           ./server/minecraft.nix
-
-          # ./code/minimal.nix
-          # ./server/links.nix
-          # ./server/minimal.nix
         ];
 
         "michalServer" = homeConf "michal" [

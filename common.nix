@@ -83,7 +83,7 @@ in {
   };
 
   # ???
-  aria2 = {
+  aria = {
     enable = true;
   };
 
