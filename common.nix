@@ -15,9 +15,11 @@
   # dots = "${dotfiles}";
 
   normalPackages = with pkgs; [
+    shellcheck
+    checkbashisms
+
     alejandra
     silver-searcher
-    gnugrep
     dash
 
     glow

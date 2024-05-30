@@ -33,7 +33,7 @@ in {
   home = {
     file =
       {}
-      // (utils.javaPaths java);
+      // (utils.java.javaPaths java);
 
     sessionVariables =
       {}

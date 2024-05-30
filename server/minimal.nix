@@ -15,9 +15,6 @@
   # dots = "${dotfiles}";
 
   normalPackages = with pkgs; [
-    shellcheck
-    checkbashisms
-
     # yt-dlp
     nmap
     lftp

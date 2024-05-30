@@ -13,10 +13,11 @@
   # b = builtins;
   # dots = "${dotfiles}";
   normalPackages = with pkgs; [
+    gnused
+    gnugrep
+
     tmux
     vim
-
-    gnused
   ];
 
   unstablePackages = with unstable; [
@@ -42,11 +43,14 @@ in {
       package = unstable.zsh;
       enableCompletion = true;
       defaultKeymap = "emacs";
+
       syntaxHighlighting = {
         enable = true;
         package = unstable.zsh-syntax-highlighting;
         # TODO settings
       };
+
+      # Hope this will work
       initExtra = ''
         source ${unstable.zsh-powerlevel10k}/share/zsh-powerlevel10k/powerlevel10k.zsh-theme
       '';
