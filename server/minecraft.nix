@@ -37,7 +37,7 @@ in {
 
     sessionVariables =
       {}
-      // (utils.javaVars java);
+      // (utils.java.javaVars java);
     packages = normalPackages ++ unstablePackages ++ java;
   };
 }
