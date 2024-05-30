@@ -85,7 +85,7 @@ in {
       package = pkgs.gitFull;
 
       aliases = [];
-      attributes = {};
+      attributes = [];
       extraConfig = {};
 
       hooks = {};
