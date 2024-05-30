@@ -84,7 +84,7 @@ in {
       enable = true;
       package = pkgs.gitFull;
 
-      aliases = [];
+      aliases = {};
       attributes = [];
       extraConfig = {};
 
