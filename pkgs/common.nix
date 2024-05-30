@@ -23,6 +23,7 @@
   unstablePackages = with unstable; [
     lua
     luajit
+    vifm-full
 
     dash
   ];
@@ -82,6 +83,21 @@ in {
         batwatch
         prettybat
       ];
+    };
+
+    readline = {
+      enable = true;
+      bindings = {};
+      extraConfig = "";
+      includeSystemConfig = true;
+      variables = {};
+    };
+
+    htop = {
+      # TODO
+      enable = true;
+      package = unstable.htop;
+      settings = {};
     };
   };
 }

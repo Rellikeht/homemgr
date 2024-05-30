@@ -18,6 +18,9 @@
   normalPackages = with pkgs; ([
       pkgtop
       luaformatter
+
+      phodav
+      cadaver
       # # It is sometimes useful to fine-tune packages, for example, by applying
       # # overrides. You can do that directly here, just don't forget the
       # # parentheses. Maybe you want to install Nerd Fonts with a limited number of
@@ -47,8 +50,6 @@
   # homeDirectory = "/home/${name}";
 in {
   home = {
-    # Home Manager is pretty good at managing dotfiles. The primary way to manage
-    # plain files is through 'home.file'.
     file =
       {
         # # You can also set the file content immediately.
@@ -80,5 +81,14 @@ in {
     };
 
     packages = normalPackages ++ unstable_packages ++ java ++ myBuilds;
+  };
+
+  programs = {
+    yt-dlp = {
+      enable = true;
+      package = unstable.yt-dlp;
+      extraConfig = "";
+      settings = {};
+    };
   };
 }

@@ -25,7 +25,6 @@
     glow
     nil
     jq
-    gitFull
     delta
     rlwrap
     (lib.setPrio 100 python313)
@@ -79,6 +78,30 @@ in {
       enableBashIntegration = true;
       enableZshIntegration = true;
       nix-direnv.enable = true;
+    };
+
+    git = {
+      enable = true;
+      package = pkgs.gitFull;
+
+      aliases = [];
+      attributes = {};
+      extraConfig = {};
+
+      hooks = {};
+      includes = {};
+
+      ignores = [
+        "*~"
+        "*.swp"
+        ".direnv"
+      ];
+
+      delta = {
+        enable = true;
+        package = pkgs.delta;
+        options = {};
+      };
     };
   };
 

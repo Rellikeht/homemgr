@@ -1,12 +1,11 @@
 # Utilities
 
 - plocate (?)
-- fzf (?)
 
 # Language servers
 
 - julials (?)
-- texlab (?)
+- texlab (??)
 
 # formatters
 

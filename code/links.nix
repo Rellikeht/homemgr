@@ -22,6 +22,7 @@ in {
         "nim"
         "kak"
 
+        "ruff"
         "clangd"
         "luaformat"
         "yamlfmt"
