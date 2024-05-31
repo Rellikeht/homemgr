@@ -34,24 +34,22 @@
       zls
       ghc
 
+      dune_3
+
       gopls
     ]
     ++ (with ocamlPackages; [
-      # Almost all of that is one big ???
-      utop
-      git
-
       ocamlformat
+      # git
 
-      ocaml_pcre
-      re
+      # ocaml_pcre
+      # re
 
-      iter
-      owl
-      zarith
-
-      yojson
-      csv
+      # iter
+      # owl
+      # zarith
+      # yojson
+      # csv
     ])
     ++ (with haskellPackages; [
       floskell

@@ -37,11 +37,10 @@
       nimlsp
       nimble
 
-      dune_3
-
       tree-sitter
     ]
     ++ (with ocamlPackages; [
+      utop
       ocaml-lsp
     ])
     ++ (with haskellPackages; [

@@ -29,8 +29,7 @@
     [
       tesseract
       pypy310
-      java-language-server
-      # jdt-language-server
+      jdt-language-server
 
       # pforth
     ]
