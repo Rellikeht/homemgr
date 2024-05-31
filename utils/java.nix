@@ -39,14 +39,14 @@ in rec {
       })
       packages);
 
-  repSym = c: c:
+  repSym = c:
     if (c == "+" || c == "-" || c == ".")
     then "_"
     else c;
 
   javaRawVars = packages:
     b.listToAttrs (map (n: let
-        listed = b.map repSym (lib.stringToCharacters n.name);
+        listed = map repSym (lib.stringToCharacters n.name);
         cname = b.concatStringsSep "" listed;
       in {
         name = lib.toUpper ("java_" + cname + "_home");
@@ -56,7 +56,7 @@ in rec {
 
   javaNameVars = packages:
     b.listToAttrs (map (n: let
-        listed = b.map repSym (lib.stringToCharacters (clearName n.name + rmNums n.version));
+        listed = map repSym (lib.stringToCharacters (clearName n.name + rmNums n.version));
         cname = b.concatStringsSep "" listed;
       in {
         name = lib.toUpper ("java_" + cname + "_home");
@@ -66,7 +66,7 @@ in rec {
 
   javaDumbVars = packages:
     b.listToAttrs (map (n: let
-        listed = b.map repSym (lib.stringToCharacters (rmNums n.version));
+        listed = map repSym (lib.stringToCharacters (rmNums n.version));
         cname = b.concatStringsSep "" listed;
       in {
         name = lib.toUpper ("java_" + cname + "_home");
