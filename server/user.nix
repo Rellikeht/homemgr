@@ -58,14 +58,14 @@ in {
         #   org.gradle.daemon.idletimeout=3600000
         # '';
       }
-      // (utils.java.javaPaths java);
+      // (utils.java.javaNamePaths java);
 
     sessionVariables = {
       # why the fuck doesn't this work??
       # PATH = "$PATH:${homeDirectory}/bin";
       # Maybe...
       # PATH = "$PATH:$HOME/bin";
-    };
+    } // (utils.java.javaNameVars java);
 
     activation = {
       userServerDirs = dags.entryAfter ["serverDirs"] (
