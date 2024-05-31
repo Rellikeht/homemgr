@@ -21,10 +21,8 @@ in {
         ".guile"
 
         ".zshrc"
-        ".p10k.zsh"
         ".bashrc"
         ".zshrc"
-        ".p10k.zsh"
 
         ".commonrc"
         ".aliasrc"
@@ -35,21 +33,17 @@ in {
         ".vim"
         ".w3m"
         ".scrs"
+        "Templates"
       ])
-      // (
-        let
-          cdirs = b.listToAttrs (utils.configCDirs [
-            "nvim"
-            "ocaml"
-            "vifm"
-            "git"
-            "direnv"
-            "fastfetch"
-            "glow"
-          ]);
-        in
-          cdirs
-      );
+      // b.listToAttrs (utils.configCDirs [
+        "bpython"
+        "ocaml"
+        "vifm"
+        "git"
+        "direnv"
+        "fastfetch"
+        "glow"
+      ]);
 
     activation = {
       commonBinLinks = dags.entryAfter ["commonBins"] ''

@@ -23,7 +23,6 @@ in rec {
 
   # TODO cron here, because it isn't available
   # somehow, no idea how hard this will be
-  # TODO maybe some division
 
   configFiles = map (f: {
     name = f;

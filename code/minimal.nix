@@ -24,7 +24,6 @@
       luaformatter
       nickel
       nls
-      megatools
     ]
     ++ (with lua54Packages; [
       luacheck

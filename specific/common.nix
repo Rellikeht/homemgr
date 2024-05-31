@@ -1,30 +1,27 @@
 # vim: set et sw=2 ts=2:
 {
+  # pkgs,
+  # unstable,
+  # lib,
   # dotfiles,
+  # name,
   utils,
   ...
 }: let
-  # dags = lib.hm.dag;
   b = builtins;
-  # dots = "${dotfiles}";
-  # homeDirectory = "/home/${name}";
 in {
   home = {
     file =
       {}
       // b.listToAttrs (utils.configFiles [
-        ])
+        ".p10k.zsh"
+      ])
       // b.listToAttrs (utils.configDirs [
         ])
       // b.listToAttrs (utils.configCDirs [
-        "nim"
-        "kak"
-
-        "ruff"
-        "clangd"
-        "luaformat"
-        "yamlfmt"
-        "typstfmt"
+        "nvim"
       ]);
+
+    activation = {};
   };
 }

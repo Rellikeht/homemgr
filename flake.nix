@@ -74,6 +74,7 @@
       nix-droid-files = [
         ./common.nix
         ./commonLinks.nix
+        ./specific/common.nix
 
         ./server/minimal.nix
         ./server/user.nix
@@ -106,6 +107,7 @@
         "simpleRoot" = homeDConf "root" "/root" [
           ./common.nix
           ./commonLinks.nix
+          ./specific/root.nix
           ./code/minimal.nix
           ./code/links.nix
         ];
@@ -113,6 +115,7 @@
         "simpleServer" = homeConf "server" [
           ./common.nix
           ./commonLinks.nix
+          ./specific/server.nix
           ./code/links.nix
           ./server/minecraft.nix
         ];
@@ -120,6 +123,7 @@
         "michalServer" = homeConf "michal" [
           ./common.nix
           ./commonLinks.nix
+          ./specific/common.nix
 
           ./server/minimal.nix
           ./server/user.nix
@@ -137,85 +141,10 @@
           nix-droid-files ++ nix-droid-pkgs
         );
 
-        # "michalServerPkgs" = homeConf "michal" [
-        #   ./common.nix
-        #   ./commonLinks.nix
-
-        #   ./server/minimal.nix
-        #   ./server/user.nix
-
-        #   # TODO
-        #   ./pkgs/common.nix
-        #   ./pkgs/userServer.nix
-
-        #   ./code/pythonMinimal.nix
-        # ];
-
-        # "michalCode" = homeConf "michal" [
-        #   ./common.nix
-        #   ./commonLinks.nix
-
-        #   ./server/minimal.nix
-        #   ./server/user.nix
-
-        #   ./code/minimal.nix
-        #   # TODO
-        #   ./code/normal.nix
-        # ];
-
-        # "michalCodePkgs" = homeConf "michal" [
-        #   ./common.nix
-        #   ./commonLinks.nix
-        #   ./server/minimal.nix
-        #   ./server/user.nix
-
-        #   # TODO
-        #   ./pkgs/common.nix
-        #   ./pkgs/userServer.nix
-        #   ./pkgs/codeMinimal.nix
-
-        #   ./code/minimal.nix
-        #   ./code/normal.nix
-        #   ./code/pythonFull.nix
-        # ];
-
-        # Somehow finished ↑
-
-        # "michalFull" = homeConf "michal" [
-        #   ./common.nix
-        #   ./commonLinks.nix
-
-        #   # TODO
-        #   ./code/minimal.nix
-        #   ./code/normal.nix
-        #   ./code/full.nix
-
-        #   ./server/user.nix
-        #   ./user/gits.nix
-        # ];
-
-        # "michalFullPkgs" = homeConf "michal" [
-        #   ./common.nix
-        #   ./commonLinks.nix
-
-        #   ./server/user.nix
-        #   ./user/gits.nix
-
-        #   # TODO
-        #   ./code/minimal.nix
-        #   ./code/normal.nix
-        #   ./code/full.nix
-        #   ./code/pythonFull.nix
-
-        #   ./pkgs/common.nix
-        #   ./pkgs/userServer.nix
-        #   ./pkgs/codeMinimal.nix
-        #   ./pkgs/codeFull.nix
-        # ];
-
         "testMinimal" = homeConf "test" [
           ./common.nix
           ./commonLinks.nix
+          ./specific/server.nix
 
           ./code/pythonMinimal.nix
           ./code/minimal.nix
@@ -232,6 +161,7 @@
           ./common.nix
           ./code/minimal.nix
           ./code/normal.nix
+          ./specific/common.nix
 
           ./server/minimal.nix
           ./server/user.nix
@@ -242,6 +172,7 @@
         "testUser" = homeConf "test" [
           ./common.nix
           ./commonLinks.nix
+          ./specific/common.nix
 
           ./code/pythonMinimal.nix
           ./code/minimal.nix
@@ -257,6 +188,7 @@
         "testServer" = homeConf "test" [
           ./common.nix
           ./commonLinks.nix
+          ./specific/common.nix
 
           ./server/minimal.nix
           ./server/user.nix
@@ -267,6 +199,7 @@
 
         "testDev" = homeConf "test" [
           ./common.nix
+          ./specific/common.nix
 
           ./user/gits.nix
           ./user/gitLinks.nix

@@ -37,6 +37,7 @@
       dune_3
 
       gopls
+      megatools
     ]
     ++ (with ocamlPackages; [
       ocamlformat
