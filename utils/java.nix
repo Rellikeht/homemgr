@@ -2,10 +2,12 @@
   b = builtins;
 in rec {
   javaRawPaths = packages:
-    b.listToAttrs (map (n: {
-        name = n.name;
+    b.listToAttrs (map (n: let
+        path = ".java/" + n.name;
+      in {
+        name = path;
         value = {
-          target = ".java/" + n.name;
+          target = path;
           recursive = true;
           source = "${n.home}";
         };
@@ -18,10 +20,12 @@ in rec {
   clearName = name: rmOne "-" name;
 
   javaNamePaths = packages:
-    b.listToAttrs (map (n: {
-        name = n.name;
+    b.listToAttrs (map (n: let
+        path = ".java/" + clearName n.name + rmNums n.version;
+      in {
+        name = path;
         value = {
-          target = ".java/" + clearName n.name + rmNums n.version;
+          target = path;
           recursive = true;
           source = "${n.home}";
         };
@@ -29,10 +33,12 @@ in rec {
       packages);
 
   javaDumbPaths = packages:
-    b.listToAttrs (map (n: {
-        name = n.name;
+    b.listToAttrs (map (n: let
+        path = ".java/java" + rmNums n.version;
+      in {
+        name = path;
         value = {
-          target = ".java/java" + rmNums n.version;
+          target = path;
           recursive = true;
           source = "${n.home}";
         };

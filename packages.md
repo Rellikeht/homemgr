@@ -9,8 +9,9 @@
 
 # formatters
 
-- haskellPackages.cabal-fmt ??
-- uncrustify ??
+- docformatter
+- uncrustify ?
+- haskellPackages.cabal-fmt ???
 - prettier ???
 
 # Some day
