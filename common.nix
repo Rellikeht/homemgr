@@ -41,8 +41,14 @@
     if homeDir == ""
     then defHomeDir
     else homeDir;
+
+  fzfPackage = unstable.fzf;
 in {
   home = {
+    sessionVariables = {
+      FZF_STARTUP_LOCATION = "${fzfPackage}";
+    };
+
     activation = {
       commonDirs =
         dags.entryAfter ["writeBoundary"]
@@ -105,6 +111,13 @@ in {
       };
     };
   };
+
+  # fzf = {
+  #   enable = true;
+  #   package = fzfPackage;
+  #   enableBashIntegration = true;
+  #   enableZshIntegration = true;
+  # };
 
   news.display = "silent";
 }

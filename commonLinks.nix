@@ -28,6 +28,11 @@ in {
         ".aliasrc"
         ".funcrc"
         ".varrc"
+
+        ".aliasrc.zsh"
+        ".aliasrc.bash"
+        ".funcrc.zsh"
+        ".funcrc.bash"
       ])
       // b.listToAttrs (utils.configDirs [
         ".vim"

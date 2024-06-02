@@ -1,6 +1,5 @@
 # vim: set et sw=2 ts=2:
 {
-  # config,
   pkgs,
   unstable,
   builds,
@@ -12,12 +11,13 @@
   ...
 }: let
   # b = builtins;
-  # dots = "${dotfiles}";
   normalPackages = with pkgs; [
     gnused
     gnugrep
-
-    tmux
+    gawk
+    bc
+    ed
+    coreutils-full
   ];
 
   unstablePackages = with unstable; [
@@ -53,6 +53,27 @@ in {
       # Hope this will work
       initExtra = ''
         source ${unstable.zsh-powerlevel10k}/share/zsh-powerlevel10k/powerlevel10k.zsh-theme
+      '';
+    };
+
+    tmux = {
+      enable = true;
+      package = pkgs.tmux;
+      aggresiveResize = false;
+      clock24 = true;
+      escapeTime = 0;
+      historyLimit = 262144;
+      mouse = true;
+      keyMode = "vi";
+      prefix = null;
+
+      extraConfig = let
+        prefix = "M-Space";
+      in ''
+        unbind C-b
+        unbind "${prefix}"
+        set -g prefix "${prefix}"
+        bind "${prefix}" send-prefix
       '';
     };
 
