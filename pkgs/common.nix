@@ -59,7 +59,7 @@ in {
     tmux = {
       enable = true;
       package = pkgs.tmux;
-      aggresiveResize = false;
+      aggressiveResize = false;
       clock24 = true;
       escapeTime = 0;
       historyLimit = 262144;
