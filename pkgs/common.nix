@@ -3,7 +3,7 @@
   pkgs,
   unstable,
   builds,
-  # lib,
+  lib,
   # dotfiles,
   # name,
   # stateVersion,
@@ -91,8 +91,8 @@ in {
 
     vim = {
       enable = true;
-      package = builds.svim;
-      # defaultEditor = true;
+      package = lib.setPrio 200 builds.svim;
+      defaultEditor = true;
     };
 
     bat = {
