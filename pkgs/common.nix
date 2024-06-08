@@ -98,7 +98,7 @@ in {
 
       extraConfig = '''';
       extraLuaConfig = '''';
-      extraWrapperArgs = [];
+      # extraWrapperArgs = [];
 
       extraPackages = with pkgs; [];
       extraLuaPackages = ps: with ps; [];
