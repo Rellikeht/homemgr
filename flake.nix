@@ -66,7 +66,12 @@
               inherit unstable builds;
               inherit name homeDir stateVersion;
               # inherit dhallPrelude;
+
+              # TODO procedural names of package sets
               pythonProv = pkgs.python311;
+              pythonPkgs = pkgs.python311Packages;
+              luaProv = pkgs.lua54;
+              luaPkgs = pkgs.lua54Packages;
             };
           }
       );

@@ -4,6 +4,8 @@
   unstable,
   builds,
   lib,
+  pythonPkgs,
+  luaPkgs,
   # dotfiles,
   # name,
   # stateVersion,
@@ -87,12 +89,34 @@ in {
     neovim = {
       enable = true;
       package = unstable.neovim-unwrapped;
+      extraConfig = '''';
+      extraLuaConfig = '''';
+      extraPackages = [];
+      extraLuaPackages = with luaPkgs; [];
+      extraPython3Packages = with pythonPkgs; [
+        pynvim
+      ];
     };
 
     vim = {
       enable = true;
-      package = lib.setPrio 200 builds.svim;
+      packageConfigurable = builds.svim;
       defaultEditor = true;
+
+      # This be needed, but just in case...
+      extraConfig = '''';
+      settings = {
+        background = "dark";
+        history = 2000;
+        modeline = false;
+        expandtab = true;
+        shiftwidth = 4;
+        tabstop = 4;
+        number = true;
+        relativenumber = true;
+        mouse = "a";
+        smartcase = true;
+      };
     };
 
     bat = {
