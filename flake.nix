@@ -42,7 +42,7 @@
       unstable = nixpkgs-unstable.legacyPackages.${system};
       builds = my-builds.packages.${system};
 
-      stateVersion = "23.11";
+      stateVersion = "24.05";
       utils =
         import ./utils/utils.nix
         {
