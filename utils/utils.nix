@@ -26,7 +26,7 @@ in rec {
 
   configFiles = map (f: {
     name = f;
-    value = {
+    value = lib.mkDefault {
       source = "${dotfiles}/" + f;
       force = true;
     };
@@ -34,7 +34,7 @@ in rec {
 
   configDirs = map (f: {
     name = f;
-    value = {
+    value = lib.mkDefault {
       recursive = true;
       source = "${dotfiles}/" + f;
       force = true;
@@ -45,7 +45,7 @@ in rec {
 
   configCDirs = map (f: {
     name = ".config/" + f;
-    value = {
+    value = lib.mkDefault {
       recursive = true;
       source = "${dotfiles}/.config/" + f;
       force = true;
