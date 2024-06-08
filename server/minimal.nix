@@ -22,10 +22,10 @@
     megatools
     rclone
     transmission
+    gdown
   ];
 
   unstablePackages = with unstable; [
-    gdown
     nim
     go
   ];
