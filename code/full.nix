@@ -31,7 +31,7 @@
       pypy310
       jdt-language-server
 
-      # pforth
+      pforth
     ]
     ++ [
       # myR
@@ -43,21 +43,6 @@
       julia-bin
 
       gdb
-
-      # Not cached enough :(
-      # And read only file system
-      # This may be job for home manager activation
-      # (julia.withPackages [
-      #   "LanguageServer"
-      #   "OhMyREPL"
-      #   "Revise"
-
-      #   #   "BenchmarkTools"
-      #   #   "Plots"
-      #   #   "Unitful"
-      #   #   "JSON3"
-      #   #   "CSV"
-      # ])
     ]
     ++ (with haskellPackages; [
       vector
@@ -88,3 +73,11 @@ in {
       ++ myBuilds;
   };
 }
+# TODO language package managers
+#
+# julia
+# "LanguageServer"
+# "OhMyREPL"
+# "Revise"
+# "BenchmarkTools"
+

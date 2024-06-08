@@ -17,7 +17,8 @@
     guile-gnutls
   ];
 
-  normalPackages = with pkgs; ([
+  normalPackages = with pkgs; (
+    [
       shfmt
       guile
       lua-language-server
@@ -27,7 +28,19 @@
     ]
     ++ (with lua54Packages; [
       luacheck
-    ]));
+    ])
+    ++ (with ocamlPackages; [
+      utop
+      ocaml-lsp
+    ])
+    ++ (with haskellPackages; [
+      # dhall
+      # dhall-yaml
+      # dhall-json
+      # dhall-nix
+      # dhall-toml
+    ])
+  );
 
   unstablePackages = with unstable; ([
       go
@@ -39,16 +52,9 @@
       tree-sitter
     ]
     ++ (with ocamlPackages; [
-      utop
-      ocaml-lsp
-    ])
+      ])
     ++ (with haskellPackages; [
-      # dhall
-      # dhall-yaml
-      # dhall-json
-      # dhall-nix
-      # dhall-toml
-    ]));
+      ]));
   # dots = "${dotfiles}";
 in {
   home = {

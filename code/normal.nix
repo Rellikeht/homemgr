@@ -12,32 +12,24 @@
 }: let
   b = builtins;
 
-  normalPackages = with pkgs; [
-    pkgtop
-    kakoune
-    luajit
+  normalPackages = with pkgs; (
+    [
+      megatools
 
-    gforth
-    tcl
-    sbcl
-    clisp
-
-    gnumake
-    automake
-    cmake
-    cmake-format
-  ];
-
-  unstablePackages = with unstable; ([
-      zig
-      zig-shell-completions
-      zls
-      ghc
-
+      pkgtop
+      kakoune
+      luajit
       dune_3
 
-      gopls
-      megatools
+      gforth
+      tcl
+      sbcl
+      clisp
+
+      gnumake
+      automake
+      cmake
+      cmake-format
     ]
     ++ (with ocamlPackages; [
       ocamlformat
@@ -57,7 +49,21 @@
       haskell-language-server
       cabal-install
       stack
-    ]));
+    ])
+  );
+
+  unstablePackages = with unstable; ([
+      zig
+      zig-shell-completions
+      zls
+      ghc
+
+      gopls
+    ]
+    ++ (with ocamlPackages; [
+      ])
+    ++ (with haskellPackages; [
+      ]));
   # dots = "${dotfiles}";
 in {
   home = {

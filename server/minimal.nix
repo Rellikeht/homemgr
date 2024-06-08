@@ -15,7 +15,8 @@
   # dots = "${dotfiles}";
 
   normalPackages = with pkgs; [
-    # yt-dlp
+    netcat-gnu
+    iperf
     nmap
     lftp
     megatools

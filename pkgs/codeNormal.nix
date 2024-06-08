@@ -17,9 +17,12 @@
     clang-tools
     rustfmt
     astyle
+
+    gcc
   ];
 
-  unstablePackages = with unstable; [];
+  unstablePackages = with unstable; [
+  ];
 in {
   home = {
     packages = normalPackages ++ unstablePackages;

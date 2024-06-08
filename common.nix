@@ -27,13 +27,14 @@
     jq
     delta
     rlwrap
+
     (lib.setPrio 100 python313)
+    ocaml
+
+    aria2
   ];
 
   unstablePackages = with unstable; [
-    # nixd
-    aria2
-    ocaml
   ];
 
   defHomeDir = "/home/${name}";
