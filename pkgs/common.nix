@@ -29,9 +29,13 @@
 
     dash
   ];
+
+  builds = with builds; [
+    svim
+  ];
 in {
   home = {
-    packages = normalPackages ++ unstablePackages;
+    packages = normalPackages ++ unstablePackages ++ builds;
   };
 
   programs = {
@@ -99,8 +103,9 @@ in {
     };
 
     vim = {
-      enable = true;
-      packageConfigurable = builds.svim;
+      # It is done in packages :(
+      enable = false;
+      # packageConfigurable = builds.svim;
       defaultEditor = true;
 
       # This be needed, but just in case...
