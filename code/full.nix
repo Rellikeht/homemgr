@@ -68,6 +68,10 @@
       # dhall-bash
       # dhall-docs
     ]));
+
+  myBuilds = with builds; [
+    minizinc-ide-bin
+  ];
   # TODO julia, ocaml, nim packages
   # homeDirectory = "/home/${name}";
 in {
@@ -81,8 +85,6 @@ in {
     packages =
       normalPackages
       ++ unstablePackages
-      ++ (with builds; [
-        minizinc-ide-bin
-      ]);
+      ++ myBuilds;
   };
 }

@@ -30,12 +30,12 @@
     dash
   ];
 
-  builds = with builds; [
+  myBuilds = with builds; [
     svim
   ];
 in {
   home = {
-    packages = normalPackages ++ unstablePackages ++ builds;
+    packages = normalPackages ++ unstablePackages ++ myBuilds;
   };
 
   programs = {
@@ -93,13 +93,19 @@ in {
     neovim = {
       enable = true;
       package = unstable.neovim-unwrapped;
+      defaultEditor = false;
+      coc.enable = false;
+
       extraConfig = '''';
       extraLuaConfig = '''';
-      extraPackages = [];
-      extraLuaPackages = with luaPkgs; [];
-      extraPython3Packages = with pythonPkgs; [
-        pynvim
-      ];
+      extraWrapperArgs = [];
+
+      extraPackages = with pkgs; [];
+      extraLuaPackages = ps: with ps; [];
+      extraPython3Packages = ps:
+        with ps; [
+          pynvim
+        ];
     };
 
     vim = {
