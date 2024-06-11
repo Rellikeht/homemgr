@@ -3,7 +3,6 @@
   # lib,
   # dotfiles,
   # name,
-  # stateVersion,
   utils,
   ...
 }: let
@@ -16,15 +15,18 @@ in {
     file =
       {}
       // b.listToAttrs (utils.configFiles [
-        ])
+        # {{{
+      ]) # }}}
       // b.listToAttrs (utils.configDirs [
-        ])
+        # {{{
+      ]) # }}}
       // b.listToAttrs (utils.configCDirs [
+        # {{{
         "kak"
         "luaformat"
         "yt-dlp"
         "transmission"
         "transmission-daemon"
-      ]);
+      ]); # }}}
   };
 }

@@ -7,7 +7,6 @@
   lib,
   # dotfiles,
   # name,
-  # stateVersion,
   utils,
   ...
 }: let
@@ -15,7 +14,9 @@
   b = builtins;
   # dots = "${dotfiles}";
 
-  normalPackages = with pkgs; ([
+  normalPackages = with pkgs; (
+    [
+      # {{{
       pkgtop
       luaformatter
 
@@ -33,20 +34,25 @@
       # (pkgs.writeShellScriptBin "my-hello" ''
       #   echo "Hello, ${config.home.username}!"
       # '')
-    ]
+    ] # }}}
     ++ (with lua54Packages; [
+      # {{{
       luacheck
-    ]));
+    ]) # }}}
+  );
 
   unstable_packages = with unstable; [
-  ];
+    # {{{
+  ]; # }}}
 
   myBuilds = with builds; [
-  ];
+    # {{{
+  ]; # }}}
 
   java = with pkgs; [
+    # {{{
     (lib.setPrio 200 jre_minimal)
-  ];
+  ]; # }}}
   # homeDirectory = "/home/${name}";
 in {
   home = {
@@ -60,12 +66,14 @@ in {
       }
       // (utils.java.javaNamePaths java);
 
-    sessionVariables = {
-      # why the fuck doesn't this work??
-      # PATH = "$PATH:${homeDirectory}/bin";
-      # Maybe...
-      # PATH = "$PATH:$HOME/bin";
-    } // (utils.java.javaNameVars java);
+    sessionVariables =
+      {
+        # why the fuck doesn't this work??
+        # PATH = "$PATH:${homeDirectory}/bin";
+        # Maybe...
+        # PATH = "$PATH:$HOME/bin";
+      }
+      // (utils.java.javaNameVars java);
 
     activation = {
       userServerDirs = dags.entryAfter ["serverDirs"] (
@@ -85,10 +93,11 @@ in {
 
   programs = {
     yt-dlp = {
+      # {{{
       enable = true;
       package = unstable.yt-dlp;
       extraConfig = "";
       settings = {};
-    };
+    }; # }}}
   };
 }

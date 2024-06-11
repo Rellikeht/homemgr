@@ -15,6 +15,7 @@
   # dots = "${dotfiles}";
 
   normalPackages = with pkgs; [
+    # {{{
     netcat-gnu
     iperf
     nmap
@@ -23,16 +24,18 @@
     rclone
     transmission
     gdown
-  ];
+  ]; # }}}
 
   unstablePackages = with unstable; [
+    # {{{
     nim
     go
-  ];
+  ]; # }}}
 
   myBuilds = with builds; [
+    # {{{
     playit-bin
-  ];
+  ]; # }}}
   # homeDirectory = "/home/${name}";
 in {
   home = {
@@ -41,6 +44,7 @@ in {
     activation = {
       serverDirs = dags.entryAfter ["commonDirs"] (
         (utils.createDirs [
+          # {{{
           "Backups"
           "transmission/incomplete"
           "transmission/download"
@@ -48,7 +52,7 @@ in {
           "Downloads"
           "Share"
           "Something"
-        ])
+        ]) # }}}
         + ''
           mkdir -p $HOME/Public
           chmod 777 $HOME/Public
