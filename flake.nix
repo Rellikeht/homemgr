@@ -37,13 +37,17 @@
     ...
   }:
     flake-utils.lib.eachDefaultSystem (system: let
+      # {{{ defs
+      b = builtins;
       pkgs = nixpkgs.legacyPackages.${system};
       lib = nixpkgs.lib;
       unstable = nixpkgs-unstable.legacyPackages.${system};
       builds = my-builds.packages.${system};
-
       stateVersion = "24.05";
+      # }}}
+
       utils =
+        # {{{
         import ./utils/utils.nix
         {
           inherit
@@ -55,8 +59,10 @@
             stateVersion
             ;
         };
+      # }}}
 
       homeDConf = (
+        # {{{
         name: homeDir: mods:
           utils.confFunc {
             inherit pkgs lib;
@@ -67,158 +73,213 @@
               inherit name homeDir stateVersion;
               # inherit dhallPrelude;
 
-              # TODO procedural names of package sets
               pythonProv = pkgs.python311;
-              pythonPkgs = pkgs.python311Packages;
               luaProv = pkgs.lua54;
-              luaPkgs = pkgs.lua54Packages;
             };
           }
       );
-
-      nix-droid-files = [
-        ./common.nix
-        ./commonLinks.nix
-        ./specific/common.nix
-
-        ./server/minimal.nix
-        ./server/user.nix
-        ./server/links.nix
-
-        ./code/minimal.nix
-        ./code/links.nix
-        ./code/normal.nix
-        ./code/pythonMinimal.nix
-      ];
-
-      nix-droid-pkgs = [
-        ./pkgs/common.nix
-        ./pkgs/codeMinimal.nix
-        ./pkgs/codeNormal.nix
-      ];
+      # }}}
 
       homeConf = name: mods: homeDConf name "" mods;
+      testConf = mods: homeDConf "test" "" mods;
     in {
-      packages.homeConfigurations = {
-        # Because systemd can't be assured and
-        # home manager may not be so useful with it
-        # it has to be used carefully
+      packages.homeConfigurations =
+        {
+          # Because systemd can't be assured and
+          # home manager may not be so useful with it
+          # it has to be used carefully
 
-        # TODO Packages files, that may be super hard
-        # TODO at the end activation should land here
-        # TODO generating for user named from environmental
-        # variable with --impure
-        # TODO procedural creation ???
+          # TODO Packages files, that may be super hard
+          # TODO at the end activation should land here
+          # TODO procedural creation ???
 
-        "simpleRoot" = homeDConf "root" "/root" [
-          ./common.nix
-          ./commonLinks.nix
-          ./specific/root.nix
-          ./code/minimal.nix
-          ./code/links.nix
-        ];
+          # {{{ tests
+          "testMinimal" = testConf [
+            ./common.nix
+            ./commonLinks.nix
+            ./specific/server.nix
 
-        "simpleServer" = homeConf "server" [
-          ./common.nix
-          ./commonLinks.nix
-          ./specific/server.nix
-          ./code/links.nix
-          ./server/minecraft.nix
-        ];
+            ./code/pythonMinimal.nix
+            ./code/minimal.nix
+            ./code/normal.nix
+            ./code/links.nix
 
-        "michalServer" = homeConf "michal" [
-          ./common.nix
-          ./commonLinks.nix
-          ./specific/common.nix
+            ./server/minimal.nix
+            ./server/user.nix
+            ./server/links.nix
+            ./user/gits.nix
+          ];
 
-          ./server/minimal.nix
-          ./server/user.nix
-          ./server/links.nix
-          ./code/minimal.nix
-          ./code/links.nix
-        ];
+          "testGlinks" = testConf [
+            ./common.nix
+            ./code/minimal.nix
+            ./code/normal.nix
+            ./specific/common.nix
 
-        "nixDroidDev" = homeConf "nix-on-droid" nix-droid-files;
-        "testDroidDev" = homeConf "test" nix-droid-files;
-        "nixDroidDevPkgs" = homeConf "nix-on-droid" (
-          nix-droid-files ++ nix-droid-pkgs
-        );
-        "testDroidDevPkgs" = homeConf "test" (
-          nix-droid-files ++ nix-droid-pkgs
-        );
+            ./server/minimal.nix
+            ./server/user.nix
+            ./user/gits.nix
+            ./user/gitLinks.nix
+          ];
 
-        "testMinimal" = homeConf "test" [
-          ./common.nix
-          ./commonLinks.nix
-          ./specific/server.nix
+          "testUser" = testConf [
+            ./common.nix
+            ./commonLinks.nix
+            ./specific/common.nix
 
-          ./code/pythonMinimal.nix
-          ./code/minimal.nix
-          ./code/normal.nix
-          ./code/links.nix
+            ./code/pythonMinimal.nix
+            ./code/minimal.nix
+            ./code/normal.nix
+            ./code/full.nix
 
-          ./server/minimal.nix
-          ./server/user.nix
-          ./server/links.nix
-          ./user/gits.nix
-        ];
+            ./server/minimal.nix
+            ./server/user.nix
+            ./server/links.nix
+            ./user/gits.nix
+          ];
 
-        "testGlinks" = homeConf "test" [
-          ./common.nix
-          ./code/minimal.nix
-          ./code/normal.nix
-          ./specific/common.nix
+          "testServer" = testConf [
+            ./common.nix
+            ./commonLinks.nix
+            ./specific/common.nix
 
-          ./server/minimal.nix
-          ./server/user.nix
-          ./user/gits.nix
-          ./user/gitLinks.nix
-        ];
+            ./server/minimal.nix
+            ./server/user.nix
+            ./server/minecraft.nix
 
-        "testUser" = homeConf "test" [
-          ./common.nix
-          ./commonLinks.nix
-          ./specific/common.nix
+            ./code/pythonScraping.nix
+          ];
 
-          ./code/pythonMinimal.nix
-          ./code/minimal.nix
-          ./code/normal.nix
-          ./code/full.nix
+          "testDev" = testConf [
+            ./common.nix
+            ./specific/common.nix
 
-          ./server/minimal.nix
-          ./server/user.nix
-          ./server/links.nix
-          ./user/gits.nix
-        ];
+            ./user/gits.nix
+            ./user/gitLinks.nix
 
-        "testServer" = homeConf "test" [
-          ./common.nix
-          ./commonLinks.nix
-          ./specific/common.nix
+            ./server/minimal.nix
+            ./server/user.nix
 
-          ./server/minimal.nix
-          ./server/user.nix
-          ./server/minecraft.nix
+            ./code/minimal.nix
+            ./code/normal.nix
+            ./code/full.nix
+            ./code/pythonFull.nix
+          ];
 
-          ./code/pythonScraping.nix
-        ];
+          # }}}
+        }
+        # {{{ simple server
+        // (let
+          files = [
+            ./common.nix
+            ./commonLinks.nix
+            ./specific/server.nix
+            ./code/links.nix
+            ./server/minecraft.nix
+          ];
+        in {
+          "simpleServer" = homeConf "server" files;
 
-        "testDev" = homeConf "test" [
-          ./common.nix
-          ./specific/common.nix
+          "userSimpleServer" = homeConf (b.getEnv "USER") files;
+          "homeSimpleServer" = homeConf "server" (b.getEnv "HOME") files;
+          "userHomeSimpleServer" =
+            homeConf
+            (b.getEnv "USER")
+            (b.getEnv "HOME")
+            files;
+        })
+        # }}}
+        # {{{ simple root
+        // (let
+          files = [
+            ./common.nix
+            ./commonLinks.nix
+            ./specific/root.nix
+            ./code/minimal.nix
+            ./code/links.nix
+          ];
+        in {
+          "simpleRoot" = homeDConf "root" "/root" files;
 
-          ./user/gits.nix
-          ./user/gitLinks.nix
+          "userSimpleRoot" = homeDConf (b.getEnv "USER") files;
+          "homeSimpleRoot" = homeDConf "root" (b.getEnv "HOME") files;
+          "userHomeSimpleRoot" =
+            homeDConf
+            (b.getEnv "USER")
+            (b.getEnv "HOME")
+            files;
+        })
+        # }}}
+        # {{{ server
+        // (let
+          files = [
+            ./common.nix
+            ./commonLinks.nix
+            ./specific/common.nix
 
-          ./server/minimal.nix
-          ./server/user.nix
+            ./server/minimal.nix
+            ./server/user.nix
+            ./server/links.nix
+            ./code/minimal.nix
+            ./code/links.nix
+          ];
+        in {
+          "michalServer" = homeConf "michal" files;
+          "server" = homeConf "server" files;
 
-          ./code/minimal.nix
-          ./code/normal.nix
-          ./code/full.nix
-          ./code/pythonFull.nix
-        ];
-      };
+          "userServer" = homeConf (b.getEnv "USER") files;
+          "homeMichalServer" = homeConf "michal" (b.getEnv "HOME") files;
+          "userHomeServer" =
+            homeConf
+            (b.getEnv "USER")
+            (b.getEnv "HOME")
+            files;
+        })
+        # }}}
+        # {{{ nix droid
+        // (let
+          # ocaml-lsp dependency build fails
+          # because build instructions are fucked
+          files = [
+            ./common.nix
+            ./commonLinks.nix
+            ./specific/common.nix
+
+            ./server/minimal.nix
+            ./server/user.nix
+            ./server/links.nix
+
+            ./code/minimal.nix
+            ./code/links.nix
+            ./code/normal.nix
+            ./code/pythonMinimal.nix
+          ];
+
+          pkgfiles = [
+            ./pkgs/common.nix
+            ./pkgs/codeMinimal.nix
+            ./pkgs/codeNormal.nix
+          ];
+        in {
+          "nixDroidDev" = homeConf "nix-on-droid" files;
+          "testDroidDev" = homeConf "test" files;
+          "testDroidDevPkgs" = homeConf "test" (
+            files ++ pkgfiles
+          );
+
+          "userNixDroidDev" = homeConf (b.getEnv "USER") files;
+          "nixDroidDevPkgs" = homeConf "nix-on-droid" (
+            files ++ pkgfiles
+          );
+          "usernixDroidDevPkgs" = homeConf (b.getEnv "USER") (
+            files ++ pkgfiles
+          );
+        })
+        # }}}
+        ;
+      # // (let
+      # in {
+      # })
 
       inherit utils;
     });

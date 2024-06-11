@@ -1,7 +1,6 @@
 # vim: set et sw=2 ts=2:
 {
   pkgs,
-  # unstable,
   lib,
   dotfiles,
   # name,
@@ -16,6 +15,7 @@ in {
     file =
       {}
       // b.listToAttrs (utils.configFiles [
+        # {{{
         ".vimrc"
         ".tmux.conf"
         ".guile"
@@ -33,14 +33,16 @@ in {
         ".aliasrc.bash"
         ".funcrc.zsh"
         ".funcrc.bash"
-      ])
+      ]) # }}}
       // b.listToAttrs (utils.configDirs [
+        # {{{
         ".vim"
         ".w3m"
         ".scrs"
         "Templates"
-      ])
+      ]) # }}}
       // b.listToAttrs (utils.configCDirs [
+        # {{{
         "bpython"
         "ocaml"
         "vifm"
@@ -49,12 +51,15 @@ in {
         "fastfetch"
         "glow"
       ]);
+    # }}}
 
     activation = {
+      # {{{
       commonBinLinks = dags.entryAfter ["commonBins"] ''
         ln -fs ${dots}/global/bin/* "$HOME/bin/"
         ln -fs ${pkgs.vim}/bin/vim "$HOME/bin/svim"
       '';
+
       vimUpdate =
         dags.entryAfter ["commonBinLinks"]
         (
@@ -62,6 +67,6 @@ in {
           + utils.apps.vimUp ''"$HOME/bin/svim"''
           + utils.apps.vimUp "${pkgs.neovim}/bin/nvim"
         );
-    };
+    }; # }}}
   };
 }

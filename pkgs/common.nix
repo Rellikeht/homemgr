@@ -3,9 +3,7 @@
   pkgs,
   unstable,
   builds,
-  lib,
-  pythonPkgs,
-  luaPkgs,
+  # lib,
   # dotfiles,
   # name,
   # stateVersion,
@@ -14,21 +12,23 @@
 }: let
   # b = builtins;
   normalPackages = with pkgs; [
+    # {{{
     gnused
     gnugrep
     gawk
     bc
     ed
     coreutils-full
-  ];
+  ]; # }}}
 
   unstablePackages = with unstable; [
+    # {{{
     lua
     luajit
     vifm-full
 
     dash
-  ];
+  ]; # }}}
 
   myBuilds = with builds; [
     svim
@@ -40,11 +40,13 @@ in {
 
   programs = {
     bash = {
+      # {{{
       enable = true;
       enableCompletion = true;
-    };
+    }; # }}}
 
     zsh = {
+      # {{{
       enable = true;
       package = unstable.zsh;
       enableCompletion = true;
@@ -60,9 +62,10 @@ in {
       initExtra = ''
         source ${unstable.zsh-powerlevel10k}/share/zsh-powerlevel10k/powerlevel10k.zsh-theme
       '';
-    };
+    }; # }}}
 
     tmux = {
+      # {{{
       enable = true;
       package = pkgs.tmux;
       aggressiveResize = false;
@@ -81,16 +84,18 @@ in {
         set -g prefix "${prefix}"
         bind "${prefix}" send-prefix
       '';
-    };
+    }; # }}}
 
     fzf = {
+      # {{{
       enable = true;
       package = unstable.fzf;
       enableBashIntegration = true;
       enableZshIntegration = true;
-    };
+    }; # }}}
 
     neovim = {
+      # {{{
       enable = true;
       package = unstable.neovim-unwrapped;
       defaultEditor = false;
@@ -106,9 +111,10 @@ in {
         with ps; [
           pynvim
         ];
-    };
+    }; # }}}
 
     vim = {
+      # {{{
       # It is done in packages :(
       enable = false;
       # packageConfigurable = builds.svim;
@@ -128,9 +134,10 @@ in {
         mouse = "a";
         smartcase = true;
       };
-    };
+    }; # }}}
 
     bat = {
+      # {{{
       enable = true;
       extraPackages = with pkgs.bat-extras; [
         batdiff
@@ -139,21 +146,23 @@ in {
         batwatch
         prettybat
       ];
-    };
+    }; # }}}
 
     readline = {
+      # {{{
       enable = true;
       bindings = {};
       extraConfig = "";
       includeSystemConfig = true;
       variables = {};
-    };
+    }; # }}}
 
     htop = {
+      # {{{
       # TODO
       enable = true;
       package = unstable.htop;
       settings = {};
-    };
+    }; # }}}
   };
 }

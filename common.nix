@@ -15,6 +15,7 @@
   # dots = "${dotfiles}";
 
   normalPackages = with pkgs; [
+    # {{{
     shellcheck
     checkbashisms
 
@@ -32,10 +33,11 @@
     ocaml
 
     aria2
-  ];
+  ]; # }}}
 
   unstablePackages = with unstable; [
-  ];
+    # {{{
+  ]; # }}}
 
   defHomeDir = "/home/${name}";
   homeDirectory =
@@ -47,10 +49,12 @@
 in {
   home = {
     sessionVariables = {
+      # {{{
       FZF_STARTUP_LOCATION = "${fzfPackage}";
-    };
+    }; # }}}
 
     activation = {
+      # {{{
       commonDirs =
         dags.entryAfter ["writeBoundary"]
         (
@@ -69,7 +73,7 @@ in {
         find "$HOME/bin" -type l -delete || true
         ln -s "${pkgs.gnugrep}/bin/grep" "${homeDirectory}/bin/its_just_grep"
       '';
-    };
+    }; # }}}
 
     inherit homeDirectory stateVersion;
     username = name;
@@ -81,13 +85,15 @@ in {
     home-manager.enable = true;
 
     direnv = {
+      # {{{
       enable = true;
       enableBashIntegration = true;
       enableZshIntegration = true;
       nix-direnv.enable = true;
-    };
+    }; # }}}
 
     git = {
+      # {{{
       enable = true;
       package = pkgs.gitFull;
 
@@ -110,7 +116,7 @@ in {
         package = pkgs.delta;
         options = {};
       };
-    };
+    }; # }}}
   };
 
   # fzf = {
