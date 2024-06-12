@@ -31,6 +31,7 @@
     ] # }}}
     ++ (with ocamlPackages; [
       # {{{
+      lsp
     ]) # }}}
     ++ (with haskellPackages; [
       # {{{
@@ -38,7 +39,7 @@
 
   oldPackages = with old; [
     # {{{
-    ocamlPackages.ocaml-lsp
+    # ocamlPackages.ocaml-lsp
   ]; # }}}
 in {
   home = {
