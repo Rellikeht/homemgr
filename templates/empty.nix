@@ -12,10 +12,16 @@
 }: let
   dags = lib.hm.dag;
   b = builtins;
-  dots = "${dotfiles}";
 
-  normalPackages = with pkgs; [];
-  unstablePackages = with unstable; [];
+  normalPackages = with pkgs; [
+    # {{{
+  ]; # }}}
+
+  unstablePackages = with unstable; [
+    # {{{
+  ]; # }}}
+
+  dots = "${dotfiles}";
 in {
   home = {
     file = {};

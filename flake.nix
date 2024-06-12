@@ -3,9 +3,11 @@
   description = "Home Manager configuration of michal";
 
   inputs = {
+    flake-utils.url = "github:numtide/flake-utils";
+
     nixpkgs.url = "github:nixos/nixpkgs/nixos-24.05";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
-    flake-utils.url = "github:numtide/flake-utils";
+    # nixpkgs-old.url = "github:nixos/nixpkgs/nixos-23.11";
 
     home-manager = {
       url = "github:nix-community/home-manager/release-24.05";
@@ -16,7 +18,6 @@
       url = "github:Rellikeht/dotfiles";
       flake = false;
     };
-
     my-builds.url = "github:Rellikeht/nix-builds";
 
     # dhallPrelude = {
@@ -244,6 +245,7 @@
             ./common.nix
             ./commonLinks.nix
             ./specific/common.nix
+            ./specific/droid.nix
 
             ./server/minimal.nix
             ./server/user.nix

@@ -58,21 +58,25 @@
       tree-sitter
     ] # }}}
     ++ (with ocamlPackages; [
-      ])
+      # {{{
+    ]) # }}}
     ++ (with haskellPackages; [
-      ]));
+      # {{{
+    ])); # }}}
   # dots = "${dotfiles}";
 in {
   home = {
     sessionVariables = {
+      # {{{
       GUILE_LOAD_PATH = utils.guile.guileLoadPath guile-libs;
-    };
+    }; # }}}
 
     file = {
+      # {{{
       # ".dhall/Prelude" = {
       #   source = dhallPrelude;
       # };
-    };
+    }; # }}}
 
     packages = normalPackages ++ unstablePackages ++ guile-libs;
   };

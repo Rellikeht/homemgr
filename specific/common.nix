@@ -14,13 +14,16 @@ in {
     file =
       {}
       // b.listToAttrs (utils.configFiles [
+        # {{{
         ".p10k.zsh"
-      ])
+      ]) # }}}
       // b.listToAttrs (utils.configDirs [
-        ])
+        # {{{
+      ]) # }}}
       // b.listToAttrs (utils.configCDirs [
+        # {{{
         "nvim"
-      ]);
+      ]); # }}}
 
     activation = {};
   };
