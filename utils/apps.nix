@@ -5,7 +5,7 @@
     };
   };
 
-  # WTF
+  # TODO something is wrong
   vimUp = name: ''
     ${name} -c ':norm ,qu' -c ':norm <Esc>' -c ':norm ,qP' -c ':qa!'
   '';

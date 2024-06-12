@@ -31,7 +31,9 @@
     ] # }}}
     ++ (with ocamlPackages; [
       # {{{
-      lsp
+      # FUCK
+      # lsp
+      # ocaml-lsp
     ]) # }}}
     ++ (with haskellPackages; [
       # {{{
