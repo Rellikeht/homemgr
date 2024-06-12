@@ -35,7 +35,7 @@
     ++ (with ocamlPackages; [
       # {{{
       utop
-      ocaml-lsp
+      # ocaml-lsp
     ]) # }}}
     ++ (with haskellPackages; [
       # {{{

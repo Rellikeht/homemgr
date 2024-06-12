@@ -1,7 +1,7 @@
 # vim: set et sw=2 ts=2:
 {
-  # pkgs,
-  # unstable,
+  pkgs,
+  unstable,
   # lib,
   dotfiles,
   # name,
@@ -9,24 +9,59 @@
   ...
 }: let
   b = builtins;
+
+  normalPackages = with pkgs; (
+    [
+      # {{{
+    ] # }}}
+    ++ (with lua54Packages; [
+      # {{{
+    ]) # }}}
+    ++ (with ocamlPackages; [
+      # {{{
+      ocaml-lsp
+    ]) # }}}
+    ++ (with haskellPackages; [
+      # {{{
+    ]) # }}}
+  );
+
+  unstablePackages = with unstable; ([
+      # {{{
+    ] # }}}
+    ++ (with ocamlPackages; [
+      # {{{
+    ]) # }}}
+    ++ (with haskellPackages; [
+      # {{{
+    ])); # }}}
 in {
   home = {
     file =
       {
+        # {{{
         ".p10k.zsh" = {
+          # {{{
           recursive = true;
           source = "${dotfiles}/.p10k-root.zsh";
           force = true;
-        };
-      }
+        }; # }}}
+      } # }}}
       // b.listToAttrs (utils.configFiles [
-        ])
+        # {{{
+      ]) # }}}
       // b.listToAttrs (utils.configDirs [
-        ])
+        # {{{
+      ]) # }}}
       // b.listToAttrs (utils.configCDirs [
+        # {{{
         "nvim"
-      ]);
+      ]); # }}}
 
-    activation = {};
+    activation = {
+      # {{{
+    }; # }}}
+
+    packages = normalPackages ++ unstablePackages;
   };
 }

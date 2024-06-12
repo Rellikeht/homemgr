@@ -3,22 +3,25 @@
   description = "Home Manager configuration of michal";
 
   inputs = {
+    # {{{ pkgs
     flake-utils.url = "github:numtide/flake-utils";
-
     nixpkgs.url = "github:nixos/nixpkgs/nixos-24.05";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
-    # nixpkgs-old.url = "github:nixos/nixpkgs/nixos-23.11";
+    nixpkgs-old.url = "github:nixos/nixpkgs/nixos-23.11";
+    # }}}
 
     home-manager = {
       url = "github:nix-community/home-manager/release-24.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    # {{{ my
     dotfiles = {
       url = "github:Rellikeht/dotfiles";
       flake = false;
     };
     my-builds.url = "github:Rellikeht/nix-builds";
+    # }}}
 
     # dhallPrelude = {
     #   url = "https://prelude.dhall-lang.org/v22.0.0/package.dhall";
@@ -28,8 +31,10 @@
   };
 
   outputs = {
+    # {{{
     nixpkgs,
     nixpkgs-unstable,
+    nixpkgs-old,
     flake-utils,
     home-manager,
     dotfiles,
@@ -37,12 +42,14 @@
     # dhallPrelude,
     ...
   }:
+  # }}}
     flake-utils.lib.eachDefaultSystem (system: let
       # {{{ defs
       b = builtins;
       pkgs = nixpkgs.legacyPackages.${system};
       lib = nixpkgs.lib;
       unstable = nixpkgs-unstable.legacyPackages.${system};
+      old = nixpkgs-old.legacyPackages.${system};
       builds = my-builds.packages.${system};
       stateVersion = "24.05";
       # }}}
@@ -55,6 +62,8 @@
             lib
             pkgs
             unstable
+            # old
+            
             home-manager
             dotfiles
             stateVersion
@@ -70,7 +79,7 @@
             modules = mods;
             extraSpecialArgs = {
               inherit dotfiles utils;
-              inherit unstable builds;
+              inherit unstable builds old;
               inherit name homeDir stateVersion;
               # inherit dhallPrelude;
 
@@ -239,7 +248,7 @@
         # }}}
         # {{{ nix droid
         // (let
-          # ocaml-lsp dependency build fails
+          # ocaml-lsp build fails
           # because build instructions are fucked
           files = [
             ./common.nix

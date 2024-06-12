@@ -2,6 +2,7 @@
 {
   pkgs,
   unstable,
+  old,
   # lib,
   # dotfiles,
   # name,
@@ -19,7 +20,6 @@
     ]) # }}}
     ++ (with ocamlPackages; [
       # {{{
-      # ocaml-lsp
     ]) # }}}
     ++ (with haskellPackages; [
       # {{{
@@ -35,10 +35,17 @@
     ++ (with haskellPackages; [
       # {{{
     ])); # }}}
+
+  oldPackages = with old; [
+    # {{{
+    ocamlPackages.ocaml-lsp
+  ]; # }}}
 in {
   home = {
     file =
-      {}
+      {
+        # {{{
+      } # }}}
       // b.listToAttrs (utils.configFiles [
         # {{{
       ]) # }}}
@@ -49,8 +56,13 @@ in {
         # {{{
       ]); # }}}
 
-    activation = {};
+    activation = {
+      # {{{
+    }; # }}}
 
-    packages = normalPackages ++ unstablePackages;
+    packages =
+      normalPackages
+      ++ unstablePackages
+      ++ oldPackages;
   };
 }
