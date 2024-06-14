@@ -26,6 +26,7 @@
     ed
     coreutils-full
     which
+    openssh
   ]; # }}}
 
   unstablePackages = with unstable; [

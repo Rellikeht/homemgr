@@ -67,6 +67,7 @@ in {
           ''
           + (utils.createDirs [
             "bin"
+            ".local/run"
           ])
           + ''
             chmod 750 $HOME
