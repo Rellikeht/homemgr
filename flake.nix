@@ -7,7 +7,7 @@
     flake-utils.url = "github:numtide/flake-utils";
     nixpkgs.url = "github:nixos/nixpkgs/nixos-24.05";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
-    nixpkgs-old.url = "github:nixos/nixpkgs/nixos-23.11";
+    # nixpkgs-old.url = "github:nixos/nixpkgs/nixos-23.11";
     # }}}
 
     home-manager = {
@@ -34,7 +34,7 @@
     # {{{
     nixpkgs,
     nixpkgs-unstable,
-    nixpkgs-old,
+    # nixpkgs-old,
     flake-utils,
     home-manager,
     dotfiles,
@@ -49,7 +49,7 @@
       pkgs = nixpkgs.legacyPackages.${system};
       lib = nixpkgs.lib;
       unstable = nixpkgs-unstable.legacyPackages.${system};
-      old = nixpkgs-old.legacyPackages.${system};
+      # old = nixpkgs-old.legacyPackages.${system};
       builds = my-builds.packages.${system};
       stateVersion = "24.05";
       # }}}
@@ -79,7 +79,8 @@
             modules = mods;
             extraSpecialArgs = {
               inherit dotfiles utils;
-              inherit unstable builds old;
+              inherit unstable builds;
+              # inherit old;
               inherit name homeDir stateVersion;
               # inherit dhallPrelude;
 

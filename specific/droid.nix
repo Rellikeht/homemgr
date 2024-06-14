@@ -2,7 +2,7 @@
 {
   pkgs,
   unstable,
-  old,
+  # old,
   # lib,
   # dotfiles,
   # name,
@@ -40,10 +40,11 @@
       # {{{
     ])); # }}}
 
-  oldPackages = with old; [
-    # {{{
-    ocamlPackages.ocaml-lsp
-  ]; # }}}
+  oldPackages = [];
+  # oldPackages = with old; [
+  #   # {{{
+  #   # ocamlPackages.ocaml-lsp
+  # ]; # }}}
 in {
   home = {
     file =
