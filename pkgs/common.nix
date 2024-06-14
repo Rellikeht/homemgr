@@ -23,7 +23,7 @@
 
   unstablePackages = with unstable; [
     # {{{
-    lua
+    (lib.setPrio 150 lua)
     luajit
     vifm-full
 
