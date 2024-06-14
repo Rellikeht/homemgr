@@ -4,7 +4,7 @@
   pkgs,
   unstable,
   lib,
-  # dotfiles,
+  dotfiles,
   name,
   homeDir ? "",
   stateVersion,
