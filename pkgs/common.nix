@@ -7,10 +7,11 @@
   # dotfiles,
   # name,
   # stateVersion,
-  # utils,
+  utils,
   ...
 }: let
-  # b = builtins;
+  b = builtins;
+
   normalPackages = with pkgs; [
     # {{{
     gnused
@@ -35,6 +36,23 @@
   ];
 in {
   home = {
+    file =
+      {}
+      // b.listToAttrs (utils.configFiles [
+        # {{{
+      ]) # }}}
+      // b.listToAttrs (utils.configDirs [
+        # {{{
+      ]) # }}}
+      // b.listToAttrs (utils.configCDirs [
+        # {{{
+      ]);
+    # }}}
+
+    activation = {
+      # {{{
+    }; # }}}
+
     packages = normalPackages ++ unstablePackages ++ myBuilds;
   };
 
@@ -43,6 +61,10 @@ in {
       # {{{
       enable = true;
       enableCompletion = true;
+
+      initExtra = ''
+        source "$HOME/.user.bashrc"
+      '';
     }; # }}}
 
     zsh = {
@@ -58,9 +80,9 @@ in {
         # TODO settings
       };
 
-      # Hope this will work
       initExtra = ''
         source ${unstable.zsh-powerlevel10k}/share/zsh-powerlevel10k/powerlevel10k.zsh-theme
+        source "$HOME/.user.zshrc"
       '';
     }; # }}}
 
