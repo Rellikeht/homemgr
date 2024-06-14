@@ -6,7 +6,7 @@
   unstable,
   builds,
   lib,
-  # dotfiles,
+  dotfiles,
   name,
   utils,
   ...
@@ -17,6 +17,7 @@
   b = builtins;
   dots = "${dotfiles}";
   # }}}
+
   normalPackages = with pkgs; [
     # {{{
     netcat-gnu
