@@ -1,4 +1,5 @@
 {
+  # {{{
   pkgs,
   home-manager,
   dotfiles,
@@ -6,6 +7,7 @@
   unstable,
   stateVersion,
   ...
+  # }}}
 } @ inputs: let
   # {{{
   dags = lib.hm.dag;

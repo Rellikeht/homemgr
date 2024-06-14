@@ -276,6 +276,7 @@
             ./pkgs/common.nix
             ./pkgs/codeMinimal.nix
             ./pkgs/codeNormal.nix
+            ./pkgs/links.nix
           ]; # }}}
         in {
           # {{{
