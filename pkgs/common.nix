@@ -34,7 +34,7 @@
     luajit
     vifm-full
 
-    dash
+    # dash
   ]; # }}}
 
   myBuilds = with builds; [

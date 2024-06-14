@@ -1,5 +1,6 @@
 # vim: set et sw=2 ts=2:
 {
+  # {{{
   # config,
   pkgs,
   unstable,
@@ -8,20 +9,28 @@
   # name,
   utils,
   ...
+  # }}}
 }: let
+  # {{{
   b = builtins;
   # dots = "${dotfiles}";
+  # }}}
+
   normalPackages = with pkgs; [
     # {{{
     xz
     gnutar
     zip
     unzip
-    dash
     vim
     w3m
+
+    # dash
   ]; # }}}
-  unstablePackages = with unstable; [];
+
+  unstablePackages = with unstable; [
+    # {{{
+  ]; # }}}
 
   java = with pkgs; [
     # {{{
@@ -34,14 +43,19 @@
 in {
   home = {
     file =
-      {}
+      {
+        # {{{
+      } # }}}
       // (utils.java.javaDumbPaths java)
       // (utils.java.javaNamePaths java);
 
     sessionVariables =
-      {}
+      {
+        # {{{
+      } # }}}
       // (utils.java.javaNameVars java)
       // (utils.java.javaDumbVars java);
+
     packages = normalPackages ++ unstablePackages ++ java;
   };
 }
