@@ -192,9 +192,9 @@
           "simpleServer" = homeConf "server" files;
 
           "userSimpleServer" = homeConf (b.getEnv "USER") files;
-          "homeSimpleServer" = homeConf "server" (b.getEnv "HOME") files;
+          "homeSimpleServer" = homeDConf "server" (b.getEnv "HOME") files;
           "userHomeSimpleServer" =
-            homeConf
+            homeDConf
             (b.getEnv "USER")
             (b.getEnv "HOME")
             files;
@@ -212,7 +212,7 @@
         in {
           "simpleRoot" = homeDConf "root" "/root" files;
 
-          "userSimpleRoot" = homeDConf (b.getEnv "USER") files;
+          "userSimpleRoot" = homeConf (b.getEnv "USER") files;
           "homeSimpleRoot" = homeDConf "root" (b.getEnv "HOME") files;
           "userHomeSimpleRoot" =
             homeDConf
@@ -239,9 +239,9 @@
           "server" = homeConf "server" files;
 
           "userServer" = homeConf (b.getEnv "USER") files;
-          "homeMichalServer" = homeConf "michal" (b.getEnv "HOME") files;
+          "homeMichalServer" = homeDConf "michal" (b.getEnv "HOME") files;
           "userHomeServer" =
-            homeConf
+            homeDConf
             (b.getEnv "USER")
             (b.getEnv "HOME")
             files;
@@ -249,8 +249,9 @@
         # }}}
         # {{{ nix droid
         // (let
-          # ocaml-lsp build fails
+          # ocaml-lsp dependencies builds are failing
           # because build instructions are fucked
+          # it needs access to root filesystem or something
           files = [
             ./common.nix
             ./commonLinks.nix
@@ -273,19 +274,31 @@
             ./pkgs/codeNormal.nix
           ];
         in {
-          "nixDroidDev" = homeConf "nix-on-droid" files;
+          "nixDroidDev" =
+            homeDConf
+            "nix-on-droid"
+            "/data/data/com.termux.nix/files/home"
+            files;
           "testDroidDev" = homeConf "test" files;
           "testDroidDevPkgs" = homeConf "test" (
             files ++ pkgfiles
           );
 
-          "userNixDroidDev" = homeConf (b.getEnv "USER") files;
-          "nixDroidDevPkgs" = homeConf "nix-on-droid" (
-            files ++ pkgfiles
-          );
-          "usernixDroidDevPkgs" = homeConf (b.getEnv "USER") (
-            files ++ pkgfiles
-          );
+          "userNixDroidDev" =
+            homeDConf
+            (b.getEnv "USER")
+            "/data/data/com.termux.nix/files/home"
+            files;
+          "nixDroidDevPkgs" =
+            homeDConf
+            "nix-on-droid"
+            "/data/data/com.termux.nix/files/home"
+            (files ++ pkgfiles);
+          "usernixDroidDevPkgs" =
+            homeDConf
+            (b.getEnv "USER")
+            "/data/data/com.termux.nix/files/home"
+            (files ++ pkgfiles);
         })
         # }}}
         ;
