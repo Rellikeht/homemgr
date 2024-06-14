@@ -19,7 +19,7 @@
     ]) # }}}
     ++ (with ocamlPackages; [
       # {{{
-      ocaml-lsp
+      # ocaml-lsp
     ]) # }}}
     ++ (with haskellPackages; [
       # {{{

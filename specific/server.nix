@@ -13,8 +13,31 @@
   # dags = lib.hm.dag;
   # b = builtins;
   # dots = "${dotfiles}";
-  normalPackages = with pkgs; [];
-  unstablePackages = with unstable; [];
+  normalPackages = with pkgs; (
+    [
+      # {{{
+    ] # }}}
+    ++ (with lua54Packages; [
+      # {{{
+    ]) # }}}
+    ++ (with ocamlPackages; [
+      # {{{
+      ocaml-lsp
+    ]) # }}}
+    ++ (with haskellPackages; [
+      # {{{
+    ]) # }}}
+  );
+
+  unstablePackages = with unstable; ([
+      # {{{
+    ] # }}}
+    ++ (with ocamlPackages; [
+      # {{{
+    ]) # }}}
+    ++ (with haskellPackages; [
+      # {{{
+    ])); # }}}
 in {
   home = {
     file = {

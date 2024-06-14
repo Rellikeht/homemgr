@@ -34,6 +34,7 @@
       # FUCK
       # lsp
       # ocaml-lsp
+      # utop
     ]) # }}}
     ++ (with haskellPackages; [
       # {{{
