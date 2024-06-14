@@ -78,9 +78,9 @@ in {
       enable = true;
       enableCompletion = true;
 
-      shellOptions = {
+      shellOptions = [
         # {{{
-      }; # }}}
+      ]; # }}}
 
       sessionVariables = {
         # {{{
