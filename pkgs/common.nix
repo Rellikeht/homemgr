@@ -1,16 +1,21 @@
 # vim: set et sw=2 ts=2:
 {
+  # {{{
   pkgs,
   unstable,
   builds,
-  # lib,
+  lib,
   # dotfiles,
   # name,
   # stateVersion,
   utils,
   ...
+  # }}}
 }: let
+  # {{{
   b = builtins;
+  dags = lib.hm.dag;
+  # }}}
 
   normalPackages = with pkgs; [
     # {{{
@@ -20,6 +25,7 @@
     bc
     ed
     coreutils-full
+    which
   ]; # }}}
 
   unstablePackages = with unstable; [
@@ -32,12 +38,15 @@
   ]; # }}}
 
   myBuilds = with builds; [
+    # {{{
     svim
-  ];
+  ]; # }}}
 in {
   home = {
     file =
-      {}
+      {
+        # {{{
+      } # }}}
       // b.listToAttrs (utils.configFiles [
         # {{{
       ]) # }}}
@@ -51,6 +60,13 @@ in {
 
     activation = {
       # {{{
+      opamActivation =
+        dags.entryAfter ["installPackages"]
+        # {{{
+        ''
+          opam init --no
+        '';
+      # }}}
     }; # }}}
 
     packages = normalPackages ++ unstablePackages ++ myBuilds;
@@ -62,28 +78,49 @@ in {
       enable = true;
       enableCompletion = true;
 
-      initExtra = ''
-        source "$HOME/.user.bashrc"
-      '';
+      shellOptions = {
+        # {{{
+      }; # }}}
+
+      sessionVariables = {
+        # {{{
+      }; # }}}
+
+      initExtra =
+        # {{{
+        ''
+          source "$HOME/.user.bashrc"
+        '';
+      # }}}
     }; # }}}
 
     zsh = {
+      # {{{
+
       # {{{
       enable = true;
       package = unstable.zsh;
       enableCompletion = true;
       defaultKeymap = "emacs";
+      # }}}
 
       syntaxHighlighting = {
+        # {{{
         enable = true;
         package = unstable.zsh-syntax-highlighting;
         # TODO settings
-      };
+      }; # }}}
 
-      initExtra = ''
-        source ${unstable.zsh-powerlevel10k}/share/zsh-powerlevel10k/powerlevel10k.zsh-theme
-        source "$HOME/.user.zshrc"
-      '';
+      sessionVariables = {
+        # {{{
+      }; # }}}
+
+      initExtra =
+        # {{{
+        ''
+          source ${unstable.zsh-powerlevel10k}/share/zsh-powerlevel10k/powerlevel10k.zsh-theme
+          source "$HOME/.user.zshrc"
+        ''; # }}}
     }; # }}}
 
     tmux = {

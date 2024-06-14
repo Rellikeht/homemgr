@@ -1,5 +1,6 @@
 # vim: set et sw=2 ts=2:
 {
+  # {{{
   pkgs,
   unstable,
   lib,
@@ -8,11 +9,13 @@
   homeDir ? "",
   stateVersion,
   utils,
-  ...
+  ... # }}}
 }: let
+  # {{{
   dags = lib.hm.dag;
-  # b = builtins;
-  # dots = "${dotfiles}";
+  b = builtins;
+  dots = "${dotfiles}";
+  # }}}
 
   normalPackages = with pkgs; [
     # {{{
@@ -39,11 +42,13 @@
     # {{{
   ]; # }}}
 
+  # {{{
   defHomeDir = "/home/${name}";
   homeDirectory =
     if homeDir == ""
     then defHomeDir
     else homeDir;
+  # }}}
 
   fzfPackage = unstable.fzf;
 in {
@@ -75,9 +80,11 @@ in {
       '';
     }; # }}}
 
+    # {{{
     inherit homeDirectory stateVersion;
     username = name;
     packages = normalPackages ++ unstablePackages;
+    # }}}
   };
 
   programs = {
@@ -120,11 +127,12 @@ in {
   };
 
   # fzf = {
+  #   # {{{
   #   enable = true;
   #   package = fzfPackage;
   #   enableBashIntegration = true;
   #   enableZshIntegration = true;
-  # };
+  # }; # }}}
 
   news.display = "silent";
 }

@@ -1,5 +1,6 @@
 # vim: set et sw=2 ts=2:
 {
+  # {{{
   pkgs,
   unstable,
   # old,
@@ -8,6 +9,7 @@
   # name,
   utils,
   ...
+  # }}}
 }: let
   b = builtins;
 
@@ -34,13 +36,10 @@
       # FUCK
       # lsp
       # ocaml-lsp
-      # utop
     ]) # }}}
     ++ (with haskellPackages; [
       # {{{
     ])); # }}}
-
-  oldPackages = [];
   # oldPackages = with old; [
   #   # {{{
   #   # ocamlPackages.ocaml-lsp
@@ -65,9 +64,6 @@ in {
       # {{{
     }; # }}}
 
-    packages =
-      normalPackages
-      ++ unstablePackages
-      ++ oldPackages;
+    packages = normalPackages ++ unstablePackages;
   };
 }

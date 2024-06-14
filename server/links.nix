@@ -1,10 +1,12 @@
 # vim: set et sw=2 ts=2:
 {
+  # {{{
   # lib,
   # dotfiles,
   # name,
   utils,
   ...
+  # }}}
 }: let
   # dags = lib.hm.dag;
   b = builtins;

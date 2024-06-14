@@ -91,8 +91,10 @@
       );
       # }}}
 
+      # {{{
       homeConf = name: mods: homeDConf name "" mods;
       testConf = mods: homeDConf "test" "" mods;
+      # }}}
     in {
       packages.homeConfigurations =
         {
@@ -253,6 +255,7 @@
           # because build instructions are fucked
           # it needs access to root filesystem or something
           files = [
+            # {{{
             ./common.nix
             ./commonLinks.nix
             ./specific/common.nix
@@ -266,14 +269,16 @@
             ./code/links.nix
             ./code/normal.nix
             ./code/pythonMinimal.nix
-          ];
+          ]; # }}}
 
           pkgfiles = [
+            # {{{
             ./pkgs/common.nix
             ./pkgs/codeMinimal.nix
             ./pkgs/codeNormal.nix
-          ];
+          ]; # }}}
         in {
+          # {{{
           "nixDroidDev" =
             homeDConf
             "nix-on-droid"
@@ -300,6 +305,7 @@
             "/data/data/com.termux.nix/files/home"
             (files ++ pkgfiles);
         })
+        # }}}
         # }}}
         ;
       # // (let

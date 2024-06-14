@@ -1,5 +1,6 @@
 # vim: set et sw=2 ts=2:
 {
+  # {{{
   # config,
   pkgs,
   unstable,
@@ -9,11 +10,13 @@
   name,
   utils,
   ...
+  # }}}
 }: let
+  # {{{
   dags = lib.hm.dag;
   b = builtins;
-  # dots = "${dotfiles}";
-
+  dots = "${dotfiles}";
+  # }}}
   normalPackages = with pkgs; [
     # {{{
     netcat-gnu
@@ -39,9 +42,12 @@
   # homeDirectory = "/home/${name}";
 in {
   home = {
-    file = {};
+    file = {
+      # {{{
+    }; # }}}
 
     activation = {
+      # {{{
       serverDirs = dags.entryAfter ["commonDirs"] (
         (utils.createDirs [
           # {{{
@@ -53,12 +59,14 @@ in {
           "Share"
           "Something"
         ]) # }}}
-        + ''
+        +
+        # {{{
+        ''
           mkdir -p $HOME/Public
           chmod 777 $HOME/Public
         ''
-      );
-    };
+      ); # }}}
+    }; # }}}
 
     packages = normalPackages ++ unstablePackages ++ myBuilds;
   };

@@ -1,18 +1,22 @@
 # vim: set et sw=2 ts=2:
 {
+  # {{{
   # config,
   pkgs,
   unstable,
   builds,
   lib,
-  # dotfiles,
+  dotfiles,
   # name,
   utils,
   ...
+  # }}}
 }: let
+  # {{{
   dags = lib.hm.dag;
   b = builtins;
-  # dots = "${dotfiles}";
+  dots = "${dotfiles}";
+  # }}}
 
   normalPackages = with pkgs; (
     [
@@ -58,24 +62,27 @@ in {
   home = {
     file =
       {
+        # {{{
         # # You can also set the file content immediately.
         # ".gradle/gradle.properties".text = ''
         #   org.gradle.console=verbose
         #   org.gradle.daemon.idletimeout=3600000
         # '';
-      }
+      } # }}}
       // (utils.java.javaNamePaths java);
 
     sessionVariables =
       {
+        # {{{
         # why the fuck doesn't this work??
         # PATH = "$PATH:${homeDirectory}/bin";
         # Maybe...
         # PATH = "$PATH:$HOME/bin";
-      }
+      } # }}}
       // (utils.java.javaNameVars java);
 
     activation = {
+      # {{{
       userServerDirs = dags.entryAfter ["serverDirs"] (
         (utils.createDirs [
           ])
@@ -86,7 +93,7 @@ in {
       userServerBins =
         dags.entryAfter ["commonBins"] ''
         '';
-    };
+    }; # }}}
 
     packages = normalPackages ++ unstable_packages ++ java ++ myBuilds;
   };
