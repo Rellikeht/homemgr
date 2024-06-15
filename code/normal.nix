@@ -35,7 +35,7 @@
       cmake-format
 
       clang-tools
-      clang
+      (lib.setPrio 100 clang)
       rustfmt
       astyle
     ] # }}}

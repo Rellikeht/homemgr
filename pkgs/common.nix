@@ -38,13 +38,14 @@
 
     diffutils
     gnupatch
-    gcc
+    (lib.setPrio 200 gcc)
     gnumake
     binutils
 
     inetutils
     rsync
     openssh
+    w3m
 
     su
     sudo
