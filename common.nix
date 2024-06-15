@@ -177,13 +177,41 @@ in {
       homemgr = {
         # {{{
         from = {
-          id = "mygl";
+          id = "homemgr";
           type = "indirect";
         };
 
         to = {
           owner = "Rellikeht";
           repo = "homemgr";
+          type = "gitlab";
+        };
+      }; # }}}
+
+      builds = {
+        # {{{
+        from = {
+          id = "builds";
+          type = "indirect";
+        };
+
+        to = {
+          owner = "Rellikeht";
+          repo = "nix-builds";
+          type = "gitlab";
+        };
+      }; # }}}
+
+      environments = {
+        # {{{
+        from = {
+          id = "environments";
+          type = "indirect";
+        };
+
+        to = {
+          owner = "Rellikeht";
+          repo = "environments";
           type = "gitlab";
         };
       }; # }}}

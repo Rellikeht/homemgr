@@ -63,7 +63,7 @@ in {
       # {{{
       commonBinLinks = dags.entryAfter ["commonBins"] ''
         ln -fs ${dots}/global/bin/* "$HOME/bin/"
-        # ln -fs ${pkgs.vim}/bin/vim "$HOME/bin/svim"
+        ln -fs ${pkgs.vim}/bin/vim "$HOME/bin/svim"
       '';
 
       vimUpdate =
