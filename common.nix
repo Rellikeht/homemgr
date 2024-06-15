@@ -125,6 +125,22 @@ in {
         options = {};
       };
     }; # }}}
+
+    mercurial = {
+      # {{{
+      enable = true;
+      package = pkgs.mercurialFull;
+
+      aliases = {};
+      extraConfig = {};
+
+      ignores = [
+        "*~"
+        "*.swp"
+        ".direnv"
+        "*cache*/"
+      ];
+    }; # }}}
   };
 
   # fzf = {

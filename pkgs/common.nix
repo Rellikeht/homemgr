@@ -26,8 +26,26 @@
     ed
     coreutils-full
     which
-    openssh
+
+    gnutar
+    gzip
+    xz
+    pixz
+    bzip2
+
+    zip
+    unzip
+
+    diffutils
+    gnupatch
     gcc
+
+    inetutils
+    rsync
+    openssh
+
+    su
+    sudo
   ]; # }}}
 
   unstablePackages = with unstable; [
@@ -71,10 +89,27 @@ in {
         '';
       # }}}
 
+      vimUpPrep =
+        dags.entryBefore ["vimUpdate"]
+        # {{{
+        ''
+          export PATH="$PATH:${pkgs.gcc}/bin/"
+        '';
+      # }}}
+
       opamActivation =
         dags.entryAfter ["installPackages"]
         # {{{
         ''
+          export PATH="$PATH:${pkgs.gitFull}/bin"
+          export PATH="$PATH:${pkgs.mercurialFull}/bin:${pkgs.rsync}/bin"
+          export PATH="$PATH:${pkgs.rsync}/bin"
+          export PATH="$PATH:${pkgs.gcc}/bin"
+          export PATH="$PATH:${pkgs.gnutar}/bin"
+          export PATH="$PATH:${pkgs.gzip}/bin"
+          export PATH="$PATH:${pkgs.diffutils}/bin"
+          export PATH="$PATH:${pkgs.gnupatch}/bin"
+
           ${unstable.opam}/bin/opam init --no
         '';
       # }}}

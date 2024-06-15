@@ -14,9 +14,8 @@
   dots = "${dotfiles}";
 
   normalPackages = with pkgs; [
-    aria
+    aria2
     rsync
-    iperf3
 
     xz
     gnutar
