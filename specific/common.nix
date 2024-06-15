@@ -46,6 +46,7 @@ in {
       // b.listToAttrs (utils.configFiles [
         # {{{
         ".p10k.zsh"
+        ".prompt.bash"
       ]) # }}}
       // b.listToAttrs (utils.configDirs [
         # {{{

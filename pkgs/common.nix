@@ -27,6 +27,7 @@
     coreutils-full
     which
     openssh
+    gcc
   ]; # }}}
 
   unstablePackages = with unstable; [
@@ -61,11 +62,20 @@ in {
 
     activation = {
       # {{{
+
+      updatePath =
+        dags.entryAfter ["writeBoundary"]
+        # {{{
+        ''
+          export PATH="$PATH:$HOME/bin:$HOME/.nix-profile/bin"
+        '';
+      # }}}
+
       opamActivation =
         dags.entryAfter ["installPackages"]
         # {{{
         ''
-          opam init --no
+          ${unstable.opam}/bin/opam init --no
         '';
       # }}}
     }; # }}}

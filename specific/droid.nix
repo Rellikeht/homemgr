@@ -5,13 +5,15 @@
   unstable,
   # old,
   # lib,
-  # dotfiles,
+  dotfiles,
   # name,
   utils,
   ...
   # }}}
 }: let
+  # {{{
   b = builtins;
+  # }}}
 
   normalPackages = with pkgs; (
     [
@@ -49,6 +51,19 @@ in {
     file =
       {
         # {{{
+        ".p10k.zsh" = {
+          # {{{
+          recursive = true;
+          source = "${dotfiles}/.p10k-droid.zsh";
+          force = true;
+        }; # }}}
+
+        ".prompt.bash" = {
+          # {{{
+          recursive = true;
+          source = "${dotfiles}/.prompt-droid.bash";
+          force = true;
+        }; # }}}
       } # }}}
       // b.listToAttrs (utils.configFiles [
         # {{{
@@ -58,6 +73,7 @@ in {
       ]) # }}}
       // b.listToAttrs (utils.configCDirs [
         # {{{
+        "nvim"
       ]); # }}}
 
     activation = {

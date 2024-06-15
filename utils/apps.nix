@@ -1,4 +1,9 @@
-{pkgs, ...}: {
+{
+  # {{{
+  pkgs,
+  ...
+  # }}}
+}: {
   mpv-unwrapped-full = final: prev: {
     mpv-unwrapped = prev.mpv-unwrapped.override {
       ffmpeg = pkgs.ffmpeg-full;

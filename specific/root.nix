@@ -1,5 +1,6 @@
 # vim: set et sw=2 ts=2:
 {
+  # {{{
   pkgs,
   unstable,
   # lib,
@@ -7,8 +8,11 @@
   # name,
   utils,
   ...
+  # }}}
 }: let
+  # {{{
   b = builtins;
+  # }}}
 
   normalPackages = with pkgs; (
     [
@@ -44,6 +48,13 @@ in {
           # {{{
           recursive = true;
           source = "${dotfiles}/.p10k-root.zsh";
+          force = true;
+        }; # }}}
+
+        ".prompt.bash" = {
+          # {{{
+          recursive = true;
+          source = "${dotfiles}/.prompt-root.bash";
           force = true;
         }; # }}}
       } # }}}

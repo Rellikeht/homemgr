@@ -258,7 +258,6 @@
             # {{{
             ./common.nix
             ./commonLinks.nix
-            ./specific/common.nix
             ./specific/droid.nix
 
             ./server/minimal.nix
