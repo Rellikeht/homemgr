@@ -88,7 +88,15 @@ in {
     # }}}
   };
 
-  programs = {
+  programs = let
+    commonIgnores = [
+      # {{{
+      "*~"
+      "*.swp"
+      ".direnv"
+      "*cache*/"
+    ]; # }}}
+  in {
     # Let Home Manager install and manage itself.
     home-manager.enable = true;
 
@@ -111,13 +119,7 @@ in {
 
       hooks = {};
       includes = [];
-
-      ignores = [
-        "*~"
-        "*.swp"
-        ".direnv"
-        "*cache*/"
-      ];
+      ignores = commonIgnores;
 
       delta = {
         enable = true;
@@ -130,17 +132,15 @@ in {
       # {{{
       enable = true;
       package = pkgs.mercurialFull;
-      userName = "Rellikeht";
+
+      # :(
+      # userName = "Rellikeht";
+      userName = "";
+      userEmail = "";
 
       aliases = {};
       extraConfig = {};
-
-      ignores = [
-        "*~"
-        "*.swp"
-        ".direnv"
-        "*cache*/"
-      ];
+      ignores = commonIgnores;
     }; # }}}
   };
 
