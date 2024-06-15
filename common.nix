@@ -154,12 +154,13 @@ in {
 
   nix = {
     # {{{
+    # TODO
     # package = pkgs.nix;
 
-    channels = {
-      # {{{
-      inherit pkgs unstable;
-    }; # }}}
+    # channels = {
+    #   # {{{
+    #   inherit pkgs unstable;
+    # }; # }}}
 
     nixPath = [
       # {{{
