@@ -152,74 +152,74 @@ in {
   #   enableZshIntegration = true;
   # }; # }}}
 
-  nix = {
-    # {{{
-    # TODO
-    # package = pkgs.nix;
+  # TODO
+  # nix = {
+  #   # {{{
+  #   # package = pkgs.nix;
 
-    # channels = {
-    #   # {{{
-    #   inherit pkgs unstable;
-    # }; # }}}
+  #   # channels = {
+  #   #   # {{{
+  #   #   inherit pkgs unstable;
+  #   # }; # }}}
 
-    nixPath = [
-      # {{{
-      "$HOME/.nix-defexpr/channels"
-    ]; # }}}
+  #   nixPath = [
+  #     # {{{
+  #     "$HOME/.nix-defexpr/channels"
+  #   ]; # }}}
 
-    settings = {
-      # {{{
-      use-sandbox = true;
-      show-trace = true;
-    }; # }}}
+  #   settings = {
+  #     # {{{
+  #     use-sandbox = true;
+  #     show-trace = true;
+  #   }; # }}}
 
-    registry = {
-      # {{{
-      homemgr = {
-        # {{{
-        from = {
-          id = "homemgr";
-          type = "indirect";
-        };
+  #   registry = {
+  #     # {{{
+  #     homemgr = {
+  #       # {{{
+  #       from = {
+  #         id = "homemgr";
+  #         type = "indirect";
+  #       };
 
-        to = {
-          owner = "Rellikeht";
-          repo = "homemgr";
-          type = "gitlab";
-        };
-      }; # }}}
+  #       to = {
+  #         owner = "Rellikeht";
+  #         repo = "homemgr";
+  #         type = "gitlab";
+  #       };
+  #     }; # }}}
 
-      builds = {
-        # {{{
-        from = {
-          id = "builds";
-          type = "indirect";
-        };
+  #     builds = {
+  #       # {{{
+  #       from = {
+  #         id = "builds";
+  #         type = "indirect";
+  #       };
 
-        to = {
-          owner = "Rellikeht";
-          repo = "nix-builds";
-          type = "gitlab";
-        };
-      }; # }}}
+  #       to = {
+  #         owner = "Rellikeht";
+  #         repo = "nix-builds";
+  #         type = "gitlab";
+  #       };
+  #     }; # }}}
 
-      environments = {
-        # {{{
-        from = {
-          id = "environments";
-          type = "indirect";
-        };
+  #     environments = {
+  #       # {{{
+  #       from = {
+  #         id = "environments";
+  #         type = "indirect";
+  #       };
 
-        to = {
-          owner = "Rellikeht";
-          repo = "environments";
-          type = "gitlab";
-        };
-      }; # }}}
-    }; # }}}
+  #       to = {
+  #         owner = "Rellikeht";
+  #         repo = "environments";
+  #         type = "gitlab";
+  #       };
+  #     }; # }}}
+  #   }; # }}}
 
-    checkConfig = true;
-  }; # }}}
+  #   checkConfig = true;
+  # }; # }}}
 
   news.display = "silent";
 }
