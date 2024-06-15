@@ -172,6 +172,23 @@ in {
       show-trace = true;
     }; # }}}
 
+    registry = {
+      # {{{
+      homemgr = {
+        # {{{
+        from = {
+          id = "mygl";
+          type = "indirect";
+        };
+
+        to = {
+          owner = "Rellikeht";
+          repo = "homemgr";
+          type = "gitlab";
+        };
+      }; # }}}
+    }; # }}}
+
     checkConfig = true;
   }; # }}}
 
