@@ -31,10 +31,13 @@
       sbcl
       clisp
 
-      gnumake
-      automake
       cmake
       cmake-format
+
+      clang-tools
+      clang
+      rustfmt
+      astyle
     ] # }}}
     ++ (with ocamlPackages; [
       # {{{

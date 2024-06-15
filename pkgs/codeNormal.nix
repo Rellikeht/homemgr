@@ -19,9 +19,8 @@
 
   normalPackages = with pkgs; [
     # {{{
-    clang-tools
-    rustfmt
-    astyle
+    gnumake
+    automake
   ]; # }}}
 
   unstablePackages = with unstable; [

@@ -39,6 +39,8 @@
     diffutils
     gnupatch
     gcc
+    gnumake
+    binutils
 
     inetutils
     rsync
@@ -105,6 +107,7 @@ in {
           export PATH="$PATH:${pkgs.mercurialFull}/bin:${pkgs.rsync}/bin"
           export PATH="$PATH:${pkgs.rsync}/bin"
           export PATH="$PATH:${pkgs.gcc}/bin"
+          export PATH="$PATH:${pkgs.gnumake}/bin"
           export PATH="$PATH:${pkgs.gnutar}/bin"
           export PATH="$PATH:${pkgs.gzip}/bin"
           export PATH="$PATH:${pkgs.diffutils}/bin"

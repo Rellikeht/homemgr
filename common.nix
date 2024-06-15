@@ -130,6 +130,7 @@ in {
       # {{{
       enable = true;
       package = pkgs.mercurialFull;
+      userName = "Rellikeht";
 
       aliases = {};
       extraConfig = {};
