@@ -47,6 +47,9 @@
     openssh
     w3m
 
+    findutils
+    plocate
+
     su
     sudo
   ]; # }}}

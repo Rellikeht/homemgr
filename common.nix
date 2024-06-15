@@ -152,5 +152,28 @@ in {
   #   enableZshIntegration = true;
   # }; # }}}
 
+  nix = {
+    # {{{
+    # package = pkgs.nix;
+
+    channels = {
+      # {{{
+      inherit pkgs unstable;
+    }; # }}}
+
+    nixPath = [
+      # {{{
+      "$HOME/.nix-defexpr/channels"
+    ]; # }}}
+
+    settings = {
+      # {{{
+      use-sandbox = true;
+      show-trace = true;
+    }; # }}}
+
+    checkConfig = true;
+  }; # }}}
+
   news.display = "silent";
 }
