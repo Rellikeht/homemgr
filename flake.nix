@@ -107,80 +107,53 @@
           # TODO procedural creation ???
 
           # {{{ tests
-          "testMinimal" = testConf [
-            ./common.nix
-            ./commonLinks.nix
-            ./specific/server.nix
-
-            ./code/pythonMinimal.nix
-            ./code/minimal.nix
-            ./code/normal.nix
-            ./code/links.nix
-
-            ./server/minimal.nix
-            ./server/user.nix
-            ./server/links.nix
-            ./user/gits.nix
-          ];
-
-          "testGlinks" = testConf [
-            ./common.nix
-            ./code/minimal.nix
-            ./code/normal.nix
-            ./specific/common.nix
-
-            ./server/minimal.nix
-            ./server/user.nix
-            ./user/gits.nix
-            ./user/gitLinks.nix
-          ];
-
-          "testUser" = testConf [
-            ./common.nix
-            ./commonLinks.nix
-            ./specific/common.nix
-
-            ./code/pythonMinimal.nix
-            ./code/minimal.nix
-            ./code/normal.nix
-            ./code/full.nix
-
-            ./server/minimal.nix
-            ./server/user.nix
-            ./server/links.nix
-            ./user/gits.nix
-          ];
-
-          "testServer" = testConf [
-            ./common.nix
-            ./commonLinks.nix
-            ./specific/common.nix
-
-            ./server/minimal.nix
-            ./server/user.nix
-            ./server/minecraft.nix
-
-            ./code/pythonScraping.nix
-          ];
-
-          "testDev" = testConf [
-            ./common.nix
-            ./specific/common.nix
-
-            ./user/gits.nix
-            ./user/gitLinks.nix
-
-            ./server/minimal.nix
-            ./server/user.nix
-
-            ./code/minimal.nix
-            ./code/normal.nix
-            ./code/full.nix
-            ./code/pythonFull.nix
-          ];
-
           # }}}
         }
+        # {{{ shallow
+        // (let
+          files = [
+            ./commonLinks.nix
+            ./specific/shallow.nix
+            ./code/links.nix
+            ./server/links.nix
+          ];
+        in {
+          "shallow" = homeConf "michal" files;
+          "userShallow" =
+            homeConf
+            (b.getEnv "USER")
+            files;
+          "homeShallow" =
+            homeDConf
+            "server"
+            (b.getEnv "HOME")
+            files;
+          "userHomeShallow" =
+            homeDConf
+            (b.getEnv "USER")
+            (b.getEnv "HOME")
+            files;
+
+          "shallowUser" =
+            homeConf
+            "michal"
+            (files ++ [./user/links.nix]);
+          "userShallowUser" =
+            homeConf
+            (b.getEnv "USER")
+            (files ++ [./user/links.nix]);
+          "homeShallowUser" =
+            homeDConf
+            "server"
+            (b.getEnv "HOME")
+            (files ++ [./user/links.nix]);
+          "userHomeShallowUser" =
+            homeDConf
+            (b.getEnv "USER")
+            (b.getEnv "HOME")
+            (files ++ [./user/links.nix]);
+        })
+        # }}}
         # {{{ simple server
         // (let
           files = [
@@ -275,7 +248,9 @@
             ./pkgs/common.nix
             ./pkgs/codeMinimal.nix
             ./pkgs/codeNormal.nix
-            ./pkgs/links.nix
+
+            # WTF is that
+            # ./pkgs/links.nix
           ]; # }}}
         in {
           # {{{

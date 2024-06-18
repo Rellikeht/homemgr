@@ -4,7 +4,8 @@
   pkgs,
   lib,
   dotfiles,
-  # name,
+  homeDir ? "",
+  name,
   utils,
   ...
   # }}}
@@ -13,6 +14,14 @@
   dags = lib.hm.dag;
   b = builtins;
   dots = "${dotfiles}";
+  # }}}
+
+  # {{{
+  defHomeDir = "/home/${name}";
+  homeDirectory =
+    if homeDir == ""
+    then defHomeDir
+    else homeDir;
   # }}}
 in {
   home = {
@@ -61,6 +70,26 @@ in {
 
     activation = {
       # {{{
+      commonDirs =
+        dags.entryAfter ["writeBoundary"]
+        (
+          ''
+          ''
+          + (utils.createDirs [
+            "bin"
+            ".local/run"
+          ])
+          + ''
+            chmod 750 $HOME
+          ''
+        );
+
+      # commonBins = dags.entryAfter ["installPackages"] ''
+      commonBins = dags.entryAfter ["commonDirs"] ''
+        find "$HOME/bin" -type l -delete || true
+        ln -s "${pkgs.gnugrep}/bin/grep" "${homeDirectory}/bin/its_just_grep"
+      '';
+
       commonBinLinks = dags.entryAfter ["commonBins"] ''
         ln -fs ${dots}/global/bin/* "$HOME/bin/"
         ln -fs ${pkgs.vim}/bin/vim "$HOME/bin/svim"

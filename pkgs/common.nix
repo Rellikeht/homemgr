@@ -49,6 +49,8 @@
 
     findutils
     plocate
+    pdfgrep
+    tre
 
     su
     sudo

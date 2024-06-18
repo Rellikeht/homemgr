@@ -1,6 +1,7 @@
 # vim: set et sw=2 ts=2:
 {
   # {{{
+  config,
   pkgs,
   unstable,
   # old,
@@ -13,6 +14,7 @@
 }: let
   # {{{
   b = builtins;
+  mkOutOfStoreSymlink = config.lib.file.mkOutOfStoreSymlink;
   # }}}
 
   normalPackages = with pkgs; (
@@ -64,6 +66,11 @@ in {
           source = "${dotfiles}/.prompt-droid.bash";
           force = true;
         }; # }}}
+
+        "storage" = {
+          source = mkOutOfStoreSymlink /storage/emulated/0;
+          force = true;
+        };
       } # }}}
       // b.listToAttrs (utils.configFiles [
         # {{{

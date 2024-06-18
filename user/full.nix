@@ -22,8 +22,7 @@ in {
     file =
       {}
       // b.listToAttrs (utils.configCDirs [
-        "vis"
-      ]);
+        ]);
 
     activation = {};
 

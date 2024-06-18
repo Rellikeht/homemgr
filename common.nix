@@ -60,25 +60,6 @@ in {
 
     activation = {
       # {{{
-      commonDirs =
-        dags.entryAfter ["writeBoundary"]
-        (
-          ''
-          ''
-          + (utils.createDirs [
-            "bin"
-            ".local/run"
-          ])
-          + ''
-            chmod 750 $HOME
-          ''
-        );
-
-      # commonBins = dags.entryAfter ["installPackages"] ''
-      commonBins = dags.entryAfter ["commonDirs"] ''
-        find "$HOME/bin" -type l -delete || true
-        ln -s "${pkgs.gnugrep}/bin/grep" "${homeDirectory}/bin/its_just_grep"
-      '';
     }; # }}}
 
     # {{{
