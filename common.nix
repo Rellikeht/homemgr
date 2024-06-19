@@ -23,11 +23,14 @@
     checkbashisms
 
     alejandra
+    nil
+
     silver-searcher
     dash
 
     glow
-    nil
+    timer
+
     jq
     delta
     rlwrap

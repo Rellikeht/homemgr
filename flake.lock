@@ -88,11 +88,11 @@
     "dotfiles": {
       "flake": false,
       "locked": {
-        "lastModified": 1718785399,
-        "narHash": "sha256-/nKoIOEBiwAcUiV4dbdDKV32131kXhF4+OIZmGbSJWA=",
+        "lastModified": 1718786104,
+        "narHash": "sha256-aaGitXcEsq+J9nneWw90zGO441h+s61vSYUa0AhTG/k=",
         "owner": "Rellikeht",
         "repo": "dotfiles",
-        "rev": "4a54bd584ffdb9ef118f0755344a6925493868d2",
+        "rev": "8531797b598cebcca999a484b531fb2548b0e7eb",
         "type": "github"
       },
       "original": {
