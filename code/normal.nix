@@ -14,6 +14,7 @@
 }: let
   # {{{
   b = builtins;
+  # dots = "${dotfiles}";
   # }}}
 
   normalPackages = with pkgs; (
@@ -77,7 +78,6 @@
     ++ (with haskellPackages; [
       # {{{
     ])); # }}}
-  # dots = "${dotfiles}";
 in {
   home = {
     sessionVariables = {
