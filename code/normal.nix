@@ -96,8 +96,10 @@ in {
       # {{{
       enable = true;
       package = unstable.opam;
-      enableBashIntegration = true;
-      enableZshIntegration = true;
+
+      # It is in dotfiles already
+      enableBashIntegration = false;
+      enableZshIntegration = false;
     }; # }}}
 
     vim-vint = {

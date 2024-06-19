@@ -246,6 +246,7 @@
           pkgfiles = [
             # {{{
             ./pkgs/common.nix
+            ./pkgs/links.nix
             ./pkgs/codeMinimal.nix
             ./pkgs/codeNormal.nix
 

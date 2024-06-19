@@ -41,6 +41,7 @@
     (lib.setPrio 200 gcc)
     gnumake
     binutils
+    time
 
     inetutils
     rsync
@@ -52,6 +53,7 @@
     pdfgrep
     tre
 
+    util-linux
     su
     sudo
   ]; # }}}
@@ -204,6 +206,7 @@ in {
       # {{{
       enable = true;
       package = unstable.fzf;
+
       enableBashIntegration = true;
       enableZshIntegration = true;
     }; # }}}

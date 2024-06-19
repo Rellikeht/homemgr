@@ -84,9 +84,11 @@ in {
     direnv = {
       # {{{
       enable = true;
-      enableBashIntegration = true;
-      enableZshIntegration = true;
       nix-direnv.enable = true;
+
+      # It is in dotfiles already
+      enableBashIntegration = false;
+      enableZshIntegration = false;
     }; # }}}
 
     git = {
