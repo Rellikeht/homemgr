@@ -5,6 +5,7 @@
   lib,
   dotfiles,
   homeDir ? "",
+  stateVersion,
   name,
   utils,
   ...
@@ -103,5 +104,7 @@ in {
           + utils.apps.vimUp "${pkgs.neovim}/bin/nvim"
         );
     }; # }}}
+
+    inherit homeDirectory stateVersion;
   };
 }

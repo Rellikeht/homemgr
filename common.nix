@@ -27,6 +27,7 @@
 
     silver-searcher
     dash
+    moreutils
 
     glow
     timer
