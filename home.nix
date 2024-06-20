@@ -27,11 +27,13 @@ in {
     # }}}
   };
 
-  home-manager = {
-    # {{{
-    # Let Home Manager install and manage itself.
-    enable = true;
-  }; # }}}
+  programs = {
+    home-manager = {
+      # {{{
+      # Let Home Manager install and manage itself.
+      enable = true;
+    }; # }}}
+  };
 
   news.display = "silent";
 }
