@@ -76,7 +76,7 @@
         name: homeDir: mods:
           utils.confFunc {
             inherit pkgs lib;
-            modules = mods;
+            modules = [./home.nix] ++ mods;
             extraSpecialArgs = {
               inherit dotfiles utils;
               inherit unstable builds;

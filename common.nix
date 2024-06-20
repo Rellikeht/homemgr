@@ -4,19 +4,18 @@
   pkgs,
   unstable,
   lib,
-  dotfiles,
-  name,
-  homeDir ? "",
-  stateVersion,
-  utils,
+  # dotfiles,
+  # name,
+  # homeDir ? "",
+  # stateVersion,
+  # utils,
   ... # }}}
 }: let
   # {{{
-  dags = lib.hm.dag;
-  b = builtins;
-  dots = "${dotfiles}";
+  # dags = lib.hm.dag;
+  # b = builtins;
+  # dots = "${dotfiles}";
   # }}}
-
   normalPackages = with pkgs; [
     # {{{
     shellcheck
@@ -46,14 +45,6 @@
     # {{{
   ]; # }}}
 
-  # {{{
-  defHomeDir = "/home/${name}";
-  homeDirectory =
-    if homeDir == ""
-    then defHomeDir
-    else homeDir;
-  # }}}
-
   fzfPackage = unstable.fzf;
 in {
   home = {
@@ -67,8 +58,6 @@ in {
     }; # }}}
 
     # {{{
-    inherit homeDirectory stateVersion;
-    username = name;
     packages = normalPackages ++ unstablePackages;
     # }}}
   };
@@ -82,9 +71,6 @@ in {
       "*cache*/"
     ]; # }}}
   in {
-    # Let Home Manager install and manage itself.
-    home-manager.enable = true;
-
     direnv = {
       # {{{
       enable = true;
@@ -207,6 +193,4 @@ in {
 
   #   checkConfig = true;
   # }; # }}}
-
-  news.display = "silent";
 }
