@@ -157,12 +157,13 @@
         # {{{ simple server
         // (let
           files = [
+            # {{{
             ./common.nix
             ./commonLinks.nix
             ./specific/server.nix
             ./code/links.nix
             ./server/minecraft.nix
-          ];
+          ]; # }}}
         in {
           "simpleServer" = homeConf "server" files;
 
@@ -178,12 +179,13 @@
         # {{{ simple root
         // (let
           files = [
+            # {{{
             ./common.nix
             ./commonLinks.nix
             ./specific/root.nix
             ./code/minimal.nix
             ./code/links.nix
-          ];
+          ]; # }}}
         in {
           "simpleRoot" = homeDConf "root" "/root" files;
 
@@ -199,6 +201,7 @@
         # {{{ server
         // (let
           files = [
+            # {{{
             ./common.nix
             ./commonLinks.nix
             ./specific/common.nix
@@ -208,7 +211,7 @@
             ./server/links.nix
             ./code/minimal.nix
             ./code/links.nix
-          ];
+          ]; # }}}
         in {
           "michalServer" = homeConf "michal" files;
           "server" = homeConf "server" files;

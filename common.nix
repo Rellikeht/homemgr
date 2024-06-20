@@ -8,11 +8,11 @@
   # name,
   # homeDir ? "",
   # stateVersion,
-  # utils,
+  utils,
   ... # }}}
 }: let
   # {{{
-  # dags = lib.hm.dag;
+  dags = lib.hm.dag;
   # b = builtins;
   # dots = "${dotfiles}";
   # }}}
@@ -55,6 +55,14 @@ in {
 
     activation = {
       # {{{
+
+      vimUpdate =
+        dags.entryAfter ["commonBinLinks"]
+        (
+          utils.apps.vimUpPrep
+          + utils.apps.vimUp ''"$HOME/bin/svim"''
+          + utils.apps.vimUp "${pkgs.neovim}/bin/nvim"
+        );
     }; # }}}
 
     # {{{

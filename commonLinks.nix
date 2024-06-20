@@ -95,14 +95,6 @@ in {
         ln -fs ${dots}/global/bin/* "$HOME/bin/"
         ln -fs ${pkgs.vim}/bin/vim "$HOME/bin/svim"
       '';
-
-      vimUpdate =
-        dags.entryAfter ["commonBinLinks"]
-        (
-          utils.apps.vimUpPrep
-          + utils.apps.vimUp ''"$HOME/bin/svim"''
-          + utils.apps.vimUp "${pkgs.neovim}/bin/nvim"
-        );
     }; # }}}
 
     inherit homeDirectory stateVersion;
