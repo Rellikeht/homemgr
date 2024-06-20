@@ -207,8 +207,9 @@ in {
       enable = true;
       package = unstable.fzf;
 
-      enableBashIntegration = true;
-      enableZshIntegration = true;
+      # It is in dotfiles already
+      enableBashIntegration = false;
+      enableZshIntegration = false;
     }; # }}}
 
     neovim = {
