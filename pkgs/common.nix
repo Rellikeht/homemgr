@@ -56,6 +56,8 @@
     util-linux
     su
     sudo
+
+    imagemagick
   ]; # }}}
 
   unstablePackages = with unstable; [
@@ -223,12 +225,20 @@ in {
       extraLuaConfig = '''';
       # extraWrapperArgs = [];
 
-      extraPackages = with pkgs; [];
-      extraLuaPackages = ps: with ps; [];
+      extraPackages = with pkgs; [
+        # {{{
+      ]; # }}}
+
+      extraLuaPackages = ps:
+        with ps; [
+          # {{{
+        ]; # }}}
+
       extraPython3Packages = ps:
         with ps; [
+          # {{{
           pynvim
-        ];
+        ]; # }}}
     }; # }}}
 
     vim = {

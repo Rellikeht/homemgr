@@ -42,6 +42,7 @@
     ++ (with lua54Packages; [
       # {{{
       luacheck
+      magick
     ]) # }}}
   );
 

@@ -31,6 +31,7 @@
     ++ (with lua54Packages; [
       # {{{
       luacheck
+      magick
     ]) # }}}
     ++ (with ocamlPackages; [
       # {{{

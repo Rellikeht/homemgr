@@ -32,6 +32,11 @@
 
       conda # ??
 
+      jupyter-client
+      pnglatex
+      pyperclip
+      cairosvg
+
       matplotlib
       numpy
       pandas
