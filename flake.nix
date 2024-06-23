@@ -154,7 +154,29 @@
             (files ++ [./user/links.nix]);
         })
         # }}}
-        # {{{ server
+        # {{{ simple root
+        // (let
+          files = [
+            # {{{
+            ./common.nix
+            ./commonLinks.nix
+            ./specific/root.nix
+            ./code/minimal.nix
+            ./code/links.nix
+          ]; # }}}
+        in {
+          "simpleRoot" = homeDConf "root" "/root" files;
+
+          "userSimpleRoot" = homeConf (b.getEnv "USER") files;
+          "homeSimpleRoot" = homeDConf "root" (b.getEnv "HOME") files;
+          "userHomeSimpleRoot" =
+            homeDConf
+            (b.getEnv "USER")
+            (b.getEnv "HOME")
+            files;
+        })
+        # }}}
+        # {{{ simple server
         // (let
           files = [
             # {{{
@@ -184,28 +206,6 @@
             (b.getEnv "USER")
             (b.getEnv "HOME")
             mfiles;
-        })
-        # }}}
-        # {{{ simple root
-        // (let
-          files = [
-            # {{{
-            ./common.nix
-            ./commonLinks.nix
-            ./specific/root.nix
-            ./code/minimal.nix
-            ./code/links.nix
-          ]; # }}}
-        in {
-          "simpleRoot" = homeDConf "root" "/root" files;
-
-          "userSimpleRoot" = homeConf (b.getEnv "USER") files;
-          "homeSimpleRoot" = homeDConf "root" (b.getEnv "HOME") files;
-          "userHomeSimpleRoot" =
-            homeDConf
-            (b.getEnv "USER")
-            (b.getEnv "HOME")
-            files;
         })
         # }}}
         # {{{ server
