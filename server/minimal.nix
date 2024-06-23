@@ -38,7 +38,7 @@
 
   myBuilds = with builds; [
     # {{{
-    playit-bin
+    # playit-bin
   ]; # }}}
   # homeDirectory = "/home/${name}";
 in {

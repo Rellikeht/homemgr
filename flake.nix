@@ -154,7 +154,7 @@
             (files ++ [./user/links.nix]);
         })
         # }}}
-        # {{{ simple server
+        # {{{ server
         // (let
           files = [
             # {{{
@@ -162,11 +162,12 @@
             ./commonLinks.nix
             ./specific/server.nix
             ./code/links.nix
-            ./server/minecraft.nix
           ]; # }}}
+          mfiles = files ++ [./server/minecraft.nix];
         in {
-          "simpleServer" = homeConf "server" files;
+          #
 
+          "simpleServer" = homeConf "server" files;
           "userSimpleServer" = homeConf (b.getEnv "USER") files;
           "homeSimpleServer" = homeDConf "server" (b.getEnv "HOME") files;
           "userHomeSimpleServer" =
@@ -174,6 +175,15 @@
             (b.getEnv "USER")
             (b.getEnv "HOME")
             files;
+
+          "minecraftServer" = homeConf "server" mfiles;
+          "userMinecraftServer" = homeConf (b.getEnv "USER") mfiles;
+          "homeMinecraftServer" = homeDConf "server" (b.getEnv "HOME") mfiles;
+          "userHomeMinecraftServer" =
+            homeDConf
+            (b.getEnv "USER")
+            (b.getEnv "HOME")
+            mfiles;
         })
         # }}}
         # {{{ simple root
