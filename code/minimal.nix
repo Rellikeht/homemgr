@@ -96,7 +96,7 @@ in {
     packages =
       normalPackages
       ++ unstablePackages
-      ++ (b.trace lua lua)
+      ++ b.trace (map (x: b.trace x x) lua) lua
       ++ guile-libs;
   };
 }
