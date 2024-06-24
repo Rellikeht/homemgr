@@ -83,6 +83,16 @@
       ++ luaUnstablePkgs
     ); # }}}
 
+  python = with packed.python; ( # {{{
+    normalPkgs
+    ++ unstablePkgs
+    ++ [
+      # {{{
+      (lib.setPrio 200 pythonSimple)
+    ] # }}}
+  );
+  # }}}
+
   myBuilds = with builds; [
     # {{{
     svim
@@ -146,6 +156,7 @@ in {
       normalPackages
       ++ unstablePackages
       ++ lua
+      ++ python
       ++ myBuilds;
   };
 

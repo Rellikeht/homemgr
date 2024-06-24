@@ -7,6 +7,7 @@
   ...
 }: let
   python = packed.python;
+  # TODO remove
 
   normalPackages = with pkgs; [
     # {{{
