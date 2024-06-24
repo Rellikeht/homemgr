@@ -79,6 +79,16 @@
       ++ luaNormalPkgs
       ++ luaUnstablePkgs
     ); # }}}
+
+  python = with packed.python; ( # {{{
+    normalPkgs
+    ++ unstablePkgs
+    ++ [
+      # {{{
+      (lib.setPrio 200 pythonSimple)
+    ] # }}}
+  );
+  # }}}
 in {
   home = {
     sessionVariables = {
@@ -97,6 +107,7 @@ in {
       normalPackages
       ++ unstablePackages
       ++ lua
+      ++ python
       ++ guile-libs;
   };
 }

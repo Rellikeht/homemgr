@@ -122,6 +122,9 @@ in {
           utils.apps.vimUpPrep
           + utils.apps.vimUp ''"$HOME/bin/svim"''
           + utils.apps.vimUp "${pkgs.neovim}/bin/nvim"
+          + ''
+            unlink "$HOME/bin/svim"
+          ''
         );
     };
 

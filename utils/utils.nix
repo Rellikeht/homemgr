@@ -20,12 +20,11 @@
   git = import ./git.nix inputs;
   java = import ./java.nix inputs;
   guile = import ./guile.nix inputs;
-  # python = import ./python.nix inputs;
   # }}}
 in rec {
   # {{{
   inherit confFunc;
-  inherit apps git java guile; # python;
+  inherit apps git java guile;
   # }}}
 
   # TODO cron here, because it isn't available

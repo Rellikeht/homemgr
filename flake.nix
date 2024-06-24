@@ -278,7 +278,6 @@
             ./code/minimal.nix
             ./code/links.nix
             ./code/normal.nix
-            ./code/pythonMinimal.nix
           ]; # }}}
 
           pkgfiles = [
