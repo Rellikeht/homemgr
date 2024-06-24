@@ -71,8 +71,8 @@
       ( # {{{
         [
           # {{{
-          lua
-          luajit
+          # lua
+          # luajit
           # }}}
         ]
         ++ luaMinimalPkgs
@@ -96,7 +96,9 @@ in {
     packages =
       normalPackages
       ++ unstablePackages
-      ++ b.trace (map (x: b.trace x x) lua) lua
+      ++ lua
+      # ++ b.trace (map (x: b.trace x x) lua) lua
+      # ++ b.trace lua lua
       ++ guile-libs;
   };
 }
