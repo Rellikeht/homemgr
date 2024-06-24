@@ -27,7 +27,7 @@ in {
       ++ python.addUnstablePackages
       ++ [
         # {{{
-        (lib.setPrio 300 python)
+        (lib.setPrio 300 python.pythonFull)
       ]; # }}}
   }; # }}}
 }

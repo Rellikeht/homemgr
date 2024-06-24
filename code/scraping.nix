@@ -21,6 +21,7 @@
     [
       # {{{
       gallery-dl
+      (lib.setPrio 300 python.pythonScraping)
     ] # }}}
     ++ (with ocamlPackages; [
       # {{{

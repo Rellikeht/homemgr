@@ -1,21 +1,33 @@
 # vim: set et sw=2 ts=2:
 {
+  # {{{
   pkgs,
   unstable,
   lib,
+  putils,
   ...
+  # }}}
 }: let
-  # {{{
+  # {{{ helpers
   b = builtins;
-  u = import ./utils.nix {inherit lib;};
+  u = putils;
   # }}}
 
-  # {{{
+  # {{{ versions
   pythonNew = pkgs.python313;
   pythonProv = pkgs.python312;
   pythonOld = pkgs.python311;
   # }}}
 
+  # {{{ utils
+  makePacks = ps:
+    (pythonProv.withPackages ps)
+    // (pythonNew.withPackages ps);
+  makeAllPacks = ps:
+    (makePacks ps) // (pythonOld.withPackages ps);
+  # }}}
+
+  # {{{ pkgs
   normalPkgs = with pkgs; [
     # {{{
   ]; # }}}
@@ -26,7 +38,6 @@
 
   addNormalPkgs = with pkgs; [
     # {{{
-    pypy310
   ]; # }}}
 
   addUnstablePkgs = with unstable; [
@@ -35,6 +46,17 @@
     ruff
   ]; # }}}
 
+  extraNormalPkgs = with pkgs; [
+    # {{{
+    pypy310
+  ]; # }}}
+
+  extraUnstablePkgs = with unstable; [
+    # {{{
+  ]; # }}}
+  # }}}
+
+  # {{{ sets
   pythonMinPkgs = ps:
     with ps; [
       # {{{
@@ -47,6 +69,14 @@
       yt-dlp
       gdown
     ]; # }}}
+
+  pythonAddPkgs = ps:
+    with ps; [
+      # {{{
+      numpy
+      pandas
+      # }}}
+    ];
 
   pythonScrapPkgs = ps:
     with ps; [
@@ -85,12 +115,53 @@
     with ps; [
       # {{{
       matplotlib
-      numpy
-      pandas
       sympy
+      scipy
       # }}}
     ];
+  # }}}
 in {
+  inherit pythonProv pythonNew pythonOld;
   inherit normalPkgs unstablePkgs;
   inherit addNormalPkgs addUnstablePkgs;
+
+  pythonSimple =
+    pythonProv.withPackages
+    ( # {{{
+      ps:
+        u.sumPs ps
+        [pythonMinPkgs]
+    ); # }}}
+
+  pythonScraping =
+    pythonProv.withPackages
+    ( # {{{
+      ps:
+        u.sumPs ps
+        [
+          # {{{
+          pythonMinPkgs
+          pythonAddPkgs
+          pythonScrapPkgs
+          pythonScrapAddPkgs
+        ] # }}}
+    ); # }}}
+
+  pythonFull =
+    pythonProv.withPackages
+    ( # {{{
+      ps:
+        u.sumPs ps
+        [
+          # {{{
+          pythonMinPkgs
+          pythonAddPkgs
+
+          pythonAddTools
+          pythonData
+          jupyterClient
+        ] # }}}
+    ); # }}}
+
+  #
 }

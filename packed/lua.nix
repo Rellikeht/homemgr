@@ -77,7 +77,7 @@ in rec {
   inherit luaCommonPkgs luaPkgs luajitPkgs;
   inherit luaAddCommonPkgs luaAddPkgs luajitAddPkgs;
 
-  luaNop =
+  lua =
     luaProv.withPackages
     (ps:
       u.sumPs ps [
@@ -86,7 +86,7 @@ in rec {
         luaPkgs
       ]); # }}}
 
-  luajitNop =
+  luajit =
     luajitProv.withPackages
     (ps:
       u.sumPs ps [
@@ -95,7 +95,7 @@ in rec {
         luajitPkgs
       ]); # }}}
 
-  luaAddNop =
+  luaAdd =
     luaProv.withPackages
     (ps:
       u.sumPs ps [
@@ -106,7 +106,7 @@ in rec {
         luaAddPkgs
       ]); # }}}
 
-  luajitAddNop =
+  luajitAdd =
     luajitProv.withPackages
     (ps:
       u.sumPs ps [

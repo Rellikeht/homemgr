@@ -73,8 +73,8 @@
     with packed.lua; (
       [
         # {{{
-        (lib.setPrio 150 luaNop)
-        (lib.setPrio 100 luajitNop)
+        (lib.setPrio 150 lua)
+        (lib.setPrio 100 luajit)
         # }}}
       ]
       ++ luaMinimalPkgs

@@ -12,7 +12,7 @@ in {
       ++ python.unstablePackages
       ++ [
         # {{{
-        (lib.setPrio 200 python)
+        (lib.setPrio 200 python.pythonSimple)
       ]; # }}}
   };
 }

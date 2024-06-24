@@ -70,8 +70,8 @@
     with packed.lua; (
       [
         # {{{
-        (lib.setPrio 150 luaNop)
-        (lib.setPrio 100 luajitNop)
+        (lib.setPrio 150 lua)
+        (lib.setPrio 100 luajit)
         # }}}
       ]
       ++ luaMinimalPkgs
@@ -96,8 +96,6 @@ in {
       normalPackages
       ++ unstablePackages
       ++ lua
-      # ++ b.trace (map (x: b.trace x x) lua) lua
-      # ++ b.trace lua lua
       ++ guile-libs;
   };
 }
