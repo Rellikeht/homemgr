@@ -46,17 +46,22 @@
       # {{{
       # }}}
     ];
+
+  sumPs = ps: lst:
+    if lst == []
+    then []
+    else (b.head lst) ps ++ sumPs ps (b.tail lst);
 in rec {
   inherit luaMinimalPkgs luaNormalPkgs luaUnstablePkgs;
   inherit luaCommonPkgs luaPkgs luajitPkgs;
 
   luaNop =
     luaProv.withPackages
-    (luaCommonPkgs ++ luaPkgs);
+    (ps: sumPs ps [luaCommonPkgs luaPkgs]);
 
   luajitNop =
     luajitProv.withPackages
-    (luaCommonPkgs ++ luaPkgs);
+    (ps: sumPs ps [luaCommonPkgs luajitPkgs]);
 
   lua = lib.setPrio 150 luaNop;
   luajit = lib.setPrio 100 luajitNop;
