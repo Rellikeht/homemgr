@@ -9,6 +9,8 @@
   # dotfiles,
   # name,
   utils,
+  luaProv,
+  luajitProv,
   ...
   # }}}
 }: let
@@ -47,6 +49,22 @@
   myBuilds = with builds; [
     # {{{
   ]; # }}}
+
+  lua =
+    # {{{
+    with (import ../packed/lua.nix {
+      inherit pkgs unstable lib;
+    });
+    # }}}
+      ( # {{{
+        [
+          # {{{
+          lua
+          luajit
+          # }}}
+        ]
+        ++ luaMinimalPkgs
+      ); # }}}
 
   java = with pkgs; [
     # {{{
@@ -90,7 +108,12 @@ in {
         '';
     }; # }}}
 
-    packages = normalPackages ++ unstable_packages ++ java ++ myBuilds;
+    packages =
+      normalPackages
+      ++ unstable_packages
+      ++ java
+      ++ lua
+      ++ myBuilds;
   };
 
   programs = {

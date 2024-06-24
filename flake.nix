@@ -87,8 +87,6 @@
               pythonNew = pkgs.python313;
               pythonProv = pkgs.python312;
               pythonOld = pkgs.python311;
-              luaProv = pkgs.lua54;
-              luajitProv = pkgs.luajit;
             };
           }
       );

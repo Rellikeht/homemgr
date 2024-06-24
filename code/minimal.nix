@@ -2,11 +2,12 @@
 {
   pkgs,
   unstable,
-  # lib,
+  lib,
   # dotfiles,
   # name,
   utils,
-  # dhallPrelude,
+  luaProv,
+  luajitProv,
   ...
 }: let
   # {{{
@@ -59,6 +60,24 @@
     ++ (with haskellPackages; [
       # {{{
     ])); # }}}
+
+  lua =
+    # {{{
+    with (import ../packed/lua.nix {
+      inherit pkgs unstable lib;
+    });
+    # }}}
+      ( # {{{
+        [
+          # {{{
+          lua
+          luajit
+          # }}}
+        ]
+        ++ luaMinimalPkgs
+        ++ luaNormalPkgs
+        ++ luaUnstablePkgs
+      ); # }}}
 in {
   home = {
     sessionVariables = {
@@ -73,6 +92,10 @@ in {
       # };
     }; # }}}
 
-    packages = normalPackages ++ unstablePackages ++ guile-libs;
+    packages =
+      normalPackages
+      ++ unstablePackages
+      ++ lua
+      ++ guile-libs;
   };
 }

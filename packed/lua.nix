@@ -4,27 +4,30 @@
   pkgs,
   unstable,
   lib,
-  luaProv,
-  luajitProv,
   ...
   # }}}
 }: let
   # {{{
   b = builtins;
-  dags = lib.hm.dag;
+  luaProv = pkgs.lua54;
+  luajitProv = pkgs.luajit;
   # }}}
+
+  luaMinimalPkgs = with pkgs; [
+    # {{{
+    luaformatter
+  ]; # }}}
 
   luaNormalPkgs = with pkgs; [
     # {{{
     lua-language-server
-    luaformatter
   ]; # }}}
 
   luaUnstablePkgs = with unstable; [
     # {{{
   ]; # }}}
 
-  luaDefCommonPkgs = ps:
+  luaCommonPkgs = ps:
     with ps; [
       # {{{
       luacheck
@@ -32,29 +35,29 @@
       # }}}
     ];
 
-  luaDefPkgs = ps:
+  luaPkgs = ps:
     with ps; [
       # {{{
       # }}}
     ];
 
-  luajitDefPkgs = ps:
+  luajitPkgs = ps:
     with ps; [
       # {{{
       # }}}
     ];
 in rec {
-  inherit luaNormalPkgs luaUnstablePkgs;
-  inherit luaDefCommonPkgs luaDefPkgs luajitDefPkgs;
+  inherit luaMinimalPkgs luaNormalPkgs luaUnstablePkgs;
+  inherit luaCommonPkgs luaPkgs luajitPkgs;
 
-  defLuaNop =
+  luaNop =
     luaProv.withPackages
-    (luaDefCommonPkgs ++ luaDefPkgs);
+    (luaCommonPkgs ++ luaPkgs);
 
-  defLuajitNop =
+  luajitNop =
     luajitProv.withPackages
-    (luaDefCommonPkgs ++ luajitDefPkgs);
+    (luaCommonPkgs ++ luaPkgs);
 
-  defLua = lib.setPrio 150 defLuaNop;
-  defLuajit = lib.setPrio 100 defLuajitNop;
+  lua = lib.setPrio 150 luaNop;
+  luajit = lib.setPrio 100 luajitNop;
 }

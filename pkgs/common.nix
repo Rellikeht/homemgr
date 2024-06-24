@@ -9,8 +9,6 @@
   # name,
   # stateVersion,
   utils,
-  luaProv,
-  luajitProv,
   ...
   # }}}
 }: let
@@ -68,9 +66,23 @@
     # dash
   ]; # }}}
 
-  packed = [
+  lua =
     # {{{
-  ]; # }}}
+    with (import ../packed/lua.nix {
+      inherit pkgs unstable lib;
+    });
+    # }}}
+      ( # {{{
+        [
+          # {{{
+          lua
+          luajit
+          # }}}
+        ]
+        ++ luaMinimalPkgs
+        ++ luaNormalPkgs
+        ++ luaUnstablePkgs
+      ); # }}}
 
   myBuilds = with builds; [
     # {{{
@@ -134,7 +146,7 @@ in {
     packages =
       normalPackages
       ++ unstablePackages
-      ++ packed
+      ++ lua
       ++ myBuilds;
   };
 
