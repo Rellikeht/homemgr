@@ -71,6 +71,12 @@
         };
       # }}}
 
+      packed =
+        # {{{
+        import ./packed/packed.nix
+        {inherit pkgs unstable lib;};
+      # }}}
+
       homeDConf = (
         # {{{
         name: homeDir: mods:
@@ -78,15 +84,11 @@
             inherit pkgs lib;
             modules = [./home.nix] ++ mods;
             extraSpecialArgs = {
-              inherit dotfiles utils;
+              inherit dotfiles utils packed;
               inherit unstable builds;
               # inherit old;
               inherit name homeDir stateVersion;
               # inherit dhallPrelude;
-
-              pythonNew = pkgs.python313;
-              pythonProv = pkgs.python312;
-              pythonOld = pkgs.python311;
             };
           }
       );
@@ -164,8 +166,9 @@
             ./code/links.nix
           ]; # }}}
         in {
-          "simpleRoot" = homeDConf "root" "/root" files;
+          # {{{
 
+          "simpleRoot" = homeDConf "root" "/root" files;
           "userSimpleRoot" = homeConf (b.getEnv "USER") files;
           "homeSimpleRoot" = homeDConf "root" (b.getEnv "HOME") files;
           "userHomeSimpleRoot" =
@@ -173,7 +176,7 @@
             (b.getEnv "USER")
             (b.getEnv "HOME")
             files;
-        })
+        }) # }}}
         # }}}
         # {{{ simple server
         // (let
@@ -239,22 +242,22 @@
 
           "michalSserver" =
             homeConf "michal"
-            (files ++ [./code/pythonScraping.nix]);
+            (files ++ [./code/scraping.nix]);
           "serverSserver" =
             homeConf "server"
-            (files ++ [./code/pythonScraping.nix]);
+            (files ++ [./code/scraping.nix]);
           "userSserver" =
             homeConf (b.getEnv "USER")
-            (files ++ [./code/pythonScraping.nix]);
+            (files ++ [./code/scraping.nix]);
           "homeMichalSserver" =
             homeDConf "michal"
             (b.getEnv "HOME")
-            (files ++ [./code/pythonScraping.nix]);
+            (files ++ [./code/scraping.nix]);
           "userHomeSserver" =
             homeDConf
             (b.getEnv "USER")
             (b.getEnv "HOME")
-            (files ++ [./code/pythonScraping.nix]);
+            (files ++ [./code/scraping.nix]);
         })
         # }}}
         # {{{ nix droid

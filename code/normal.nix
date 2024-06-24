@@ -1,16 +1,10 @@
 # vim: set et sw=2 ts=2:
 {
   # {{{
-  # config,
   pkgs,
   unstable,
   lib,
-  # dotfiles,
-  # name,
-  # stateVersion,
-  # utils,
-  luaProv,
-  luajitProv,
+  packed,
   ...
   # }}}
 }: let
@@ -83,21 +77,17 @@
   # TODO
   lua =
     # {{{
-    with (import ../packed/lua.nix {
-      inherit pkgs unstable lib;
-    });
-    # }}}
-      ( # {{{
-        [
-          # {{{
-          (lib.setPrio 150 luaNop)
-          (lib.setPrio 100 luajitNop)
-          # }}}
-        ]
-        ++ luaMinimalPkgs
-        ++ luaNormalPkgs
-        ++ luaUnstablePkgs
-      ); # }}}
+    with packed.lua; (
+      [
+        # {{{
+        (lib.setPrio 150 luaNop)
+        (lib.setPrio 100 luajitNop)
+        # }}}
+      ]
+      ++ luaMinimalPkgs
+      ++ luaNormalPkgs
+      ++ luaUnstablePkgs
+    ); # }}}
 in {
   home = {
     sessionVariables = {

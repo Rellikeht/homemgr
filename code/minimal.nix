@@ -6,8 +6,7 @@
   # dotfiles,
   # name,
   utils,
-  luaProv,
-  luajitProv,
+  packed,
   ...
 }: let
   # {{{
@@ -20,6 +19,10 @@
     guile-git
     guile-ssh
     guile-gnutls
+
+    guile-json
+    guile-sqlite3
+    # guile-ncurses
   ]; # }}}
 
   normalPackages = with pkgs; (
@@ -64,21 +67,17 @@
 
   lua =
     # {{{
-    with (import ../packed/lua.nix {
-      inherit pkgs unstable lib;
-    });
-    # }}}
-      ( # {{{
-        [
-          # {{{
-          (lib.setPrio 150 luaNop)
-          (lib.setPrio 100 luajitNop)
-          # }}}
-        ]
-        ++ luaMinimalPkgs
-        ++ luaNormalPkgs
-        ++ luaUnstablePkgs
-      ); # }}}
+    with packed.lua; (
+      [
+        # {{{
+        (lib.setPrio 150 luaNop)
+        (lib.setPrio 100 luajitNop)
+        # }}}
+      ]
+      ++ luaMinimalPkgs
+      ++ luaNormalPkgs
+      ++ luaUnstablePkgs
+    ); # }}}
 in {
   home = {
     sessionVariables = {

@@ -9,6 +9,7 @@
   # name,
   # stateVersion,
   utils,
+  packed,
   ...
   # }}}
 }: let
@@ -58,6 +59,7 @@
     sudo
 
     imagemagick
+    sqlite-interactive
   ]; # }}}
 
   unstablePackages = with unstable; [
@@ -68,21 +70,17 @@
 
   lua =
     # {{{
-    with (import ../packed/lua.nix {
-      inherit pkgs unstable lib;
-    });
-    # }}}
-      ( # {{{
-        [
-          # {{{
-          (lib.setPrio 150 luaNop)
-          (lib.setPrio 100 luajitNop)
-          # }}}
-        ]
-        ++ luaMinimalPkgs
-        ++ luaNormalPkgs
-        ++ luaUnstablePkgs
-      ); # }}}
+    with packed.lua; (
+      [
+        # {{{
+        (lib.setPrio 150 luaNop)
+        (lib.setPrio 100 luajitNop)
+        # }}}
+      ]
+      ++ luaMinimalPkgs
+      ++ luaNormalPkgs
+      ++ luaUnstablePkgs
+    ); # }}}
 
   myBuilds = with builds; [
     # {{{

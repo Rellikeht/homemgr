@@ -4,11 +4,16 @@
   pkgs,
   unstable,
   lib,
+  putils,
   ...
   # }}}
 }: let
   # {{{
   b = builtins;
+  u = putils;
+  # }}}
+
+  # {{{
   luaProv = pkgs.lua5_4;
   luajitProv = pkgs.luajit;
   # }}}
@@ -31,6 +36,9 @@
     with ps; [
       # {{{
       luacheck
+      luafilesystem
+      sqlite
+      luautf8
       # }}}
     ];
 
@@ -47,19 +55,65 @@
       # }}}
     ];
 
-  sumPs = ps: lst:
-    if lst == []
-    then []
-    else (b.head lst) ps ++ sumPs ps (b.tail lst);
+  luaAddCommonPkgs = ps:
+    with ps; [
+      # {{{
+      # }}}
+    ];
+
+  luaAddPkgs = ps:
+    with ps; [
+      # {{{
+      # }}}
+    ];
+
+  luajitAddPkgs = ps:
+    with ps; [
+      # {{{
+      # }}}
+    ];
 in rec {
   inherit luaMinimalPkgs luaNormalPkgs luaUnstablePkgs;
   inherit luaCommonPkgs luaPkgs luajitPkgs;
+  inherit luaAddCommonPkgs luaAddPkgs luajitAddPkgs;
 
   luaNop =
     luaProv.withPackages
-    (ps: sumPs ps [luaCommonPkgs luaPkgs]);
+    (ps:
+      u.sumPs ps [
+        # {{{
+        luaCommonPkgs
+        luaPkgs
+      ]); # }}}
 
   luajitNop =
     luajitProv.withPackages
-    (ps: sumPs ps [luaCommonPkgs luajitPkgs]);
+    (ps:
+      u.sumPs ps [
+        # {{{
+        luaCommonPkgs
+        luajitPkgs
+      ]); # }}}
+
+  luaAddNop =
+    luaProv.withPackages
+    (ps:
+      u.sumPs ps [
+        # {{{
+        luaCommonPkgs
+        luaPkgs
+        luaAddCommonPkgs
+        luaAddPkgs
+      ]); # }}}
+
+  luajitAddNop =
+    luajitProv.withPackages
+    (ps:
+      u.sumPs ps [
+        # {{{
+        luaCommonPkgs
+        luajitPkgs
+        luaAddCommonPkgs
+        luajitAddPkgs
+      ]); # }}}
 }

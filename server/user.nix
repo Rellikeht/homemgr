@@ -9,8 +9,7 @@
   # dotfiles,
   # name,
   utils,
-  luaProv,
-  luajitProv,
+  packed,
   ...
   # }}}
 }: let
@@ -52,19 +51,15 @@
 
   lua =
     # {{{
-    with (import ../packed/lua.nix {
-      inherit pkgs unstable lib;
-    });
-    # }}}
-      ( # {{{
-        [
-          # {{{
-          (lib.setPrio 150 luaNop)
-          (lib.setPrio 100 luajitNop)
-          # }}}
-        ]
-        ++ luaMinimalPkgs
-      ); # }}}
+    with packed.lua; (
+      [
+        # {{{
+        (lib.setPrio 150 luaNop)
+        (lib.setPrio 100 luajitNop)
+        # }}}
+      ]
+      ++ luaMinimalPkgs
+    ); # }}}
 
   java = with pkgs; [
     # {{{
