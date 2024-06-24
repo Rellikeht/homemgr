@@ -36,7 +36,7 @@
     delta
     rlwrap
 
-    (lib.setPrio 100 packed.pythonProv)
+    (lib.setPrio 100 packed.python.pythonProv)
     ocaml
 
     aria2
