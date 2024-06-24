@@ -59,8 +59,8 @@
       ( # {{{
         [
           # {{{
-          lua
-          luajit
+          (lib.setPrio 150 luaNop)
+          (lib.setPrio 100 luajitNop)
           # }}}
         ]
         ++ luaMinimalPkgs
