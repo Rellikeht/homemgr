@@ -42,7 +42,7 @@
       luacheck
       luafilesystem
       sqlite
-      luautf8
+      # luautf8
       # }}}
     ];
 
