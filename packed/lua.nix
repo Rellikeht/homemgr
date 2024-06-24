@@ -40,9 +40,9 @@
     with ps; [
       # {{{
       luacheck
-      luafilesystem
-      sqlite
-      # luautf8
+      # luafilesystem
+      # sqlite
+      luautf8
       # }}}
     ];
 
