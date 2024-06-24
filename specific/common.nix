@@ -16,9 +16,6 @@
     [
       # {{{
     ] # }}}
-    ++ (with lua54Packages; [
-      # {{{
-    ]) # }}}
     ++ (with ocamlPackages; [
       # {{{
       # ocaml-lsp

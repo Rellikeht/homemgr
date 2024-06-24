@@ -6,7 +6,7 @@
   unstable,
   builds,
   lib,
-  dotfiles,
+  # dotfiles,
   # name,
   utils,
   ...
@@ -14,15 +14,14 @@
 }: let
   # {{{
   dags = lib.hm.dag;
-  b = builtins;
-  dots = "${dotfiles}";
+  # b = builtins;
+  # dots = "${dotfiles}";
   # }}}
 
   normalPackages = with pkgs; (
     [
       # {{{
       pkgtop
-      luaformatter
 
       phodav
       cadaver
@@ -39,11 +38,6 @@
       #   echo "Hello, ${config.home.username}!"
       # '')
     ] # }}}
-    ++ (with lua54Packages; [
-      # {{{
-      luacheck
-      magick
-    ]) # }}}
   );
 
   unstable_packages = with unstable; [

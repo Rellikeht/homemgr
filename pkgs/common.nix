@@ -9,6 +9,8 @@
   # name,
   # stateVersion,
   utils,
+  luaProv,
+  luajitProv,
   ...
   # }}}
 }: let
@@ -62,11 +64,12 @@
 
   unstablePackages = with unstable; [
     # {{{
-    (lib.setPrio 150 lua)
-    luajit
     vifm-full
-
     # dash
+  ]; # }}}
+
+  packed = [
+    # {{{
   ]; # }}}
 
   myBuilds = with builds; [
@@ -128,7 +131,11 @@ in {
       # }}}
     }; # }}}
 
-    packages = normalPackages ++ unstablePackages ++ myBuilds;
+    packages =
+      normalPackages
+      ++ unstablePackages
+      ++ packed
+      ++ myBuilds;
   };
 
   programs = {

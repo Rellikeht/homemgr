@@ -9,8 +9,10 @@
   # dhallPrelude,
   ...
 }: let
-  b = builtins;
-
+  # {{{
+  # b = builtins;
+  # dots = "${dotfiles}";
+  # }}}
   guile-libs = with pkgs; [
     # {{{
     guile-git
@@ -23,16 +25,9 @@
       # {{{
       shfmt
       guile
-      lua-language-server
-      luaformatter
       nickel
       nls
     ] # }}}
-    ++ (with lua54Packages; [
-      # {{{
-      luacheck
-      magick
-    ]) # }}}
     ++ (with ocamlPackages; [
       # {{{
       utop
@@ -64,7 +59,6 @@
     ++ (with haskellPackages; [
       # {{{
     ])); # }}}
-  # dots = "${dotfiles}";
 in {
   home = {
     sessionVariables = {

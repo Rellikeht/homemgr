@@ -9,6 +9,7 @@
 }: let
   b = builtins;
   normalPackages = with pkgs; [
+    gallery-dl
   ];
 
   unstablePackages = with unstable; [

@@ -84,8 +84,11 @@
               inherit name homeDir stateVersion;
               # inherit dhallPrelude;
 
-              pythonProv = pkgs.python311;
+              pythonNew = pkgs.python313;
+              pythonProv = pkgs.python312;
+              pythonOld = pkgs.python311;
               luaProv = pkgs.lua54;
+              luajitProv = pkgs.luajit;
             };
           }
       );
@@ -102,8 +105,6 @@
           # home manager may not be so useful with it
           # it has to be used carefully
 
-          # TODO Packages files, that may be super hard
-          # TODO at the end activation should land here
           # TODO procedural creation ???
 
           # {{{ tests
@@ -223,16 +224,39 @@
             ./code/links.nix
           ]; # }}}
         in {
-          "michalServer" = homeConf "michal" files;
-          "server" = homeConf "server" files;
+          #
 
+          "michalServer" = homeConf "michal" files;
+          "serverServer" = homeConf "server" files;
           "userServer" = homeConf (b.getEnv "USER") files;
-          "homeMichalServer" = homeDConf "michal" (b.getEnv "HOME") files;
+          "homeMichalServer" =
+            homeDConf "michal"
+            (b.getEnv "HOME")
+            files;
           "userHomeServer" =
             homeDConf
             (b.getEnv "USER")
             (b.getEnv "HOME")
             files;
+
+          "michalSserver" =
+            homeConf "michal"
+            (files ++ [./code/pythonScraping.nix]);
+          "serverSserver" =
+            homeConf "server"
+            (files ++ [./code/pythonScraping.nix]);
+          "userSserver" =
+            homeConf (b.getEnv "USER")
+            (files ++ [./code/pythonScraping.nix]);
+          "homeMichalSserver" =
+            homeDConf "michal"
+            (b.getEnv "HOME")
+            (files ++ [./code/pythonScraping.nix]);
+          "userHomeSserver" =
+            homeDConf
+            (b.getEnv "USER")
+            (b.getEnv "HOME")
+            (files ++ [./code/pythonScraping.nix]);
         })
         # }}}
         # {{{ nix droid
@@ -262,9 +286,6 @@
             ./pkgs/links.nix
             ./pkgs/codeMinimal.nix
             ./pkgs/codeNormal.nix
-
-            # WTF is that
-            # ./pkgs/links.nix
           ]; # }}}
         in {
           # {{{
@@ -295,6 +316,63 @@
             (files ++ pkgfiles);
         })
         # }}}
+        # }}}
+        # {{{ michal
+        // (let
+          cfiles = [
+            # {{{
+            ./commmon.nix
+            ./user/normal.nix
+
+            ./code/pythonFull.nix
+            ./code/minimal.nix
+            ./code/normal.nix
+            ./code/full.nix
+
+            ./server/minimal.nix
+            ./server/user.nix
+          ]; # }}}
+
+          afiles = [
+            # {{{
+            ./user/gits.nix
+            ./user/full.nix
+          ]; # }}}
+
+          sfiles = [
+            # {{{
+            ./specific/common.nix
+            ./commonLinks.nix
+            ./code/links.nix
+            ./server/links.nix
+            ./code/links.nix
+            ./user/links.nix
+          ]; # }}}
+
+          gfiles = [
+            # {{{
+            ./gitLinks.nix
+          ]; # }}}
+
+          pfiles = [
+            # {{{
+            ./pkgs/common.nix
+            ./pkgs/userServer.nix
+
+            ./pkgs/codeMinimal.nix
+            ./pkgs/codeNormal.nix
+            ./pkgs/codeFull.nix
+          ]; # }}}
+        in {
+          # {{{
+          #
+
+          "michal" =
+            homeConf "michal"
+            (cfiles ++ afiles ++ gfiles);
+          # TODO
+          # }}}
+        })
         # }}}
         ;
       # // (let

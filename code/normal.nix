@@ -24,7 +24,6 @@
 
       pkgtop
       kakoune
-      (lib.setPrio 100 luajit)
       dune_3
 
       gforth
