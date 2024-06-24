@@ -9,7 +9,7 @@
 }: let
   # {{{
   b = builtins;
-  luaProv = pkgs.lua54;
+  luaProv = pkgs.lua5_4;
   luajitProv = pkgs.luajit;
   # }}}
 
