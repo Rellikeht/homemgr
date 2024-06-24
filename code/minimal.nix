@@ -11,9 +11,10 @@
   ...
 }: let
   # {{{
-  # b = builtins;
+  b = builtins;
   # dots = "${dotfiles}";
   # }}}
+
   guile-libs = with pkgs; [
     # {{{
     guile-git
@@ -95,7 +96,7 @@ in {
     packages =
       normalPackages
       ++ unstablePackages
-      ++ lua
+      ++ (b.trace lua lua)
       ++ guile-libs;
   };
 }
