@@ -18,7 +18,7 @@
   luajitProv = pkgs.luajit;
   # }}}
 
-  luaMinimalPkgs = with pkgs; [
+  luaMinPkgs = with pkgs; [
     # {{{
     luaformatter
   ]; # }}}
@@ -26,6 +26,10 @@
   luaNormalPkgs = with pkgs; [
     # {{{
     lua-language-server
+  ]; # }}}
+
+  luaMinUnstablePkgs = with unstable; [
+    # {{{
   ]; # }}}
 
   luaUnstablePkgs = with unstable; [
@@ -73,7 +77,8 @@
       # }}}
     ];
 in rec {
-  inherit luaMinimalPkgs luaNormalPkgs luaUnstablePkgs;
+  inherit luaMinPkgs luaMinUnstablePkgs;
+  inherit luaNormalPkgs luaUnstablePkgs;
   inherit luaCommonPkgs luaPkgs luajitPkgs;
   inherit luaAddCommonPkgs luaAddPkgs luajitAddPkgs;
 

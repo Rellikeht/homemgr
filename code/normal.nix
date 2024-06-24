@@ -84,7 +84,8 @@
         (lib.setPrio 100 luajit)
         # }}}
       ]
-      ++ luaMinimalPkgs
+      ++ luaMinPkgs
+      ++ luaMinUnstablePkgs
       ++ luaNormalPkgs
       ++ luaUnstablePkgs
     ); # }}}

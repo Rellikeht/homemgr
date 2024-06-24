@@ -9,6 +9,7 @@
   # homeDir ? "",
   # stateVersion,
   utils,
+  packed,
   ... # }}}
 }: let
   # {{{
@@ -35,7 +36,7 @@
     delta
     rlwrap
 
-    (lib.setPrio 100 python313)
+    (lib.setPrio 100 packed.pythonProv)
     ocaml
 
     aria2

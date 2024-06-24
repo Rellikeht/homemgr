@@ -55,7 +55,8 @@
         (lib.setPrio 100 luajit)
         # }}}
       ]
-      ++ luaMinimalPkgs
+      ++ luaMinPkgs
+      ++ luaMinUnstablePkgs
     ); # }}}
 
   java = with pkgs; [
