@@ -63,6 +63,6 @@ in rec {
     luajitProv.withPackages
     (ps: sumPs ps [luaCommonPkgs luajitPkgs]);
 
-  lua = lib.setPrio 150 luaNop;
-  luajit = lib.setPrio 100 luajitNop;
+  # lua = lib.setPrio 150 luaNop;
+  # luajit = lib.setPrio 100 luajitNop;
 }
