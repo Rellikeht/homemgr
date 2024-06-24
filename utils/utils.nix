@@ -25,7 +25,7 @@
 in rec {
   # {{{
   inherit confFunc;
-  inherit apps git java guile python;
+  inherit apps git java guile; # python;
   # }}}
 
   # TODO cron here, because it isn't available
