@@ -69,6 +69,7 @@ in {
       ]);
     # }}}
 
+    # TODO z.lua and z.sh file
     activation = {
       # {{{
       commonDirs =
