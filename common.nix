@@ -25,21 +25,27 @@
     alejandra
     nil
 
-    silver-searcher
-    dash
-    moreutils
+    silver-searcher # just in case
+
+    dash # just in case
+
+    moreutils # ??
+
+    # there is an home manager option,
+    # but i configured it manually in rc files
+    z-lua
 
     glow
     timer
 
     jq
     delta
-    rlwrap
+    rlwrap # just in case
 
     (lib.setPrio 100 packed.python.pythonProv)
-    ocaml
+    ocaml # ??
 
-    aria2
+    aria2 # just in case
   ]; # }}}
 
   unstablePackages = with unstable; [
