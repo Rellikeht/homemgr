@@ -57,15 +57,20 @@
   # }}}
 
   # {{{ sets
-  pythonMinPkgs = ps:
+  pythonEssentialPkgs = ps:
     with ps; [
       # {{{
       bpython
       pip
+      pynvim
+    ]; # }}}
+
+  pythonMinPkgs = ps:
+    with ps; [
+      # {{{
       python-lsp-server
       mypy
       pylsp-mypy
-      pynvim
       yt-dlp
       gdown
     ]; # }}}
@@ -125,12 +130,24 @@ in rec {
   inherit normalPkgs unstablePkgs;
   inherit addNormalPkgs addUnstablePkgs;
 
+  pythonEssential =
+    pythonProv.withPackages
+    ( # {{{
+      ps:
+        u.sumPs ps
+        [pythonEssentialPkgs]
+    ); # }}}
+
   pythonSimple =
     pythonProv.withPackages
     ( # {{{
       ps:
         u.sumPs ps
-        [pythonMinPkgs]
+        [
+          # {{{
+          pythonEssentialPkgs
+          pythonMinPkgs
+        ] # }}}
     ); # }}}
 
   pythonScraping =
@@ -140,6 +157,7 @@ in rec {
         u.sumPs ps
         [
           # {{{
+          pythonEssentialPkgs
           pythonMinPkgs
           pythonAddPkgs
           pythonScrapPkgs
@@ -156,6 +174,7 @@ in rec {
         u.sumPs ps
         [
           # {{{
+          pythonEssentialPkgs
           pythonMinPkgs
           pythonAddPkgs
 
