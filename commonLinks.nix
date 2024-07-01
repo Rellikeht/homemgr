@@ -38,7 +38,7 @@ in {
 
         ".zshrc"
         ".bashrc"
-        ".zshrc"
+        ".inputrc"
 
         ".commonrc"
         ".aliasrc"
@@ -95,6 +95,38 @@ in {
       commonBinLinks = dags.entryAfter ["commonBins"] ''
         ln -fs ${dots}/global/bin/* "$HOME/bin/"
         ln -fs ${pkgs.vim}/bin/vim "$HOME/bin/svim"
+      '';
+
+      zlua = dags.entryAfter ["writeBoundary"] ''
+        pushd "$HOME"
+
+        if [ -e .z ] && ! [ -f .z ]; then
+          echo ".z should be readable file"
+          exit 1
+        elif [ -e .zlua ] && ! [ -f .zlua ]; then
+          echo ".zlua should be readable file"
+          exit 1
+        fi
+
+        if ! [ -e .z ]; then
+          if ! [ -e .zlua ]; then
+            touch .zlua
+          fi
+        else
+          if ! [ -e .zlua ]; then
+            mv .z .zlua
+          else
+            # merge
+            TEMP="$(mktemp)"
+            sort -u -t'|' -k1,1 .z .zlua > "$TEMP"
+            rm .z .zlua
+            cp "$TEMP" .zlua
+            rm "$TEMP"
+          fi
+        fi
+
+        ln -s .zlua .z
+        popd
       '';
     }; # }}}
 
