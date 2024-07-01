@@ -96,7 +96,7 @@
     ++ unstablePkgs
     ++ [
       # {{{
-      (lib.setPrio 200 pythonSimple)
+      (lib.setPrio 200 pythonAdditions)
     ] # }}}
   );
   # }}}

@@ -42,7 +42,7 @@
     delta
     rlwrap # just in case
 
-    (lib.setPrio 100 packed.python.pythonProv)
+    (lib.setPrio 100 packed.python.pythonSimple)
     ocaml # ??
 
     aria2 # just in case

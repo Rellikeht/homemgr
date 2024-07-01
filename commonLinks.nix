@@ -100,32 +100,37 @@ in {
       zlua = dags.entryAfter ["writeBoundary"] ''
         pushd "$HOME"
 
-        if [ -e .z ] && ! [ -f .z ]; then
-          echo ".z should be readable file"
+        if [ -e .z ] && ! ([ -f .z ] || [ -L .z ]); then
+          echo ".z should be readable file or symlink to .zlua"
           exit 1
-        elif [ -e .zlua ] && ! [ -f .zlua ]; then
-          echo ".zlua should be readable file"
+        elif [ -e .zlua ] && ! ([ -f .zlua ] || [ -L .zlua ]); then
+          echo ".zlua should be readable file or symlink"
           exit 1
-        fi
-
-        if ! [ -e .z ]; then
-          if ! [ -e .zlua ]; then
-            touch .zlua
-          fi
         else
-          if ! [ -e .zlua ]; then
-            mv .z .zlua
-          else
-            # merge
-            TEMP="$(mktemp)"
-            sort -u -t'|' -k1,1 .z .zlua > "$TEMP"
-            rm .z .zlua
-            cp "$TEMP" .zlua
-            rm "$TEMP"
-          fi
-        fi
 
-        ln -s .zlua .z
+          if ! [ -e .z ]; then
+            if ! [ -e .zlua ]; then
+              touch .zlua
+            fi
+            ln -s .zlua .z
+
+          else
+            if ! [ -e .zlua ]; then
+              mv .z .zlua
+              ln -s .zlua .z
+            elif [ "$(readlink -f .z)" != "$(readlink -f .zlua)" ] ||
+              ! diff -q .z .zlua &>/dev/null; then
+              # merge
+              TEMP="$(mktemp)"
+              sort -nr -t'|' -k3,3 .z .zlua > "$TEMP"
+              sort -s -u -t'|' -k1,1 "$TEMP" > .zlua
+              rm .z
+              rm "$TEMP"
+              ln -s .zlua .z
+            fi
+          fi
+
+        fi
         popd
       '';
     }; # }}}

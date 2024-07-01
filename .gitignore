@@ -7,3 +7,5 @@
 result
 *.swp
 *~
+Session.vim
+.zlua

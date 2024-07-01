@@ -120,7 +120,7 @@
       # }}}
     ];
   # }}}
-in {
+in rec {
   inherit pythonProv pythonNew pythonOld;
   inherit normalPkgs unstablePkgs;
   inherit addNormalPkgs addUnstablePkgs;
@@ -146,6 +146,8 @@ in {
           pythonScrapAddPkgs
         ] # }}}
     ); # }}}
+
+  pythonAdditions = pythonSimple; # TODO
 
   pythonFull =
     pythonProv.withPackages
