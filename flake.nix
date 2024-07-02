@@ -101,11 +101,7 @@
     in {
       packages.homeConfigurations =
         {
-          # Because systemd can't be assured and
-          # home manager may not be so useful with it
-          # it has to be used carefully
-
-          # TODO procedural creation ???
+          # TODO C procedural creation ???
 
           # {{{ tests
           # }}}
@@ -208,6 +204,34 @@
             (b.getEnv "USER")
             (b.getEnv "HOME")
             mfiles;
+        })
+        # }}}
+        # {{{ TODO B wsl
+        // (let
+          files = [
+            # {{{
+            ./common.nix
+            ./commonLinks.nix
+            ./specific/wsl.nix
+            ./code/links.nix
+          ]; # }}}
+        in {
+          #
+          # {{{ simple
+          "michalsimpleWsl" = homeConf "michal" files;
+          "lamussimpleWsl" = homeConf "lamus" files;
+          "userSimpleWsl" = homeConf (b.getEnv "USER") files;
+          "homeMichalSimpleWsl" = homeDConf "michal" (b.getEnv "HOME") files;
+          "homeLamusSimpleWsl" = homeDConf "lamus" (b.getEnv "HOME") files;
+          "userHomeSimpleWsl" =
+            homeDConf
+            (b.getEnv "USER")
+            (b.getEnv "HOME")
+            files;
+          # }}}
+
+          # TODO C full
+          #
         })
         # }}}
         # {{{ server
@@ -317,7 +341,7 @@
         })
         # }}}
         # }}}
-        # {{{ michal
+        # {{{ TODO B michal
         // (let
           cfiles = [
             # {{{
@@ -375,9 +399,6 @@
         })
         # }}}
         ;
-      # // (let
-      # in {
-      # })
 
       inherit utils;
     });

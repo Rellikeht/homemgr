@@ -69,10 +69,9 @@ in {
       ]);
     # }}}
 
-    # TODO z.lua and z.sh file
     activation = {
-      # {{{
       commonDirs =
+        # {{{
         dags.entryAfter ["writeBoundary"]
         (
           ''
@@ -84,56 +83,68 @@ in {
           + ''
             chmod 750 $HOME
           ''
-        );
+        ); # }}}
 
-      # commonBins = dags.entryAfter ["installPackages"] ''
-      commonBins = dags.entryAfter ["commonDirs"] ''
-        find "$HOME/bin" -type l -delete || true
-        ln -s "${pkgs.gnugrep}/bin/grep" "${homeDirectory}/bin/its_just_grep"
-      '';
+      commonBins =
+        # {{{
+        dags.entryAfter ["commonDirs"] ''
+          find "$HOME/bin" -type l -delete || true
+          ln -s "${pkgs.gnugrep}/bin/grep" "${homeDirectory}/bin/its_just_grep"
+        ''; # }}}
 
-      commonBinLinks = dags.entryAfter ["commonBins"] ''
-        ln -fs ${dots}/global/bin/* "$HOME/bin/"
-        ln -fs ${pkgs.vim}/bin/vim "$HOME/bin/svim"
-      '';
+      commonBinLinks =
+        # {{{
+        dags.entryAfter ["commonBins"] ''
+          ln -fs ${dots}/global/bin/* "$HOME/bin/"
+          ln -fs ${pkgs.vim}/bin/vim "$HOME/bin/svim"
+        ''; # }}}
 
-      zlua = dags.entryAfter ["writeBoundary"] ''
-        pushd "$HOME"
+      zlua =
+        # {{{
+        dags.entryAfter ["writeBoundary"] ''
+          pushd "$HOME" &>/dev/null
 
-        if [ -e .z ] && ! ([ -f .z ] || [ -L .z ]); then
-          echo ".z should be readable file or symlink to .zlua"
-          exit 1
-        elif [ -e .zlua ] && ! ([ -f .zlua ] || [ -L .zlua ]); then
-          echo ".zlua should be readable file or symlink"
-          exit 1
-        else
-
-          if ! [ -e .z ]; then
-            if ! [ -e .zlua ]; then
-              touch .zlua
-            fi
-            ln -s .zlua .z
-
+          if [ -e .z ] && ! ([ -f .z ] || [ -L .z ]); then
+            echo ".z should be readable file or symlink to .zlua"
+            exit 1
+          elif [ -e .zlua ] && ! ([ -f .zlua ] || [ -L .zlua ]); then
+            echo ".zlua should be readable file or symlink"
+            exit 1
           else
-            if ! [ -e .zlua ]; then
-              mv .z .zlua
-              ln -s .zlua .z
-            elif [ "$(readlink -f .z)" != "$(readlink -f .zlua)" ] ||
-              ! diff -q .z .zlua &>/dev/null; then
-              # merge
-              TEMP="$(mktemp)"
-              sort -nr -t'|' -k3,3 .z .zlua > "$TEMP"
-              sort -s -u -t'|' -k1,1 "$TEMP" > .zlua
-              rm .z
-              rm "$TEMP"
-              ln -s .zlua .z
-            fi
-          fi
 
-        fi
-        popd
-      '';
-    }; # }}}
+            if ! [ -e .z ]; then
+              if ! [ -e .zlua ]; then
+                touch .zlua
+              fi
+              ln -s .zlua .z
+
+            else
+              if ! [ -e .zlua ]; then
+                mv .z .zlua
+                ln -s .zlua .z
+              elif [ "$(readlink -f .z)" != "$(readlink -f .zlua)" ] ||
+                ! diff -q .z .zlua &>/dev/null; then
+                # merge
+                TEMP="$(mktemp)"
+                sort -nr -t'|' -k3,3 .z .zlua > "$TEMP"
+                sort -s -u -t'|' -k1,1 "$TEMP" > .zlua
+                rm .z
+                rm "$TEMP"
+                ln -s .zlua .z
+              fi
+            fi
+
+          fi
+          popd &>/dev/null
+        ''; # }}}
+
+      touchingFiles =
+        # {{{
+        dags.entryAfter ["writeBoundary"]
+        ''
+          touch "$HOME/.config/vifm/vifmrc-local"
+        ''; # }}}
+    };
 
     inherit homeDirectory stateVersion;
   };
