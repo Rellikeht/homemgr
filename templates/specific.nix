@@ -1,14 +1,17 @@
 # vim: set et sw=2 ts=2:
 {
-  pkgs,
+  pkgs, # {{{
   unstable,
   # lib,
   # dotfiles,
   # name,
   utils,
   ...
+  # }}}
 }: let
+  # {{{
   b = builtins;
+  # }}}
 
   normalPackages = with pkgs; (
     [
@@ -34,7 +37,9 @@
 in {
   home = {
     file =
-      {}
+      {
+        # {{{
+      } # }}}
       // b.listToAttrs (utils.configFiles [
         # {{{
       ]) # }}}
@@ -45,7 +50,9 @@ in {
         # {{{
       ]); # }}}
 
-    activation = {};
+    activation = {
+      # {{{
+    }; # }}}
 
     packages = normalPackages ++ unstablePackages;
   };

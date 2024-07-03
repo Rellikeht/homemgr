@@ -13,33 +13,22 @@
   # }}}
 }: let
   # {{{
-  dags = lib.hm.dag;
   b = builtins;
+  dots = "${dotfiles}";
   # }}}
 
   normalPackages = with pkgs; [
     # {{{
+    fuse-archive
+    rar2fs
+    fuseiso
   ]; # }}}
 
   unstablePackages = with unstable; [
     # {{{
   ]; # }}}
-
-  dots = "${dotfiles}";
 in {
   home = {
-    file = {
-      # {{{
-    }; # }}}
-
-    activation = {
-      # {{{
-    }; # }}}
-
-    sessionVariables = {
-      # {{{
-    }; # }}}
-
     packages = normalPackages ++ unstablePackages;
   };
 }

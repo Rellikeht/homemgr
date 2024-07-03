@@ -42,6 +42,9 @@
     (lib.setPrio 200 gcc)
     gnumake
     binutils
+    glibc
+    iconv
+    file
     time
 
     inetutils
@@ -58,6 +61,7 @@
     su
     sudo
 
+    highlight
     imagemagick
     sqlite-interactive
   ]; # }}}
