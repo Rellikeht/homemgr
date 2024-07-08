@@ -4,30 +4,35 @@
 
   inputs = {
     # {{{ pkgs
+
     flake-utils.url = "github:numtide/flake-utils";
     nixpkgs.url = "github:nixos/nixpkgs/nixos-24.05";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
     # nixpkgs-old.url = "github:nixos/nixpkgs/nixos-23.11";
-    # }}}
 
     home-manager = {
       url = "github:nix-community/home-manager/release-24.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    # }}}
+
     # {{{ my
+
     dotfiles = {
       url = "github:Rellikeht/dotfiles";
       flake = false;
     };
+
     my-builds.url = "github:Rellikeht/nix-builds";
-    # }}}
 
     # dhallPrelude = {
     #   url = "https://prelude.dhall-lang.org/v22.0.0/package.dhall";
     #   flake = false;
     #   type = "file";
     # };
+
+    # }}}
   };
 
   outputs = {
@@ -114,15 +119,17 @@
             ./code/links.nix
             ./server/links.nix
           ];
+
+          name = "michal";
         in {
-          "shallow" = homeConf "michal" files;
+          "shallow" = homeConf name files;
           "userShallow" =
             homeConf
             (b.getEnv "USER")
             files;
           "homeShallow" =
             homeDConf
-            "server"
+            name
             (b.getEnv "HOME")
             files;
           "userHomeShallow" =
@@ -133,7 +140,7 @@
 
           "shallowUser" =
             homeConf
-            "michal"
+            name
             (files ++ [./user/links.nix]);
           "userShallowUser" =
             homeConf
@@ -141,7 +148,7 @@
             (files ++ [./user/links.nix]);
           "homeShallowUser" =
             homeDConf
-            "server"
+            name
             (b.getEnv "HOME")
             (files ++ [./user/links.nix]);
           "userHomeShallowUser" =
@@ -184,21 +191,23 @@
             ./code/links.nix
           ]; # }}}
           mfiles = files ++ [./server/minecraft.nix];
+
+          name = "server";
         in {
           #
 
-          "simpleServer" = homeConf "server" files;
+          "simpleServer" = homeConf name files;
           "userSimpleServer" = homeConf (b.getEnv "USER") files;
-          "homeSimpleServer" = homeDConf "server" (b.getEnv "HOME") files;
+          "homeSimpleServer" = homeDConf name (b.getEnv "HOME") files;
           "userHomeSimpleServer" =
             homeDConf
             (b.getEnv "USER")
             (b.getEnv "HOME")
             files;
 
-          "minecraftServer" = homeConf "server" mfiles;
+          "minecraftServer" = homeConf name mfiles;
           "userMinecraftServer" = homeConf (b.getEnv "USER") mfiles;
-          "homeMinecraftServer" = homeDConf "server" (b.getEnv "HOME") mfiles;
+          "homeMinecraftServer" = homeDConf name (b.getEnv "HOME") mfiles;
           "userHomeMinecraftServer" =
             homeDConf
             (b.getEnv "USER")
@@ -216,7 +225,6 @@
             ./code/links.nix
           ]; # }}}
         in {
-          #
           # {{{ simple
           "michalsimpleWsl" = homeConf "michal" files;
           "lamussimpleWsl" = homeConf "lamus" files;
@@ -231,7 +239,6 @@
           # }}}
 
           # TODO C full
-          #
         })
         # }}}
         # {{{ server
@@ -284,7 +291,7 @@
             (files ++ [./code/scraping.nix]);
         })
         # }}}
-        # {{{ nix droid
+        # {{{ droid
         // (let
           # ocaml-lsp dependencies builds are failing
           # because build instructions are fucked
@@ -311,32 +318,102 @@
             ./pkgs/codeMinimal.nix
             ./pkgs/codeNormal.nix
           ]; # }}}
+
+          name = "nix-on-droid";
         in {
           # {{{
+
           "nixDroidDev" =
             homeDConf
-            "nix-on-droid"
+            name
             "/data/data/com.termux.nix/files/home"
             files;
-          "testDroidDev" = homeConf "test" files;
-          "testDroidDevPkgs" = homeConf "test" (
-            files ++ pkgfiles
-          );
-
           "userNixDroidDev" =
             homeDConf
             (b.getEnv "USER")
             "/data/data/com.termux.nix/files/home"
             files;
+          "homeNixDroidDev" =
+            homeDConf
+            name
+            (b.getEnv "HOME")
+            files;
+          "userHomeNixDroidDev" =
+            homeDConf
+            (b.getEnv "USER")
+            (b.getEnv "HOME")
+            files;
+
           "nixDroidDevPkgs" =
             homeDConf
-            "nix-on-droid"
+            name
             "/data/data/com.termux.nix/files/home"
             (files ++ pkgfiles);
-          "usernixDroidDevPkgs" =
+          "userNixDroidDevPkgs" =
             homeDConf
             (b.getEnv "USER")
             "/data/data/com.termux.nix/files/home"
+            (files ++ pkgfiles);
+          "homeNixDroidDevPkgs" =
+            homeDConf
+            name
+            (b.getEnv "HOME")
+            (files ++ pkgfiles);
+          "userHomeNixDroidDevPkgs" =
+            homeDConf
+            (b.getEnv "USER")
+            (b.getEnv "HOME")
+            (files ++ pkgfiles);
+
+          "testDroidDev" = homeConf "test" files;
+          "testDroidDevPkgs" = homeConf "test" (files ++ pkgfiles);
+        })
+        # }}}
+        # }}}
+        # {{{ tablet
+        // (let
+          files = [
+            # {{{
+            ./common.nix
+            ./commonLinks.nix
+            ./specific/tablet.nix
+
+            ./server/minimal.nix
+            ./server/user.nix
+            ./server/links.nix
+
+            ./code/minimal.nix
+            ./code/links.nix
+            ./code/normal.nix
+          ]; # }}}
+
+          pkgfiles = [
+            # {{{
+            ./pkgs/common.nix
+            ./pkgs/links.nix
+            ./pkgs/codeMinimal.nix
+            ./pkgs/codeNormal.nix
+          ]; # }}}
+
+          name = "michal";
+        in {
+          # {{{
+
+          "testTabletDev" = homeConf "test" files;
+          "testTabletDevPkgs" = homeConf "test" (files ++ pkgfiles);
+
+          "tabletDev" = homeConf name files;
+          "userTabletDev" = homeConf (b.getEnv "USER") files;
+          "homeTabletDev" = homeConf name (b.getEnv "HOME") files;
+          "userHomeTabletDev" = homeConf (b.getEnv "USER") (b.getEnv "HOME") files;
+
+          "tabletDevPkgs" = homeConf name (files ++ pkgfiles);
+          "userTabletDevPkgs" = homeConf (b.getEnv "USER") (files ++ pkgfiles);
+          "homeTabletDevPkgs" = homeConf name (b.getEnv "HOME") (files ++ pkgfiles);
+          "userHomeTabletDevPkgs" =
+            homeDConf
+            (b.getEnv "USER")
+            (b.getEnv "HOME")
             (files ++ pkgfiles);
         })
         # }}}
