@@ -38,6 +38,7 @@ in {
 
         ".zshrc"
         ".bashrc"
+        ".bash_zlua_patch"
         ".inputrc"
 
         ".commonrc"
