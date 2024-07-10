@@ -106,7 +106,7 @@
     in {
       packages.homeConfigurations =
         {
-          # TODO C procedural creation ???
+          # TODO A procedural creation ???
 
           # {{{ tests
           # }}}
@@ -371,53 +371,93 @@
         # }}}
         # }}}
         # {{{ tablet
-        // (let
-          files = [
+        // (
+          let
+            files = [
+              # {{{
+              ./common.nix
+              ./commonLinks.nix
+              ./specific/tablet.nix
+
+              ./server/minimal.nix
+              ./server/user.nix
+              ./server/links.nix
+
+              ./code/minimal.nix
+              ./code/links.nix
+              ./code/normal.nix
+            ]; # }}}
+
+            pkgfiles = [
+              # {{{
+              ./pkgs/common.nix
+              ./pkgs/links.nix
+              ./pkgs/codeMinimal.nix
+              ./pkgs/codeNormal.nix
+            ]; # }}}
+
+            guifiles = [
+              # {{{
+              ./user/guiMinimal.nix
+            ]; # }}}
+
+            guipkgs = [
+              # {{{
+              ./pkgs/guiMinimal.nix
+            ]; # }}}
+
+            name = "michal";
+          in {
             # {{{
-            ./common.nix
-            ./commonLinks.nix
-            ./specific/tablet.nix
 
-            ./server/minimal.nix
-            ./server/user.nix
-            ./server/links.nix
+            "testTabletDev" = homeConf "test" files;
+            "testTabletDevPkgs" = homeConf "test" (files ++ pkgfiles);
+            "testTabletDevGui" = homeConf "test" (files ++ guifiles);
+            "testTabletDevGuiPkgs" = homeConf "test" (files ++ pkgfiles ++ guifiles);
 
-            ./code/minimal.nix
-            ./code/links.nix
-            ./code/normal.nix
-          ]; # }}}
+            "tabletDev" = homeConf name files;
+            "userTabletDev" = homeConf (b.getEnv "USER") files;
+            "homeTabletDev" = homeConf name (b.getEnv "HOME") files;
+            "userHomeTabletDev" = homeConf (b.getEnv "USER") (b.getEnv "HOME") files;
 
-          pkgfiles = [
-            # {{{
-            ./pkgs/common.nix
-            ./pkgs/links.nix
-            ./pkgs/codeMinimal.nix
-            ./pkgs/codeNormal.nix
-          ]; # }}}
+            "tabletDevPkgs" = homeConf name (files ++ pkgfiles);
+            "userTabletDevPkgs" = homeConf (b.getEnv "USER") (files ++ pkgfiles);
+            "homeTabletDevPkgs" = homeConf name (b.getEnv "HOME") (files ++ pkgfiles);
+            "userHomeTabletDevPkgs" =
+              homeDConf
+              (b.getEnv "USER")
+              (b.getEnv "HOME")
+              (files ++ pkgfiles);
 
-          name = "michal";
-        in {
-          # {{{
+            "tabletDevGui" = homeConf name (files ++ guifiles);
+            "userTabletDevGui" = homeConf (b.getEnv "USER") (files ++ guifiles);
+            "homeTabletDevGui" = homeConf name (b.getEnv "HOME") (files ++ guifiles);
+            "userHomeTabletDevGui" =
+              homeDConf
+              (b.getEnv "USER")
+              (b.getEnv "HOME")
+              (files ++ guifiles);
 
-          "testTabletDev" = homeConf "test" files;
-          "testTabletDevPkgs" = homeConf "test" (files ++ pkgfiles);
-
-          "tabletDev" = homeConf name files;
-          "userTabletDev" = homeConf (b.getEnv "USER") files;
-          "homeTabletDev" = homeConf name (b.getEnv "HOME") files;
-          "userHomeTabletDev" = homeConf (b.getEnv "USER") (b.getEnv "HOME") files;
-
-          "tabletDevPkgs" = homeConf name (files ++ pkgfiles);
-          "userTabletDevPkgs" = homeConf (b.getEnv "USER") (files ++ pkgfiles);
-          "homeTabletDevPkgs" = homeConf name (b.getEnv "HOME") (files ++ pkgfiles);
-          "userHomeTabletDevPkgs" =
-            homeDConf
-            (b.getEnv "USER")
-            (b.getEnv "HOME")
-            (files ++ pkgfiles);
-        })
-        # }}}
-        # }}}
+            "tabletDevGuiPkgs" =
+              homeConf
+              name
+              (files ++ pkgfiles ++ guifiles ++ guipkgs);
+            "userTabletDevGuiPkgs" =
+              homeConf
+              (b.getEnv "USER")
+              (files ++ pkgfiles ++ guifiles ++ guipkgs);
+            "homeTabletDevGuiPkgs" =
+              homeConf
+              name
+              (b.getEnv "HOME")
+              (files ++ pkgfiles ++ guifiles ++ guipkgs);
+            "userHomeTabletDevGuiPkgs" =
+              homeDConf
+              (b.getEnv "USER")
+              (b.getEnv "HOME")
+              (files ++ pkgfiles ++ guifiles ++ guipkgs);
+          } # }}}
+        ) # }}}
         # {{{ TODO B michal
         // (let
           cfiles = [

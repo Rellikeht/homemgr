@@ -1,19 +1,25 @@
 # vim: set et sw=2 ts=2:
 {
+  # {{{
   # config,
   pkgs,
   unstable,
   builds,
-  # lib,
+  lib,
   # dotfiles,
   # name,
   # stateVersion,
   # utils,
   ...
+  # }}}
 }: let
-  # dags = lib.hm.dag;
-  # b = builtins;
+  # {{{
+  dags = lib.hm.dag;
+  b = builtins;
   # dots = "${dotfiles}";
+  # }}}
+
+  # {{{
   # I won't use this anyway
   # myR = pkgs.rWrapper.override {
   #   packages = with pkgs.rPackages;
@@ -25,26 +31,40 @@
   #     ]
   #     ++ (with pkgs; [udunits]);
   # };
-  normalPackages = with pkgs;
-    [
-      tesseract
-      pypy310
-      jdt-language-server
+  # }}}
 
-      pforth
-    ]
+  normalPackages = with pkgs;
+  # {{{
+    ([
+        tesseract
+        pypy310
+        jdt-language-server
+
+        typescript
+
+        pforth
+
+        vscode-langservers-extracted
+        typescript
+      ] # }}}
+      ++ (with nodePackages_latest; [
+        # {{{
+        typescript-language-server
+      ])) # }}}
     ++ [
-      # myR
-    ];
+      # {{{
+    ]; # }}}
 
   unstablePackages = with unstable; ([
+      # {{{
       rustc
       rust-analyzer
       julia-bin
 
       gdb
-    ]
+    ] # }}}
     ++ (with haskellPackages; [
+      # {{{
       vector
       hashtables
       unordered-containers
@@ -52,25 +72,34 @@
       # dhall-nixpkgs
       # dhall-bash
       # dhall-docs
-    ]));
+    ])); # }}}
 
   myBuilds = with builds; [
+    # {{{
     minizinc-ide-bin
-  ];
+  ]; # }}}
   # TODO julia, ocaml, nim packages
   # homeDirectory = "/home/${name}";
 in {
   home = {
-    file = {};
+    file = {
+      # {{{
+    }; # }}}
 
-    activation = {};
+    activation = {
+      # {{{
+    }; # }}}
 
-    sessionVariables = {};
+    sessionVariables = {
+      # {{{
+    }; # }}}
 
     packages =
+      # {{{
       normalPackages
       ++ unstablePackages
       ++ myBuilds;
+    # }}}
   };
 }
 # TODO language package managers

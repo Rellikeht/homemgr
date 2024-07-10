@@ -13,14 +13,13 @@
   # }}}
 }: let
   # {{{
+  dags = lib.hm.dag;
   b = builtins;
   dots = "${dotfiles}";
   # }}}
 
   normalPackages = with pkgs; [
     # {{{
-    gnumake
-    automake
   ]; # }}}
 
   unstablePackages = with unstable; [
@@ -28,11 +27,22 @@
   ]; # }}}
 in {
   home = {
-    # {{{
-    packages = normalPackages ++ unstablePackages;
-  }; # }}}
+    file = {
+      # {{{
+    }; # }}}
 
-  programs = {
-    # {{{
-  }; # }}}
+    activation = {
+      # {{{
+    }; # }}}
+
+    sessionVariables = {
+      # {{{
+    }; # }}}
+
+    packages =
+      # {{{
+      normalPackages
+      ++ unstablePackages;
+    # }}}
+  };
 }

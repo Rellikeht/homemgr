@@ -36,13 +36,13 @@ in {
     activation = {
       gitLinks = let
         # {{{
-        dots = "$HOME/gits/configs/dotfiles";
+        dots = "\"$HOME/gits/configs/dotfiles\"";
         # }}}
       in
         # {{{
         dags.entryAfter ["gits"] ''
-          find -printf '%f\n' | \
-            grep -Ev '^[^.].*|.config' | \
+          find ${dots} -mindepth 1 -maxdepth 1 -printf '%f\n' | \
+            grep -Ev '^([^.].*|.config|.git[^c].*)' | \
             xargs -d '\n' -I{} cp -frs "{}" "$HOME"
 
           cp -frs ${dots}/.config/* "$HOME/.config"

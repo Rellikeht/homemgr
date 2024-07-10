@@ -23,4 +23,31 @@ in {
   home = {
     packages = normalPackages ++ unstablePackages;
   };
+
+  programs = {
+    # {{{
+    neovim = {
+      # {{{
+      extraLuaPackages = ps:
+        with ps; [
+          # {{{
+          magick
+        ]; # }}}
+
+      extraPackages = with pkgs; [
+        # {{{
+        imagemagick
+      ]; # }}}
+
+      extraPython3Packages = ps:
+        with ps; [
+          # {{{
+          jupyter-client
+          cairosvg # for image rendering
+          pnglatex # for image rendering
+          # plotly # for image rendering
+          pyperclip
+        ]; # }}}
+    }; # }}}
+  }; # }}}
 }
