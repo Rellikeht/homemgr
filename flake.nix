@@ -218,7 +218,7 @@
             })
             // (homeConfs {
               name = serverName;
-              inherit mmods;
+              mods = mmods;
               confName = "minecraftServer";
             })
             // {
