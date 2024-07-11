@@ -57,6 +57,7 @@
       # old = nixpkgs-old.legacyPackages.${system};
       builds = my-builds.packages.${system};
       stateVersion = "24.05";
+
       # }}}
 
       utils =
@@ -101,279 +102,233 @@
 
       # {{{
       homeConf = name: mods: homeDConf name "" mods;
+
+      homeConfs = {
+        # {{{
+        confName,
+        name,
+        home ? "",
+        mods,
+        # }}}
+      }:
+        b.listToAttrs [
+          # {{{
+          {
+            name = confName;
+            value = homeDConf name home mods;
+          }
+          {
+            name = "user" + utils.firstUpper confName;
+            value = homeDConf (b.getEnv "USER") home mods;
+          }
+          {
+            name = "home" + utils.firstUpper confName;
+            value = homeDConf name (b.getEnv "HOME") mods;
+          }
+          {
+            name = "userHome" + utils.firstUpper confName;
+            value = homeDConf (b.getEnv "USER") (b.getEnv "HOME") mods;
+          }
+        ]; # }}}
+
       testConf = mods: homeDConf "test" "" mods;
+      # }}}
+
+      # {{{
+      tabName = "phablet";
+      userName = "michal";
+      serverName = "server";
+      wslName = "lamus";
+      droidName = "nix-on-droid";
       # }}}
     in {
       packages.homeConfigurations =
         {
-          # TODO A procedural creation ???
-
           # {{{ tests
           # }}}
         }
-        # {{{ shallow
-        // (let
-          files = [
-            ./commonLinks.nix
-            ./specific/shallow.nix
-            ./code/links.nix
-            ./server/links.nix
-          ];
-
-          name = "michal";
-        in {
-          "shallow" = homeConf name files;
-          "userShallow" =
-            homeConf
-            (b.getEnv "USER")
-            files;
-          "homeShallow" =
-            homeDConf
-            name
-            (b.getEnv "HOME")
-            files;
-          "userHomeShallow" =
-            homeDConf
-            (b.getEnv "USER")
-            (b.getEnv "HOME")
-            files;
-
-          "shallowUser" =
-            homeConf
-            name
-            (files ++ [./user/links.nix]);
-          "userShallowUser" =
-            homeConf
-            (b.getEnv "USER")
-            (files ++ [./user/links.nix]);
-          "homeShallowUser" =
-            homeDConf
-            name
-            (b.getEnv "HOME")
-            (files ++ [./user/links.nix]);
-          "userHomeShallowUser" =
-            homeDConf
-            (b.getEnv "USER")
-            (b.getEnv "HOME")
-            (files ++ [./user/links.nix]);
-        })
-        # }}}
-        # {{{ simple root
-        // (let
-          files = [
-            # {{{
-            ./common.nix
-            ./commonLinks.nix
-            ./specific/root.nix
-            ./code/minimal.nix
-            ./code/links.nix
-          ]; # }}}
-        in {
-          # {{{
-
-          "simpleRoot" = homeDConf "root" "/root" files;
-          "userSimpleRoot" = homeConf (b.getEnv "USER") files;
-          "homeSimpleRoot" = homeDConf "root" (b.getEnv "HOME") files;
-          "userHomeSimpleRoot" =
-            homeDConf
-            (b.getEnv "USER")
-            (b.getEnv "HOME")
-            files;
-        }) # }}}
-        # }}}
-        # {{{ simple server
-        // (let
-          files = [
-            # {{{
-            ./common.nix
-            ./commonLinks.nix
-            ./specific/server.nix
-            ./code/links.nix
-          ]; # }}}
-          mfiles = files ++ [./server/minecraft.nix];
-
-          name = "server";
-        in {
-          #
-
-          "simpleServer" = homeConf name files;
-          "userSimpleServer" = homeConf (b.getEnv "USER") files;
-          "homeSimpleServer" = homeDConf name (b.getEnv "HOME") files;
-          "userHomeSimpleServer" =
-            homeDConf
-            (b.getEnv "USER")
-            (b.getEnv "HOME")
-            files;
-
-          "minecraftServer" = homeConf name mfiles;
-          "userMinecraftServer" = homeConf (b.getEnv "USER") mfiles;
-          "homeMinecraftServer" = homeDConf name (b.getEnv "HOME") mfiles;
-          "userHomeMinecraftServer" =
-            homeDConf
-            (b.getEnv "USER")
-            (b.getEnv "HOME")
-            mfiles;
-        })
-        # }}}
-        # {{{ TODO B wsl
-        // (let
-          files = [
-            # {{{
-            ./common.nix
-            ./commonLinks.nix
-            ./specific/wsl.nix
-            ./code/links.nix
-          ]; # }}}
-        in {
-          # {{{ simple
-          "michalsimpleWsl" = homeConf "michal" files;
-          "lamussimpleWsl" = homeConf "lamus" files;
-          "userSimpleWsl" = homeConf (b.getEnv "USER") files;
-          "homeMichalSimpleWsl" = homeDConf "michal" (b.getEnv "HOME") files;
-          "homeLamusSimpleWsl" = homeDConf "lamus" (b.getEnv "HOME") files;
-          "userHomeSimpleWsl" =
-            homeDConf
-            (b.getEnv "USER")
-            (b.getEnv "HOME")
-            files;
-          # }}}
-
-          # TODO C full
-        })
-        # }}}
-        # {{{ server
-        // (let
-          files = [
-            # {{{
-            ./common.nix
-            ./commonLinks.nix
-            ./specific/common.nix
-
-            ./server/minimal.nix
-            ./server/user.nix
-            ./server/links.nix
-            ./code/minimal.nix
-            ./code/links.nix
-          ]; # }}}
-        in {
-          #
-
-          "michalServer" = homeConf "michal" files;
-          "serverServer" = homeConf "server" files;
-          "userServer" = homeConf (b.getEnv "USER") files;
-          "homeMichalServer" =
-            homeDConf "michal"
-            (b.getEnv "HOME")
-            files;
-          "userHomeServer" =
-            homeDConf
-            (b.getEnv "USER")
-            (b.getEnv "HOME")
-            files;
-
-          "michalSserver" =
-            homeConf "michal"
-            (files ++ [./code/scraping.nix]);
-          "serverSserver" =
-            homeConf "server"
-            (files ++ [./code/scraping.nix]);
-          "userSserver" =
-            homeConf (b.getEnv "USER")
-            (files ++ [./code/scraping.nix]);
-          "homeMichalSserver" =
-            homeDConf "michal"
-            (b.getEnv "HOME")
-            (files ++ [./code/scraping.nix]);
-          "userHomeSserver" =
-            homeDConf
-            (b.getEnv "USER")
-            (b.getEnv "HOME")
-            (files ++ [./code/scraping.nix]);
-        })
-        # }}}
-        # {{{ droid
-        // (let
-          # ocaml-lsp dependencies builds are failing
-          # because build instructions are fucked
-          # it needs access to root filesystem or something
-          files = [
-            # {{{
-            ./common.nix
-            ./commonLinks.nix
-            ./specific/droid.nix
-
-            ./server/minimal.nix
-            ./server/user.nix
-            ./server/links.nix
-
-            ./code/minimal.nix
-            ./code/links.nix
-            ./code/normal.nix
-          ]; # }}}
-
-          pkgfiles = [
-            # {{{
-            ./pkgs/common.nix
-            ./pkgs/links.nix
-            ./pkgs/codeMinimal.nix
-            ./pkgs/codeNormal.nix
-          ]; # }}}
-
-          name = "nix-on-droid";
-        in {
-          # {{{
-
-          "nixDroidDev" =
-            homeDConf
-            name
-            "/data/data/com.termux.nix/files/home"
-            files;
-          "userNixDroidDev" =
-            homeDConf
-            (b.getEnv "USER")
-            "/data/data/com.termux.nix/files/home"
-            files;
-          "homeNixDroidDev" =
-            homeDConf
-            name
-            (b.getEnv "HOME")
-            files;
-          "userHomeNixDroidDev" =
-            homeDConf
-            (b.getEnv "USER")
-            (b.getEnv "HOME")
-            files;
-
-          "nixDroidDevPkgs" =
-            homeDConf
-            name
-            "/data/data/com.termux.nix/files/home"
-            (files ++ pkgfiles);
-          "userNixDroidDevPkgs" =
-            homeDConf
-            (b.getEnv "USER")
-            "/data/data/com.termux.nix/files/home"
-            (files ++ pkgfiles);
-          "homeNixDroidDevPkgs" =
-            homeDConf
-            name
-            (b.getEnv "HOME")
-            (files ++ pkgfiles);
-          "userHomeNixDroidDevPkgs" =
-            homeDConf
-            (b.getEnv "USER")
-            (b.getEnv "HOME")
-            (files ++ pkgfiles);
-
-          "testDroidDev" = homeConf "test" files;
-          "testDroidDevPkgs" = homeConf "test" (files ++ pkgfiles);
-        })
-        # }}}
-        # }}}
-        # {{{ tablet
-        // (
+        // ( # {{{ shallow
           let
-            files = [
+            # {{{
+            mods = [
+              ./commonLinks.nix
+              ./specific/shallow.nix
+              ./code/links.nix
+              ./server/links.nix
+            ];
+            umods = mods ++ [./user/links.nix];
+            # }}}
+          in
+            # {{{
+            (homeConfs {
+              name = userName;
+              inherit mods;
+              confName = "shallow";
+            })
+            // (homeConfs {
+              name = userName;
+              mods = umods;
+              confName = "shallowUser";
+            })
+            // (homeConfs {
+              name = tabName;
+              mods = umods;
+              confName = "shallowTab";
+            })
+          # }}}
+        ) # }}}
+        // ( # {{{ simple root
+          let
+            # {{{
+            mods = [
+              # {{{
+              ./common.nix
+              ./commonLinks.nix
+              ./specific/root.nix
+              ./code/minimal.nix
+              ./code/links.nix
+            ]; # }}}
+            # }}}
+          in
+            # {{{
+            (homeConfs {
+              name = "root";
+              home = "/root";
+              inherit mods;
+              confName = "simpleRoot";
+            })
+          # }}}
+        ) # }}}
+        // ( # {{{ simple server
+          let
+            mods = [
+              # {{{
+              ./common.nix
+              ./commonLinks.nix
+              ./specific/server.nix
+              ./code/links.nix
+            ]; # }}}
+            mmods = mods ++ [./server/minecraft.nix];
+          in
+            # {{{
+            (homeConfs {
+              name = serverName;
+              inherit mods;
+              confName = "simpleServer";
+            })
+            // (homeConfs {
+              name = serverName;
+              inherit mmods;
+              confName = "minecraftServer";
+            })
+            // {
+              "michalSimpleServer" = homeConf userName mods;
+            }
+          # }}}
+        )
+        # }}}
+        // ( # {{{ TODO B wsl
+          let
+            mods = [
+              # {{{
+              ./common.nix
+              ./commonLinks.nix
+              ./specific/wsl.nix
+              ./code/links.nix
+            ]; # }}}
+          in
+            # {{{
+            (homeConfs {
+              name = wslName;
+              inherit mods;
+              confName = "simpleWsl";
+            })
+            # TODO C full
+            // {
+              "michalSimpleWsl" = homeConf userName mods;
+            }
+          # }}}
+        )
+        # }}}
+        // ( # {{{ server
+          let
+            mods = [
+              # {{{
+              ./common.nix
+              ./commonLinks.nix
+              ./specific/common.nix
+
+              ./server/minimal.nix
+              ./server/user.nix
+              ./server/links.nix
+              ./code/minimal.nix
+              ./code/links.nix
+            ]; # }}}
+          in
+            # {{{
+            (homeConfs {
+              name = userName;
+              inherit mods;
+              confName = "userServer";
+            })
+            // (homeConfs {
+              name = userName;
+              mods = mods ++ [./code/scraping.nix];
+              confName = "userSServer";
+            })
+            // {
+            }
+          # }}}
+        ) # }}}
+        // ( # {{{ droid
+          let
+            # ocaml-lsp dependencies builds are failing
+            # because build instructions are fucked
+            # it needs access to root filesystem or something
+            mods = [
+              # {{{
+              ./common.nix
+              ./commonLinks.nix
+              ./specific/droid.nix
+
+              ./server/minimal.nix
+              ./server/user.nix
+              ./server/links.nix
+
+              ./code/minimal.nix
+              ./code/links.nix
+              ./code/normal.nix
+            ]; # }}}
+
+            pkgMods = [
+              # {{{
+              ./pkgs/common.nix
+              ./pkgs/links.nix
+              ./pkgs/codeMinimal.nix
+              ./pkgs/codeNormal.nix
+            ]; # }}}
+          in
+            # {{{
+            (homeConfs {
+              name = droidName;
+              inherit mods;
+              confName = "droidDev";
+            })
+            // (homeConfs {
+              name = droidName;
+              mods = mods ++ pkgMods;
+              confName = "droidDevPkgs";
+            })
+            // {
+              # {{{
+              "testDroidDev" = testConf mods;
+              "testDroidDevPkgs" = testConf (mods ++ pkgMods);
+            } # }}}
+          # }}}
+        ) # }}}
+        // ( # {{{ tablet
+          let
+            mods = [
               # {{{
               ./common.nix
               ./commonLinks.nix
@@ -388,7 +343,7 @@
               ./code/normal.nix
             ]; # }}}
 
-            pkgfiles = [
+            pkgMods = [
               # {{{
               ./pkgs/common.nix
               ./pkgs/links.nix
@@ -396,124 +351,104 @@
               ./pkgs/codeNormal.nix
             ]; # }}}
 
-            guifiles = [
+            guiMods = [
               # {{{
               ./user/guiMinimal.nix
             ]; # }}}
 
-            guipkgs = [
+            guiPkgs = [
               # {{{
               ./pkgs/guiMinimal.nix
             ]; # }}}
+          in
+            # {{{
+            (homeConfs {
+              name = droidName;
+              inherit mods;
+              confName = "tabletDev";
+            })
+            // (homeConfs {
+              name = droidName;
+              mods = mods ++ pkgMods;
+              confName = "tabletDevPkgs";
+            })
+            // (homeConfs {
+              name = droidName;
+              mods = mods ++ guiPkgs;
+              confName = "tabletDevGui";
+            })
+            // (homeConfs {
+              name = droidName;
+              mods = mods ++ pkgMods ++ guiMods ++ guiPkgs;
+              confName = "tabletDevGuiPkgs";
+            })
+            // {
+              # {{{
+              "testTabletDev" = testConf mods;
+              "testTabletDevPkgs" = testConf (mods ++ pkgMods);
+              "testTabletDevGui" = testConf (mods ++ guiMods);
+              "testTabletDevGuiPkgs" = homeConf "test" (mods ++ pkgMods ++ guiMods ++ guiPkgs);
+              # }}}
+            }
+          # }}}
+        ) # }}}
+        // ( # {{{ TODO B michal
+          let
+            cfiles = [
+              # {{{
+              ./commmon.nix
+              ./user/normal.nix
 
-            name = "michal";
+              ./code/pythonFull.nix
+              ./code/minimal.nix
+              ./code/normal.nix
+              ./code/full.nix
+
+              ./server/minimal.nix
+              ./server/user.nix
+            ]; # }}}
+
+            afiles = [
+              # {{{
+              ./user/gits.nix
+              ./user/full.nix
+            ]; # }}}
+
+            sfiles = [
+              # {{{
+              ./specific/common.nix
+              ./commonLinks.nix
+              ./code/links.nix
+              ./server/links.nix
+              ./code/links.nix
+              ./user/links.nix
+            ]; # }}}
+
+            gfiles = [
+              # {{{
+              ./gitLinks.nix
+            ]; # }}}
+
+            pfiles = [
+              # {{{
+              ./pkgs/common.nix
+              ./pkgs/userServer.nix
+
+              ./pkgs/codeMinimal.nix
+              ./pkgs/codeNormal.nix
+              ./pkgs/codeFull.nix
+            ]; # }}}
           in {
             # {{{
+            #
 
-            "testTabletDev" = homeConf "test" files;
-            "testTabletDevPkgs" = homeConf "test" (files ++ pkgfiles);
-            "testTabletDevGui" = homeConf "test" (files ++ guifiles);
-            "testTabletDevGuiPkgs" = homeConf "test" (files ++ pkgfiles ++ guifiles);
-
-            "tabletDev" = homeConf name files;
-            "userTabletDev" = homeConf (b.getEnv "USER") files;
-            "homeTabletDev" = homeConf name (b.getEnv "HOME") files;
-            "userHomeTabletDev" = homeConf (b.getEnv "USER") (b.getEnv "HOME") files;
-
-            "tabletDevPkgs" = homeConf name (files ++ pkgfiles);
-            "userTabletDevPkgs" = homeConf (b.getEnv "USER") (files ++ pkgfiles);
-            "homeTabletDevPkgs" = homeConf name (b.getEnv "HOME") (files ++ pkgfiles);
-            "userHomeTabletDevPkgs" =
-              homeDConf
-              (b.getEnv "USER")
-              (b.getEnv "HOME")
-              (files ++ pkgfiles);
-
-            "tabletDevGui" = homeConf name (files ++ guifiles);
-            "userTabletDevGui" = homeConf (b.getEnv "USER") (files ++ guifiles);
-            "homeTabletDevGui" = homeConf name (b.getEnv "HOME") (files ++ guifiles);
-            "userHomeTabletDevGui" =
-              homeDConf
-              (b.getEnv "USER")
-              (b.getEnv "HOME")
-              (files ++ guifiles);
-
-            "tabletDevGuiPkgs" =
-              homeConf
-              name
-              (files ++ pkgfiles ++ guifiles ++ guipkgs);
-            "userTabletDevGuiPkgs" =
-              homeConf
-              (b.getEnv "USER")
-              (files ++ pkgfiles ++ guifiles ++ guipkgs);
-            "homeTabletDevGuiPkgs" =
-              homeConf
-              name
-              (b.getEnv "HOME")
-              (files ++ pkgfiles ++ guifiles ++ guipkgs);
-            "userHomeTabletDevGuiPkgs" =
-              homeDConf
-              (b.getEnv "USER")
-              (b.getEnv "HOME")
-              (files ++ pkgfiles ++ guifiles ++ guipkgs);
-          } # }}}
-        ) # }}}
-        # {{{ TODO B michal
-        // (let
-          cfiles = [
-            # {{{
-            ./commmon.nix
-            ./user/normal.nix
-
-            ./code/pythonFull.nix
-            ./code/minimal.nix
-            ./code/normal.nix
-            ./code/full.nix
-
-            ./server/minimal.nix
-            ./server/user.nix
-          ]; # }}}
-
-          afiles = [
-            # {{{
-            ./user/gits.nix
-            ./user/full.nix
-          ]; # }}}
-
-          sfiles = [
-            # {{{
-            ./specific/common.nix
-            ./commonLinks.nix
-            ./code/links.nix
-            ./server/links.nix
-            ./code/links.nix
-            ./user/links.nix
-          ]; # }}}
-
-          gfiles = [
-            # {{{
-            ./gitLinks.nix
-          ]; # }}}
-
-          pfiles = [
-            # {{{
-            ./pkgs/common.nix
-            ./pkgs/userServer.nix
-
-            ./pkgs/codeMinimal.nix
-            ./pkgs/codeNormal.nix
-            ./pkgs/codeFull.nix
-          ]; # }}}
-        in {
-          # {{{
-          #
-
-          "michal" =
-            homeConf "michal"
-            (cfiles ++ afiles ++ gfiles);
-          # TODO
-          # }}}
-        })
+            "michal" =
+              homeConf "michal"
+              (cfiles ++ afiles ++ gfiles);
+            # TODO
+            # }}}
+          }
+        )
         # }}}
         ;
 

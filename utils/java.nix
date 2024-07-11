@@ -1,6 +1,24 @@
 {lib, ...}: let
+  # {{{
   b = builtins;
+  # }}}
 in rec {
+  # {{{ helpers
+
+  # Should be enough
+  rmOne = sep: str: lib.head (lib.splitString sep str);
+  rmNums = version: rmOne "." (rmOne "u" (rmOne "+" (rmOne "-" version)));
+  clearName = name: rmOne "-" name;
+
+  repSym = c:
+    if (c == "+" || c == "-" || c == ".")
+    then "_"
+    else c;
+
+  # }}}
+
+  # {{{ paths
+
   javaRawPaths = packages:
     b.listToAttrs (map (n: let
         path = ".java/" + n.name;
@@ -13,11 +31,6 @@ in rec {
         };
       })
       packages);
-
-  # Should be enough
-  rmOne = sep: str: lib.head (lib.splitString sep str);
-  rmNums = version: rmOne "." (rmOne "u" (rmOne "+" (rmOne "-" version)));
-  clearName = name: rmOne "-" name;
 
   javaNamePaths = packages:
     b.listToAttrs (map (n: let
@@ -45,10 +58,9 @@ in rec {
       })
       packages);
 
-  repSym = c:
-    if (c == "+" || c == "-" || c == ".")
-    then "_"
-    else c;
+  # }}}
+
+  # {{{ vars
 
   javaRawVars = packages:
     b.listToAttrs (map (n: let
@@ -79,4 +91,6 @@ in rec {
         value = "${n.home}";
       })
       packages);
+
+  # }}}
 }
