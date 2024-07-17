@@ -33,6 +33,7 @@ in {
       // b.listToAttrs (utils.configFiles [
         # {{{
         ".vimrc"
+        ".vintrc"
         ".tmux.conf"
         ".guile"
 
