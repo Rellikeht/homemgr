@@ -56,6 +56,7 @@
     plocate
     pdfgrep
     tre
+    ripgrep
 
     util-linux
     su

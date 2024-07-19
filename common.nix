@@ -26,6 +26,7 @@
     nil
 
     silver-searcher # just in case
+    ripgrep-all
 
     dash # just in case
 
