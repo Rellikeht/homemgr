@@ -51,6 +51,7 @@
 
   unstablePackages = with unstable; [
     # {{{
+    universal-ctags
   ]; # }}}
 
   fzfPackage = unstable.fzf;
