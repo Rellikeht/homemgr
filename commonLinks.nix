@@ -39,7 +39,6 @@ in {
 
         ".zshrc"
         ".bashrc"
-        ".bash_zlua_patch"
         ".inputrc"
 
         ".commonrc"
@@ -57,6 +56,7 @@ in {
         ".vim"
         ".w3m"
         ".scrs"
+        ".bash"
         "Templates"
       ]) # }}}
       // b.listToAttrs (utils.configCDirs [
