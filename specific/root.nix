@@ -54,6 +54,13 @@ in {
           source = "${dotfiles}/.prompt-root.bash";
           force = true;
         }; # }}}
+
+        ".config/nvim" = {
+          # {{{
+          recursive = true;
+          source = "${dotfiles}/.config/nvim-server";
+          force = true;
+        }; # }}}
       } # }}}
       // b.listToAttrs (utils.configFiles [
         # {{{
@@ -63,7 +70,6 @@ in {
       ]) # }}}
       // b.listToAttrs (utils.configCDirs [
         # {{{
-        "nvim"
       ]); # }}}
 
     activation = {

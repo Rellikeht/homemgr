@@ -65,6 +65,10 @@
       zls
       ghc
 
+      nim
+      nimlsp
+      nimble
+
       gopls
     ] # }}}
     ++ (with ocamlPackages; [

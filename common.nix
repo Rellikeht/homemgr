@@ -29,8 +29,7 @@
     ripgrep-all
 
     dash # just in case
-
-    moreutils # ??
+    moreutils
 
     # there is an home manager option,
     # but i configured it manually in rc files
@@ -70,7 +69,7 @@ in {
         (
           utils.apps.vimUpPrep
           + utils.apps.vimUp ''"$HOME/bin/svim"''
-          + utils.apps.vimUp "${pkgs.neovim}/bin/nvim"
+          + utils.apps.vimUp "${unstable.neovim}/bin/nvim"
           + ''
             unlink "$HOME/bin/svim"
           ''
@@ -145,72 +144,87 @@ in {
   #   enableZshIntegration = true;
   # }; # }}}
 
-  # TODO
-  # nix = {
-  #   # {{{
-  #   # package = pkgs.nix;
+  nix = {
+    # {{{
+    package = pkgs.nix;
 
-  #   # channels = {
-  #   #   # {{{
-  #   #   inherit pkgs unstable;
-  #   # }; # }}}
+    # Stable home manager ?
+    # channels = {
+    #   # {{{
+    #   inherit pkgs unstable;
+    # }; # }}}
 
-  #   nixPath = [
-  #     # {{{
-  #     "$HOME/.nix-defexpr/channels"
-  #   ]; # }}}
+    # nixPath = [
+    #   # {{{
+    #   "$HOME/.nix-defexpr/channels"
+    # ]; # }}}
 
-  #   settings = {
-  #     # {{{
-  #     use-sandbox = true;
-  #     show-trace = true;
-  #   }; # }}}
+    extraOptions =
+      # {{{
+      ''
+      ''; # }}}
 
-  #   registry = {
-  #     # {{{
-  #     homemgr = {
-  #       # {{{
-  #       from = {
-  #         id = "homemgr";
-  #         type = "indirect";
-  #       };
+    settings = {
+      # {{{
+      show-trace = true;
+    }; # }}}
 
-  #       to = {
-  #         owner = "Rellikeht";
-  #         repo = "homemgr";
-  #         type = "gitlab";
-  #       };
-  #     }; # }}}
+    registry = {
+      # {{{
+      homemgr = {
+        # {{{
+        from = {
+          id = "homemgr";
+          type = "indirect";
+        };
 
-  #     builds = {
-  #       # {{{
-  #       from = {
-  #         id = "builds";
-  #         type = "indirect";
-  #       };
+        to = {
+          owner = "Rellikeht";
+          repo = "homemgr";
+          type = "gitlab";
+        };
+      }; # }}}
 
-  #       to = {
-  #         owner = "Rellikeht";
-  #         repo = "nix-builds";
-  #         type = "gitlab";
-  #       };
-  #     }; # }}}
+      builds = {
+        # {{{
+        from = {
+          id = "builds";
+          type = "indirect";
+        };
 
-  #     environments = {
-  #       # {{{
-  #       from = {
-  #         id = "environments";
-  #         type = "indirect";
-  #       };
+        to = {
+          owner = "Rellikeht";
+          repo = "nix-builds";
+          type = "gitlab";
+        };
+      }; # }}}
 
-  #       to = {
-  #         owner = "Rellikeht";
-  #         repo = "environments";
-  #         type = "gitlab";
-  #       };
-  #     }; # }}}
-  #   }; # }}}
+      environments = {
+        # {{{
+        from = {
+          id = "environments";
+          type = "indirect";
+        };
 
-  #   checkConfig = true;
-  # }; # }}}
+        to = {
+          owner = "Rellikeht";
+          repo = "environments";
+          type = "gitlab";
+        };
+      }; # }}}
+    }; # }}}
+
+    checkConfig = true;
+  }; # }}}
+
+  nixpkgs = {
+    # {{{
+
+    config = {
+      # {{{
+      allowUnfree = true;
+    }; # }}}
+
+    overlays = [];
+  }; # }}}
 }

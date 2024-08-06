@@ -40,6 +40,12 @@
 
   unstable_packages = with unstable; [
     # {{{
+
+    nim
+    nimlsp
+    nimble
+
+    #
   ]; # }}}
 
   myBuilds = with builds; [

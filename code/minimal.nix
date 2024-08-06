@@ -52,10 +52,6 @@
       # {{{
       go
 
-      nim
-      nimlsp
-      nimble
-
       tree-sitter
     ] # }}}
     ++ (with ocamlPackages; [
