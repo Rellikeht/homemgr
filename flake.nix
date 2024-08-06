@@ -227,29 +227,6 @@
           # }}}
         )
         # }}}
-        // ( # {{{ TODO B wsl
-          let
-            mods = [
-              # {{{
-              ./common.nix
-              ./commonLinks.nix
-              ./specific/wsl.nix
-              ./code/links.nix
-            ]; # }}}
-          in
-            # {{{
-            (homeConfs {
-              name = wslName;
-              inherit mods;
-              confName = "simpleWsl";
-            })
-            # TODO C full
-            // {
-              "michalSimpleWsl" = homeConf userName mods;
-            }
-          # }}}
-        )
-        # }}}
         // ( # {{{ server
           let
             mods = [
@@ -280,6 +257,29 @@
             }
           # }}}
         ) # }}}
+        // ( # {{{ TODO B wsl
+          let
+            mods = [
+              # {{{
+              ./common.nix
+              ./commonLinks.nix
+              ./specific/wsl.nix
+              ./code/links.nix
+            ]; # }}}
+          in
+            # {{{
+            (homeConfs {
+              name = wslName;
+              inherit mods;
+              confName = "simpleWsl";
+            })
+            # TODO C full
+            // {
+              "michalSimpleWsl" = homeConf userName mods;
+            }
+          # }}}
+        )
+        # }}}
         // ( # {{{ droid
           let
             # ocaml-lsp dependencies builds are failing

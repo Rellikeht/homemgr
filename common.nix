@@ -17,10 +17,10 @@
   # b = builtins;
   # dots = "${dotfiles}";
   # }}}
+
   normalPackages = with pkgs; [
     # {{{
     shellcheck
-    checkbashisms
 
     alejandra
     nil

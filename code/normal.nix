@@ -16,6 +16,8 @@
   normalPackages = with pkgs; (
     [
       # {{{
+      checkbashisms
+
       megatools
 
       pkgtop
