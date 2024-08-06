@@ -376,22 +376,22 @@
           in
             # {{{
             (homeConfs {
-              name = droidName;
+              name = tabName;
               inherit mods;
               confName = "tabletDev";
             })
             // (homeConfs {
-              name = droidName;
+              name = tabName;
               mods = mods ++ pkgMods;
               confName = "tabletDevPkgs";
             })
             // (homeConfs {
-              name = droidName;
+              name = tabName;
               mods = mods ++ guiPkgs;
               confName = "tabletDevGui";
             })
             // (homeConfs {
-              name = droidName;
+              name = tabName;
               mods = mods ++ pkgMods ++ guiMods ++ guiPkgs;
               confName = "tabletDevGuiPkgs";
             })
@@ -439,7 +439,7 @@
 
             gfiles = [
               # {{{
-              ./gitLinks.nix
+              ./user/gitLinks.nix
             ]; # }}}
 
             pfiles = [
