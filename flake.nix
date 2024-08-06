@@ -188,6 +188,13 @@
               ./code/minimal.nix
               ./code/links.nix
             ]; # }}}
+
+            pkgMods = [
+              # {{{
+              ./pkgs/common.nix
+              ./pkgs/links.nix
+              ./pkgs/codeMinimal.nix
+            ]; # }}}
             # }}}
           in
             # {{{
@@ -196,6 +203,12 @@
               home = "/root";
               inherit mods;
               confName = "simpleRoot";
+            })
+            // (homeConfs {
+              name = "root";
+              home = "/root";
+              mods = mods ++ pkgMods;
+              confName = "simpleRootPkgs";
             })
           # }}}
         ) # }}}
