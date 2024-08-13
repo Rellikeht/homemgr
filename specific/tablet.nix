@@ -17,6 +17,22 @@
   # mkOutOfStoreSymlink = config.lib.file.mkOutOfStoreSymlink;
   # }}}
 
+  # {{{ TODO
+  # zathura:
+  # - works with default config (maybe some little things)
+  # - for some reason this makes it not crash wildly:
+  #   alias zathura='zathura -P 0'
+  # mpv config:
+  # - make launching work,  running vlc before it makes it work,
+  #   probably xorg compatibility is a reason
+  # - touch control (middle button ?)
+  # vlc config:
+  # - no metadata question, what a fucking idiot invented it
+  # - mpv like bindings
+  # - touch control like will be in mpv
+  # maybe some pinta :)
+  # }}}
+
   normalPackages = with pkgs; (
     [
       # {{{
