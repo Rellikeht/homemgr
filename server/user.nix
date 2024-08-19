@@ -43,7 +43,7 @@
 
     nim
     nimlsp
-    nimble
+    # nimble
 
     #
   ]; # }}}

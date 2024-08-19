@@ -61,6 +61,7 @@
       rust-analyzer
       julia-bin
 
+      nimble
       gdb
     ] # }}}
     ++ (with haskellPackages; [

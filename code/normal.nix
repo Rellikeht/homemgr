@@ -70,7 +70,7 @@
 
       nim
       nimlsp
-      nimble
+      # nimble
 
       gopls
     ] # }}}

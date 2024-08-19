@@ -4,19 +4,22 @@
   pkgs,
   unstable,
   lib,
-  # dotfiles,
-  # name,
-  # homeDir ? "",
-  # stateVersion,
+  dotfiles,
   utils,
   packed,
   ... # }}}
 }: let
   # {{{
   dags = lib.hm.dag;
-  # b = builtins;
-  # dots = "${dotfiles}";
+  b = builtins;
+  dots = "${dotfiles}";
   # }}}
+
+  mparallel = ( # {{{
+    pkgs.writeScriptBin
+    "mparallel"
+    ''exec ${pkgs.moreutils}/bin/parallel $@''
+  ); # }}}
 
   normalPackages = with pkgs; [
     # {{{
@@ -29,7 +32,10 @@
     ripgrep-all
 
     dash # just in case
-    moreutils
+    (lib.setPrio 100 moreutils)
+    (lib.setPrio 200 parallel)
+    mparallel
+    fdupes
 
     # there is an home manager option,
     # but i configured it manually in rc files
@@ -135,14 +141,6 @@ in {
       ignores = commonIgnores;
     }; # }}}
   };
-
-  # fzf = {
-  #   # {{{
-  #   enable = true;
-  #   package = fzfPackage;
-  #   enableBashIntegration = true;
-  #   enableZshIntegration = true;
-  # }; # }}}
 
   # nix = {
   #   # {{{
