@@ -2,6 +2,7 @@
 {
   # {{{
   pkgs,
+  unstable,
   lib,
   dotfiles,
   homeDir ? "",
@@ -90,15 +91,16 @@ in {
       commonBins =
         # {{{
         dags.entryAfter ["commonDirs"] ''
+          mkdir -p "$HOME/bin"
+          mkdir -p "$HOME/.local/bin"
           find "$HOME/bin" -type l -delete || true
-          # ln -s "${pkgs.gnugrep}/bin/grep" "${homeDirectory}/bin/its_just_grep"
         ''; # }}}
 
       commonBinLinks =
         # {{{
         dags.entryAfter ["commonBins"] ''
-          ln -fs ${dots}/global/bin/* "$HOME/bin/"
-          ln -fs ${pkgs.vim}/bin/vim "$HOME/bin/svim"
+          ln -fs ${dots}/bin/* "$HOME/bin"
+          ln -fs ${unstable.vim}/bin/vim "$HOME/bin/svim"
         ''; # }}}
 
       zlua =

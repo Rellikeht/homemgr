@@ -53,14 +53,14 @@ in {
         ".p10k.zsh" = {
           # {{{
           recursive = true;
-          source = "${dotfiles}/.p10k-droid.zsh";
+          source = "${dotfiles}/p10ks/droid.zsh";
           force = true;
         }; # }}}
 
         ".prompt.bash" = {
           # {{{
           recursive = true;
-          source = "${dotfiles}/.prompt-droid.bash";
+          source = "${dotfiles}/prompts/droid.bash";
           force = true;
         }; # }}}
 

@@ -31,14 +31,14 @@ in {
         ".p10k.zsh" = {
           # {{{
           recursive = true;
-          source = "${dotfiles}/.p10k-shallow.zsh";
+          source = "${dotfiles}/p10ks/shallow.zsh";
           force = true;
         }; # }}}
 
         ".prompt.bash" = {
           # {{{
           recursive = true;
-          source = "${dotfiles}/.prompt-shallow.bash";
+          source = "${dotfiles}/prompts/shallow.bash";
           force = true;
         }; # }}}
       }

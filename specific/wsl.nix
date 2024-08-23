@@ -45,14 +45,14 @@ in {
         ".p10k.zsh" = {
           # {{{
           recursive = true;
-          source = "${dotfiles}/.p10k-wsl.zsh";
+          source = "${dotfiles}/p10ks/wsl.zsh";
           force = true;
         }; # }}}
 
         ".prompt.bash" = {
           # {{{
           recursive = true;
-          source = "${dotfiles}/.prompt-wsl.bash";
+          source = "${dotfiles}/prompts/wsl.bash";
           force = true;
         }; # }}}
       }

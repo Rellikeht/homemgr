@@ -41,12 +41,8 @@ in {
       in
         # {{{
         dags.entryAfter ["gits"] ''
-          find ${dots} -mindepth 1 -maxdepth 1 -printf '%f\n' | \
-            grep -Ev '^([^.].*|.config|.git[^c].*)' | \
-            xargs -d '\n' -I{} cp -frs "{}" "$HOME"
-
-          cp -frs ${dots}/.config/* "$HOME/.config"
-          ln -fs ${dots}/global/bin/* "$HOME/bin/"
+          # TODO A is that enough
+          ${dots}/apply.sh
         '';
       # }}}
 
