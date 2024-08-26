@@ -1,11 +1,8 @@
-*
-!*/
-!*.*
-!LICENSE
-
-*.b.*
+*.b
 result
 *.swp
 *~
 Session.vim
-.zlua
+
+*todo*
+*note*
