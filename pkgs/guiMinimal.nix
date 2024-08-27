@@ -25,13 +25,10 @@
   normalPackages = with pkgs; [
     # {{{
     mupdf
-    xdragon
-    alacritty
   ]; # }}}
 
   unstablePackages = with unstable; [
     # {{{
-    zathura
   ]; # }}}
 in {
   home = {
@@ -48,7 +45,7 @@ in {
 
       package = with pkgs; (wrapMpv (
           mpv-unwrapped.override {
-            vapoursynthSupport = true;
+            # vapoursynthSupport = true;
           }
         ) {
           youtubeSupport = true;
@@ -68,7 +65,9 @@ in {
 
       scripts = with pkgs.mpvScripts; [
         # {{{
+        # TODO B more I guess
         mpris
+        quality-menu
       ]; # }}}
 
       scriptOpts = {

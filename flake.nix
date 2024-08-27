@@ -345,6 +345,7 @@
               # {{{
               ./common.nix
               ./commonLinks.nix
+              ./user/normal.nix
               ./specific/tablet.nix
 
               ./server/minimal.nix

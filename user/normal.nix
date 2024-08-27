@@ -22,6 +22,9 @@
     typst-lsp
     typstfmt
     typst-live
+
+    mdformat # TODO B python + additional mdformat packages
+    # TODO B pandoc
   ];
 in {
   home = {

@@ -45,7 +45,6 @@ in {
             ++ (
               utils.git.cloneGithubs "random" [
                 "advent-of-code"
-                "moderncv.typst"
                 "project_euler"
                 "Random-code"
                 "zadanka"

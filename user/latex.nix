@@ -15,20 +15,18 @@
   # {{{
   dags = lib.hm.dag;
   b = builtins;
-  dots = "${dotfiles}";
   # }}}
 
+  # TODO C
   normalPackages = with pkgs; [
     # {{{
-    xdragon
-    alacritty
-    feh
   ]; # }}}
 
   unstablePackages = with unstable; [
     # {{{
-    zathura
   ]; # }}}
+
+  dots = "${dotfiles}";
 in {
   home = {
     file = {
@@ -43,10 +41,6 @@ in {
       # {{{
     }; # }}}
 
-    packages =
-      # {{{
-      normalPackages
-      ++ unstablePackages;
-    # }}}
+    packages = normalPackages ++ unstablePackages;
   };
 }

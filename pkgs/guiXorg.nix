@@ -18,16 +18,21 @@
   dots = "${dotfiles}";
   # }}}
 
-  normalPackages = with pkgs; [
-    # {{{
-    xdragon
-    alacritty
-    feh
-  ]; # }}}
+  normalPackages = with pkgs; ([
+      # {{{
+    ] # }}}
+    ++ (with xorg; [
+      # {{{
+      xev
+      xrandr
+      xephyr
+      xmodmap
+      xinput
+      xsetroot
+    ])); # }}}
 
   unstablePackages = with unstable; [
     # {{{
-    zathura
   ]; # }}}
 in {
   home = {
