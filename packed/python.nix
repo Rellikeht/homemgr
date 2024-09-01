@@ -86,7 +86,6 @@
   pythonScrapPkgs = ps:
     with ps; [
       # {{{
-      spotipy
       beautifulsoup4
       types-beautifulsoup4
       pycurl
@@ -97,6 +96,7 @@
       # {{{
       aria2p
       transmission-rpc
+      spotipy
     ]; # }}}
 
   pythonAddTools = ps:
@@ -105,6 +105,18 @@
       flake8
       # autopep8
       conda # ??
+    ]; # }}}
+
+  mdformat = ps:
+    with ps; [
+      # {{{
+      mdformat
+      mdformat-gfm
+      mdformat-tables
+
+      # ??
+      mdformat-toc
+      mdformat-mkdocs
     ]; # }}}
 
   jupyterClient = ps:
@@ -165,7 +177,17 @@ in rec {
         ] # }}}
     ); # }}}
 
-  pythonAdditions = pythonSimple; # TODO
+  pythonAdditions =
+    pythonProv.withPackages
+    ( # {{{
+      ps:
+        u.sumPs ps
+        [
+          # {{{
+          pythonSimple
+          mdformat
+        ] # }}}
+    ); # }}}
 
   pythonFull =
     pythonProv.withPackages

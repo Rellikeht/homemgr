@@ -1,5 +1,6 @@
 # vim: set et sw=2 ts=2:
 {
+  # {{{
   config,
   pkgs,
   unstable,
@@ -9,23 +10,27 @@
   stateVersion,
   utils,
   ...
+  # }}}
 }: let
+  # {{{
   dags = lib.hm.dag;
   b = builtins;
   dots = "${dotfiles}";
+  # }}}
 
   normalPackages = with pkgs; [
-  ];
+    # {{{
+  ]; # }}}
 
   unstablePackages = with unstable; [
+    # {{{
     typst
     typst-lsp
     typstfmt
     typst-live
 
-    mdformat # TODO B python + additional mdformat packages
     # TODO B pandoc
-  ];
+  ]; # }}}
 in {
   home = {
     file = {};
