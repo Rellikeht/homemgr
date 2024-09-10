@@ -12,7 +12,8 @@
 
   # TODO something is wrong
   vimUp = name: ''
-    ${name} -c ':norm ,qu' -c ':norm ,qP' -c ':qa!'
+    ${name} -e -i NONE \
+      -c PlugUpgrade -c PlugUpdate -c visual -c PlugClean -c 'qa!'
   '';
 
   vimUpPrep = ''

@@ -8,10 +8,33 @@
   ...
   # }}}
 }: let
+  #  {{{ helpers
   # {{{
   b = builtins;
   u = putils;
   # }}}
+
+  # wrapper {{{
+
+  repSym = c:
+    if (c == "+" || c == "-" || c == "." || c == "_")
+    then ""
+    else c;
+
+  luaWrapper = pkg: let
+    name =
+      lib.concatStrings
+      (map repSym (lib.stringToCharacters pkg.lua.luaAttr));
+  in
+    pkgs.writeScriptBin name ''
+      exec ${pkg}/bin/lua $@
+    '';
+
+  #  }}}
+
+  #  }}}
+
+  # package sets {{{
 
   # {{{
   luaProv = pkgs.lua5_4;
@@ -41,7 +64,6 @@
       # {{{
       luacheck
       luafilesystem
-      # sqlite
       luautf8
       # }}}
     ];
@@ -76,11 +98,15 @@
       # {{{
       # }}}
     ];
+  #  }}}
 in rec {
+  #  {{{
   inherit luaMinPkgs luaMinUnstablePkgs;
   inherit luaNormalPkgs luaUnstablePkgs;
   inherit luaCommonPkgs luaPkgs luajitPkgs;
   inherit luaAddCommonPkgs luaAddPkgs luajitAddPkgs;
+  inherit luaWrapper;
+  #  }}}
 
   luaP =
     luaProv.withPackages

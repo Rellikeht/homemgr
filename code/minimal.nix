@@ -63,11 +63,14 @@
 
   lua =
     # {{{
-    with packed.lua; (
+    with packed.lua; let
+      luap = lib.setPrio 150 luaP;
+    in (
       [
         # {{{
-        (lib.setPrio 150 luaP)
         (lib.setPrio 100 luajitP)
+        luap
+        (luaWrapper luap)
         # }}}
       ]
       ++ luaMinPkgs
