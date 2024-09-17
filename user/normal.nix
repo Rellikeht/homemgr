@@ -4,6 +4,7 @@
   config,
   pkgs,
   unstable,
+  packed,
   lib,
   dotfiles,
   name,
@@ -20,7 +21,7 @@
 
   normalPackages = with pkgs; [
     # {{{
-    (packed.python.pythonEssential // {meta.priority = 10;})
+    (packed.python.pythonEssential // {meta.priority = 11;})
     timer
     ripgrep-all
   ]; # }}}

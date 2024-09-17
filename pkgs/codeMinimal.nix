@@ -43,7 +43,7 @@ in {
       extraPython3Packages = ps:
         with ps; [
           # {{{
-          # jupyter-client
+          jupyter-client
           # cairosvg # for image rendering
           # pnglatex # for image rendering
           # plotly # for image rendering

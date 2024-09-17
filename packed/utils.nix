@@ -1,18 +1,17 @@
 # vim: set et sw=2 ts=2:
 {
   # {{{
-  # lib,
+  lib,
   ...
   # }}}
 }: let
   # {{{
-  b = builtins;
+  # b = builtins;
   # }}}
-
   sumPs = ps: lst:
     if lst == []
     then []
-    else (b.head lst) ps ++ sumPs ps (b.tail lst);
+    else (lib.head lst) ps ++ sumPs ps (lib.tail lst);
 in {
   inherit sumPs;
 }

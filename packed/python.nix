@@ -184,7 +184,8 @@ in rec {
         u.sumPs ps
         [
           # {{{
-          pythonSimple
+          pythonEssentialPkgs
+          pythonMinPkgs
           mdformat
         ] # }}}
     ); # }}}

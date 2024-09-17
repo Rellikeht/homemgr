@@ -44,7 +44,6 @@
     gnumake
     glibc
     highlight
-    (luaP // {meta.priority = 9;})
 
     inetutils
     rsync
@@ -57,6 +56,24 @@
     findutils
     plocate
     tre
+
+    (vis
+      // {
+        lua = let
+          lua =
+            lib.findFirst
+            (p: lib.hasPrefix "lua" p.name)
+            (1 + "a")
+            prev.vis.buildInputs;
+          luaEnv =
+            lua.withPackages
+            (ps: with ps; [lpeg luafilesystem]);
+        in {
+          withPackages = f: luaEnv;
+          luaversion =
+            luaEnv.luaversion;
+        };
+      })
 
     # util-linux
     # su
@@ -90,7 +107,7 @@
     ++ unstablePkgs
     ++ [
       # {{{
-      (pythonSimple // {meta.priority = 9;})
+      (pythonSimple // {meta.priority = 10;})
     ] # }}}
   );
   # }}}
