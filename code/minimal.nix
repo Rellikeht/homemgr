@@ -2,7 +2,7 @@
 {
   pkgs,
   unstable,
-  lib,
+  # lib,
   # dotfiles,
   # name,
   utils,
@@ -10,7 +10,7 @@
   ...
 }: let
   # {{{
-  b = builtins;
+  # b = builtins;
   # dots = "${dotfiles}";
   # }}}
 
@@ -32,6 +32,8 @@
       guile
       nickel
       nls
+      nil
+      ripgrep-all
     ] # }}}
     ++ (with ocamlPackages; [
       # {{{
@@ -40,11 +42,6 @@
     ]) # }}}
     ++ (with haskellPackages; [
       # {{{
-      # dhall
-      # dhall-yaml
-      # dhall-json
-      # dhall-nix
-      # dhall-toml
     ]) # }}}
   );
 
@@ -64,11 +61,11 @@
   lua =
     # {{{
     with packed.lua; let
-      luap = lib.setPrio 150 luaP;
+      luap = luaP // {meta.priority = 9;};
     in (
       [
         # {{{
-        (lib.setPrio 100 luajitP)
+        (luajitP // {meta.priority = 10;})
         luap
         (luaWrapper luap)
         # }}}

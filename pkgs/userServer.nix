@@ -19,7 +19,10 @@
 
   normalPackages = with pkgs; [
     # {{{
+    imagemagick
     kakoune
+    sqlite-interactive
+    pdfgrep
   ]; # }}}
 
   unstablePackages = with unstable; [

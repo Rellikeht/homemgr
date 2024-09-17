@@ -3,10 +3,10 @@
   # {{{
   pkgs,
   unstable,
-  # lib,
-  dotfiles,
-  # name,
   utils,
+  dotfiles,
+  # lib,
+  # name,
   ...
   # }}}
 }: let

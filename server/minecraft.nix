@@ -34,11 +34,11 @@
 
   java = with pkgs; [
     # {{{
-    (lib.setPrio 100 jre8_headless)
-    (lib.setPrio 110 jdk11_headless)
-    (lib.setPrio 120 jdk17_headless)
-    (lib.setPrio 130 jdk21_headless)
-    # (lib.setPrio 140 jdk_headless)
+    (jre8_headless // {meta.priority = 12;})
+    (jdk11_headless // {meta.priority = 11;})
+    (jdk17_headless // {meta.priority = 10;})
+    (jdk21_headless // {meta.priority = 9;})
+    (jdk_headless // {meta.priority = 8;})
   ]; # }}}
 in {
   home = {

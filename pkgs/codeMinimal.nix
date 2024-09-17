@@ -14,7 +14,8 @@
   dots = "${dotfiles}";
 
   normalPackages = with pkgs; [
-    w3m
+    sqlite-interactive
+    pdfgrep
   ];
 
   unstablePackages = with unstable; [
@@ -42,11 +43,11 @@ in {
       extraPython3Packages = ps:
         with ps; [
           # {{{
-          jupyter-client
-          cairosvg # for image rendering
-          pnglatex # for image rendering
+          # jupyter-client
+          # cairosvg # for image rendering
+          # pnglatex # for image rendering
           # plotly # for image rendering
-          pyperclip
+          # pyperclip
         ]; # }}}
     }; # }}}
   }; # }}}

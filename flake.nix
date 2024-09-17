@@ -361,6 +361,7 @@
               # {{{
               ./pkgs/common.nix
               ./pkgs/links.nix
+              ./pkgs/userServer.nix
               ./pkgs/codeMinimal.nix
               ./pkgs/codeNormal.nix
             ]; # }}}

@@ -34,7 +34,7 @@
       cmake-format
 
       clang-tools
-      (lib.setPrio 100 clang)
+      (clang // {meta.priority = 10;})
       rustfmt
       astyle
     ] # }}}
@@ -85,11 +85,11 @@
   lua =
     # {{{
     with packed.lua; let
-      luap = lib.setPrio 150 luaP;
+      luap = luaP // {meta.priority = 9;};
     in (
       [
         # {{{
-        (lib.setPrio 100 luajitP)
+        (luajitP // {meta.priority = 10;})
         luap
         (luaWrapper luap)
         # }}}
@@ -106,7 +106,7 @@
     ++ unstablePkgs
     ++ [
       # {{{
-      (lib.setPrio 200 pythonAdditions)
+      (pythonAdditions // {meta.priority = 9;})
     ] # }}}
   );
   # }}}

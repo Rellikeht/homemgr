@@ -20,52 +20,48 @@
 
   normalPackages = with pkgs; [
     # {{{
+    # coreutils-full
+    # gnugrep
     gnused
-    gnugrep
     gawk
-    bc
-    ed
-    coreutils-full
-    which
     less
+
+    # ed
+    bc
+    which
 
     gnutar
     gzip
     xz
     pixz
     bzip2
-
     zip
     unzip
 
     diffutils
     gnupatch
-    (lib.setPrio 200 gcc)
+    (gcc // {meta.priority = 9;})
     gnumake
-    binutils
     glibc
-    iconv
-    file
-    time
+    highlight
+    (luaP // {meta.priority = 9;})
 
     inetutils
     rsync
     openssh
     w3m
 
+    time
+    iconv
+    file
     findutils
     plocate
-    pdfgrep
     tre
-    ripgrep
 
-    util-linux
-    su
-    sudo
-
-    highlight
-    imagemagick
-    sqlite-interactive
+    # util-linux
+    # su
+    # sudo
+    # binutils # ??
   ]; # }}}
 
   unstablePackages = with unstable; [
@@ -79,8 +75,8 @@
     with packed.lua; (
       [
         # {{{
-        (lib.setPrio 150 luaP)
-        (lib.setPrio 100 luajitP)
+        (luaP // {meta.priority = 9;})
+        (luajitP // {meta.priority = 10;})
         # }}}
       ]
       ++ luaMinPkgs
@@ -94,7 +90,7 @@
     ++ unstablePkgs
     ++ [
       # {{{
-      (lib.setPrio 200 pythonSimple)
+      (pythonSimple // {meta.priority = 9;})
     ] # }}}
   );
   # }}}

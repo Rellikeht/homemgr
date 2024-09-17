@@ -28,7 +28,7 @@ in {
       ++ python.addUnstablePackages
       ++ [
         # {{{
-        (lib.setPrio 300 python.pythonFull)
+        (python.pythonFull // {meta.priority = 8;})
       ]; # }}}
   }; # }}}
 }

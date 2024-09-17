@@ -23,18 +23,10 @@
 
       phodav
       cadaver
-      # # It is sometimes useful to fine-tune packages, for example, by applying
-      # # overrides. You can do that directly here, just don't forget the
-      # # parentheses. Maybe you want to install Nerd Fonts with a limited number of
-      # # fonts?
-      # (pkgs.nerdfonts.override { fonts = [ "FantasqueSansMono" ]; })
 
-      # # You can also create simple shell scripts directly inside your
-      # # configuration. For example, this adds a command 'my-hello' to your
-      # # environment:
-      # (pkgs.writeShellScriptBin "my-hello" ''
-      #   echo "Hello, ${config.home.username}!"
-      # '')
+      (moreutils // {meta.priority = 10;})
+      timer
+      ripgrep-all
     ] # }}}
   );
 
@@ -57,8 +49,8 @@
     with packed.lua; (
       [
         # {{{
-        (lib.setPrio 150 luaP)
-        (lib.setPrio 100 luajitP)
+        (luaP // {meta.priority = 9;})
+        (luajitP // {meta.priority = 10;})
         # }}}
       ]
       ++ luaMinPkgs
@@ -67,7 +59,7 @@
 
   java = with pkgs; [
     # {{{
-    (lib.setPrio 200 jre_minimal)
+    (jre_minimal // {meta.priority = 7;})
   ]; # }}}
   # homeDirectory = "/home/${name}";
 in {
@@ -75,11 +67,6 @@ in {
     file =
       {
         # {{{
-        # # You can also set the file content immediately.
-        # ".gradle/gradle.properties".text = ''
-        #   org.gradle.console=verbose
-        #   org.gradle.daemon.idletimeout=3600000
-        # '';
       } # }}}
       // (utils.java.javaNamePaths java);
 

@@ -20,6 +20,9 @@
 
   normalPackages = with pkgs; [
     # {{{
+    (packed.python.pythonEssential // {meta.priority = 10;})
+    timer
+    ripgrep-all
   ]; # }}}
 
   unstablePackages = with unstable; [

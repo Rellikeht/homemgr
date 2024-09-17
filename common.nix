@@ -4,53 +4,43 @@
   pkgs,
   unstable,
   lib,
-  dotfiles,
   utils,
-  packed,
+  # dotfiles,
+  # packed,
   ... # }}}
 }: let
   # {{{
   dags = lib.hm.dag;
-  b = builtins;
-  dots = "${dotfiles}";
+  # b = builtins;
+  # dots = "${dotfiles}";
   # }}}
 
-  mparallel = ( # {{{
-    pkgs.writeScriptBin
-    "mparallel"
-    ''exec ${pkgs.moreutils}/bin/parallel $@''
-  ); # }}}
+  # mparallel = ( # {{{
+  #   pkgs.writeScriptBin
+  #   "mparallel"
+  #   ''exec ${pkgs.moreutils}/bin/parallel $@''
+  # ); # }}}
 
   normalPackages = with pkgs; [
     # {{{
     shellcheck
-
     alejandra
-    nil
-
     silver-searcher # just in case
-    ripgrep-all
 
     dash # just in case
-    (lib.setPrio 100 moreutils)
-    (lib.setPrio 200 parallel)
-    mparallel
     fdupes
+    (parallel // {meta.priority = 9;})
+    # mparallel
 
     # there is an home manager option,
     # but i configured it manually in rc files
     z-lua
-
     glow
-    timer
 
     jq
     delta
     rlwrap # just in case
-
-    (lib.setPrio 100 packed.python.pythonEssential)
     ocaml # ??
-
     aria2 # just in case
   ]; # }}}
 

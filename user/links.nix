@@ -24,7 +24,6 @@ in {
       ]) # }}}
       // b.listToAttrs (utils.configCDirs [
         # {{{
-        "vis"
         "mpv"
         "qutebrowser"
         "qutebrowsers"

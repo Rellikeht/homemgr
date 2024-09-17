@@ -69,6 +69,7 @@ in {
         "direnv"
         "fastfetch"
         "glow"
+        "vis"
       ]);
     # }}}
 
