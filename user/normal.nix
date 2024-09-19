@@ -24,6 +24,7 @@
     (packed.python.pythonEssential // {meta.priority = 11;})
     timer
     ripgrep-all
+    pdfgrep
   ]; # }}}
 
   unstablePackages = with unstable; [

@@ -57,23 +57,17 @@
     plocate
     tre
 
-    (vis
-      // {
-        lua = let
-          lua =
-            lib.findFirst
-            (p: lib.hasPrefix "lua" p.name)
-            (1 + "a")
-            prev.vis.buildInputs;
-          luaEnv =
-            lua.withPackages
-            (ps: with ps; [lpeg luafilesystem]);
-        in {
-          withPackages = f: luaEnv;
-          luaversion =
-            luaEnv.luaversion;
-        };
-      })
+    (pkgs.vis.override (prev: {
+      lua = let
+        luaEnv =
+          prev.lua.withPackages
+          (ps: with ps; [lpeg luafilesystem]);
+      in {
+        withPackages = f: luaEnv;
+        luaversion =
+          luaEnv.luaversion;
+      };
+    }))
 
     # util-linux
     # su

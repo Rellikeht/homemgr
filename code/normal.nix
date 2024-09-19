@@ -37,6 +37,8 @@
       (clang // {meta.priority = 10;})
       rustfmt
       astyle
+
+      (plan9port // {meta.priority = 6;})
     ] # }}}
     ++ (with ocamlPackages; [
       # {{{
