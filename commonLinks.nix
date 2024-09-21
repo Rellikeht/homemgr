@@ -37,6 +37,7 @@ in {
         ".vintrc"
         ".tmux.conf"
         ".guile"
+        ".ctags"
 
         ".zshrc"
         ".bashrc"

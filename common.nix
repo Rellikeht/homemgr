@@ -31,6 +31,7 @@
     fdupes
     (parallel // {meta.priority = 9;})
     # mparallel
+    tldr
 
     # there is an home manager option,
     # but i configured it manually in rc files
