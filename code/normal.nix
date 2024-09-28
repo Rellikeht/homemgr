@@ -61,6 +61,9 @@
       cabal-install
       stack
     ]) # }}}
+    ++ (with nodePackages; [
+      prettier
+    ])
   );
 
   unstablePackages = with unstable; ([

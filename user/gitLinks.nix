@@ -2,8 +2,8 @@
 {
   # {{{
   # config,
-  pkgs,
-  # unstable,
+  # pkgs,
+  unstable,
   lib,
   # dotfiles,
   name,

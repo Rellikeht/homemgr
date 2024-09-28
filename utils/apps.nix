@@ -10,11 +10,12 @@
     };
   };
 
-  # TODO something is wrong
-  vimUp = name: ''
+  vimUp = name:
+  #  {{{
+  ''
     ${name} -e -i NONE \
-      -c PlugUpgrade -c PlugUpdate -c visual -c PlugClean -c 'qa!'
-  '';
+      -c 'PlugClean!' -c PlugUpgrade -c PlugUpdate -c visual -c 'PlugClean!' -c 'qa!'
+  ''; #  }}}
 
   vimUpPrep = ''
     export PATH="$PATH:/usr/bin/:/bin:/usr/local/bin:${pkgs.git}/bin:${pkgs.curl}/bin"
