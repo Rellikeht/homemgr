@@ -186,7 +186,7 @@ in rec {
           # {{{
           pythonEssentialPkgs
           pythonMinPkgs
-          mdformat
+          # mdformat
         ] # }}}
     ); # }}}
 
