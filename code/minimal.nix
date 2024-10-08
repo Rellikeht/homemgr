@@ -13,7 +13,6 @@
   # b = builtins;
   # dots = "${dotfiles}";
   # }}}
-
   guile-libs = with pkgs; [
     # {{{
     guile-git
@@ -34,6 +33,7 @@
       nls
       nil
       ripgrep-all
+      onefetch
     ] # }}}
     ++ (with ocamlPackages; [
       # {{{
