@@ -19,6 +19,7 @@
   normalPackages = with pkgs; [
     #  {{{
     onefetch
+    libcaca
   ]; #  }}}
 
   unstablePackages = with unstable; [
