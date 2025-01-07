@@ -66,11 +66,13 @@ in {
         "bpython"
         "ocaml"
         "vifm"
-        "git"
         "direnv"
         "fastfetch"
         "glow"
         "vis"
+        # "git"
+        "git/config"
+        "git/ignore"
       ]);
     # }}}
 
@@ -84,6 +86,7 @@ in {
           + (utils.createDirs [
             "bin"
             ".local/run"
+            ".tmux_sessions"
           ])
           + ''
             chmod 750 $HOME
@@ -144,7 +147,17 @@ in {
           popd &>/dev/null
         ''; # }}}
 
-      touchingFiles =
+      modifiableFiles =
+        # {{{
+        dags.entryAfter ["writeBoundary"]
+        ''
+          mkdir -p "$HOME/.config/git"
+          touch "$HOME/.config/git/config_local"
+          # cp -L --update=none ${dots}/.config/git/config "$HOME/.config/git/" && \
+          #   chmod 774 "$HOME/config/git/config"
+        ''; # }}}
+
+      emptys =
         # {{{
         dags.entryAfter ["writeBoundary"]
         ''

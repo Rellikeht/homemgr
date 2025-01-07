@@ -50,6 +50,15 @@
     universal-ctags
   ]; # }}}
 
+  additional = [
+    (pkgs.writeScriptBin "egrep" ''
+      exec grep -E $@
+    '')
+    (pkgs.writeScriptBin "fgrep" ''
+      exec grep -F $@
+    '')
+  ];
+
   fzfPackage = unstable.fzf;
 in {
   home = {
@@ -74,7 +83,7 @@ in {
     }; # }}}
 
     # {{{
-    packages = normalPackages ++ unstablePackages;
+    packages = normalPackages ++ unstablePackages ++ additional;
     # }}}
   };
 
@@ -99,7 +108,7 @@ in {
 
     git = {
       # {{{
-      enable = true;
+      enable = false;
       package = pkgs.gitFull;
 
       aliases = {};
