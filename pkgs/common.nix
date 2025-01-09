@@ -22,6 +22,7 @@
     # {{{
     # coreutils-full
     # gnugrep
+    gitFull
     gnused
     gawk
     less

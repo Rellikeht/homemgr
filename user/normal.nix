@@ -30,7 +30,8 @@
   unstablePackages = with unstable; [
     # {{{
     typst
-    typst-lsp
+    tinymist
+    # typst-lsp
     typstfmt
     typst-live
 

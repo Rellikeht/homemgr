@@ -120,10 +120,11 @@ in {
       ignores = commonIgnores;
 
       delta = {
+        #  {{{
         enable = true;
         package = pkgs.delta;
         options = {};
-      };
+      }; #  }}}
     }; # }}}
 
     mercurial = {
