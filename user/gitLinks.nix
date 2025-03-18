@@ -2,8 +2,7 @@
 {
   # {{{
   # config,
-  # pkgs,
-  unstable,
+  pkgs,
   lib,
   # dotfiles,
   name,
@@ -52,7 +51,7 @@ in {
         (
           utils.apps.vimUpPrep
           + utils.apps.vimUp ''"$HOME/bin/svim"''
-          + utils.apps.vimUp "${unstable.neovim}/bin/nvim"
+          + utils.apps.vimUp "${pkgs.neovim}/bin/nvim"
           + ''
             unlink "$HOME/bin/svim"
           ''

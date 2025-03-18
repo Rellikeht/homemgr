@@ -37,12 +37,15 @@
       (clang // {meta.priority = 10;})
       rustfmt
       astyle
+      html-tidy
+      superhtml
 
       (plan9port // {meta.priority = 6;})
     ] # }}}
     ++ (with ocamlPackages; [
       # {{{
       ocamlformat
+      ocaml-lsp
       # git
 
       # ocaml_pcre
@@ -74,8 +77,8 @@
       ghc
 
       nim
-      nimlsp
-      # nimble
+      nimlangserver
+      nimble
 
       gopls
     ] # }}}

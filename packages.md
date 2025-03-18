@@ -1,7 +1,3 @@
-# Utilities
-
-- plocate (?)
-
 # Language servers
 
 - julials (?)
@@ -12,7 +8,6 @@
 - docformatter
 - uncrustify ?
 - haskellPackages.cabal-fmt ???
-- prettier ???
 
 # Some day
 

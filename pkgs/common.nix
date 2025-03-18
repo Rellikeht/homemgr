@@ -242,7 +242,7 @@ in {
     neovim = {
       # {{{
       enable = true;
-      package = unstable.neovim-unwrapped;
+      package = pkgs.neovim-unwrapped;
       defaultEditor = false;
       coc.enable = false;
 

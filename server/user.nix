@@ -34,7 +34,7 @@
     # {{{
 
     nim
-    nimlsp
+    nimlangserver
     # nimble
 
     #
