@@ -81,6 +81,7 @@
       nimble
 
       gopls
+      gotools
     ] # }}}
     ++ (with ocamlPackages; [
       # {{{

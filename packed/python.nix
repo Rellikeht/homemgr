@@ -62,6 +62,7 @@
       # {{{
       bpython
       pip
+      uv
       pynvim
     ]; # }}}
 
