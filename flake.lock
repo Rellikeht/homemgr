@@ -66,11 +66,11 @@
     "dotfiles": {
       "flake": false,
       "locked": {
-        "lastModified": 1742641562,
-        "narHash": "sha256-pchTnwjoqQmvLmOMfnzCDuYZkut6voSHqvRLfu0RHoM=",
+        "lastModified": 1743879655,
+        "narHash": "sha256-G6aYI9uqnw85WnIwKrgbzZTSEPnf6dZeygK5UsJFX1k=",
         "owner": "Rellikeht",
         "repo": "dotfiles",
-        "rev": "1e93811ce64abef77a408fc4d758e5a93dcf056b",
+        "rev": "f181ddc6450309be65d8db418db27a6780a38cf9",
         "type": "github"
       },
       "original": {
@@ -501,11 +501,11 @@
     },
     "nixpkgs-unstable": {
       "locked": {
-        "lastModified": 1742422364,
-        "narHash": "sha256-mNqIplmEohk5jRkqYqG19GA8MbQ/D4gQSK0Mu4LvfRQ=",
+        "lastModified": 1743583204,
+        "narHash": "sha256-F7n4+KOIfWrwoQjXrL2wD9RhFYLs2/GGe/MQY1sSdlE=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "a84ebe20c6bc2ecbcfb000a50776219f48d134cc",
+        "rev": "2c8d3f48d33929642c1c12cd243df4cc7d2ce434",
         "type": "github"
       },
       "original": {

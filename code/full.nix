@@ -40,12 +40,15 @@
         pypy310
         jdt-language-server
 
-        typescript
-
+        erlang
+        tcl
+        clisp
         pforth
+        gforth
 
         vscode-langservers-extracted
         typescript
+        (plan9port // {meta.priority = 6;})
       ] # }}}
       ++ (with nodePackages_latest; [
         # {{{
@@ -103,6 +106,7 @@ in {
     # }}}
   };
 }
+# TODO custom ocaml compiler
 # TODO language package managers
 #
 # julia

@@ -20,6 +20,8 @@
     #  {{{
     onefetch
     libcaca
+    aalib
+    (plan9port // {meta.priority = 6;})
   ]; #  }}}
 
   unstablePackages = with unstable; [

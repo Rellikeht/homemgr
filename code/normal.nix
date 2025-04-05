@@ -25,10 +25,9 @@
       kakoune
       dune_3
 
-      gforth
-      tcl
       sbcl
-      clisp
+      elixir
+      elixir-ls
 
       cmake
       cmake-format
@@ -40,7 +39,7 @@
       html-tidy
       superhtml
 
-      (plan9port // {meta.priority = 6;})
+      binutils
     ] # }}}
     ++ (with ocamlPackages; [
       # {{{

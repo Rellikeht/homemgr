@@ -81,6 +81,7 @@
       # {{{
       numpy
       pandas
+      pylsp-isort
       # }}}
     ];
 

@@ -16,6 +16,7 @@
   normalPackages = with pkgs; [
     sqlite-interactive
     pdfgrep
+    binutils
   ];
 
   unstablePackages = with unstable; [
