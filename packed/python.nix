@@ -82,6 +82,10 @@
       numpy
       pandas
       pylsp-isort
+      pylsp-ruff
+      pylsp-rope
+      pylint
+      pylint-venv
       # }}}
     ];
 

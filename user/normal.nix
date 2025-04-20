@@ -29,11 +29,12 @@
 
   unstablePackages = with unstable; [
     # {{{
+    cht-sh
+    tldr
+
     typst
     tinymist
-    # typst-lsp
     typstfmt
-    typst-live
 
     # TODO B pandoc
   ]; # }}}

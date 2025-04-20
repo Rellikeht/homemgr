@@ -22,6 +22,7 @@
     libcaca
     aalib
     (plan9port // {meta.priority = 6;})
+    # typst-live
   ]; #  }}}
 
   unstablePackages = with unstable; [
