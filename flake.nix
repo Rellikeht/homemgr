@@ -69,7 +69,6 @@
             pkgs
             unstable
             # old
-            
             home-manager
             dotfiles
             stateVersion
