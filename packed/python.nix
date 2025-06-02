@@ -82,7 +82,7 @@
       numpy
       pandas
       pylsp-isort
-      pylsp-ruff
+      python-lsp-ruff
       pylsp-rope
       pylint
       pylint-venv
