@@ -15,13 +15,14 @@
   # }}}
   guile-libs = with pkgs; [
     # {{{
-    guile-git
-    guile-ssh
-    guile-gnutls
-
-    guile-json
-    guile-sqlite3
+    # guile-git
+    # guile-ssh
     # guile-ncurses
+
+    guile-sqlite3
+    guile-gnutls
+    guile-fibers
+    guile-json
   ]; # }}}
 
   normalPackages = with pkgs; (
