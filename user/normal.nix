@@ -34,7 +34,7 @@
 
     typst
     tinymist
-    typstfmt
+    typstyle
 
     # TODO B pandoc
   ]; # }}}

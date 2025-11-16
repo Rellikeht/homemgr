@@ -22,7 +22,6 @@ in {
         "clangd"
         "luaformat"
         "yamlfmt"
-        "typstfmt"
       ]); # }}}
   };
 }

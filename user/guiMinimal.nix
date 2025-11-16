@@ -20,7 +20,7 @@
 
   normalPackages = with pkgs; [
     # {{{
-    xdragon
+    dragon-drop
     alacritty
     feh
   ]; # }}}
