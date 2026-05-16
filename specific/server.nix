@@ -1,6 +1,6 @@
 # vim: set et sw=2 ts=2:
 {
-  # {{{
+  #
   # config,
   pkgs,
   unstable,
@@ -11,61 +11,56 @@
   # stateVersion,
   # utils,
   ...
-  # }}}
+  #
 }: let
-  # {{{
-  # dags = lib.hm.dag;
-  b = builtins;
-  # }}}
-
   normalPackages = with pkgs; (
     [
-      # {{{
-    ] # }}}
+      #
+    ] #
     ++ (with ocamlPackages; [
-      # {{{
+      #
       ocaml-lsp
-    ]) # }}}
+    ]) #
     ++ (with haskellPackages; [
-      # {{{
-    ]) # }}}
+      #
+    ]) #
   );
 
   unstablePackages = with unstable; ([
-      # {{{
-    ] # }}}
+      #
+    ] #
     ++ (with ocamlPackages; [
-      # {{{
-    ]) # }}}
+      #
+    ]) #
     ++ (with haskellPackages; [
-      # {{{
-    ])); # }}}
+      #
+    ])); #
 in {
   home = {
     file = {
       ".config/nvim" = {
-        # {{{
+        #
         recursive = true;
         source = "${minimized}/.config/nvim";
         force = true;
-      }; # }}}
+      }; #
 
       ".p10k.zsh" = {
-        # {{{
+        #
         recursive = true;
         source = "${dotfiles}/p10ks/server.zsh";
         force = true;
-      }; # }}}
+      }; #
 
       activation = {
-        # {{{
-      }; # }}}
+        #
+      }; #
 
       sessionVariables = {
-        # {{{
-      }; # }}}
-
-      packages = normalPackages ++ unstablePackages;
+        #
+      }; #
     };
+
+    packages = normalPackages ++ unstablePackages;
   };
 }
