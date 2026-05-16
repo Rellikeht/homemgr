@@ -1,11 +1,12 @@
 {
   # {{{
-  pkgs,
+  # pkgs,
   home-manager,
   dotfiles,
+  minimized,
   lib,
-  unstable,
-  stateVersion,
+  # unstable,
+  # stateVersion,
   ...
   # }}}
 } @ inputs: let
@@ -53,6 +54,14 @@ in rec {
     name = f;
     value = lib.mkDefault {
       source = "${dotfiles}/" + f;
+      force = true;
+    };
+  });
+
+  minimizedFiles = map (f: {
+    name = f;
+    value = lib.mkDefault {
+      source = "${minimized}/" + f;
       force = true;
     };
   });

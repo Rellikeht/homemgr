@@ -76,6 +76,7 @@
             # old
             home-manager
             dotfiles
+            minimized
             stateVersion
             ;
         };
@@ -94,7 +95,7 @@
             inherit pkgs lib;
             modules = [./home.nix] ++ mods;
             extraSpecialArgs = {
-              inherit dotfiles utils packed;
+              inherit dotfiles minimized utils packed;
               inherit unstable builds;
               # inherit old;
               inherit name homeDir stateVersion;

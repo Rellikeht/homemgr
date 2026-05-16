@@ -6,6 +6,7 @@
   # lib,
   # dotfiles,
   # name,
+  minimized,
   utils,
   ...
   # }}}
@@ -39,6 +40,12 @@ in {
     file =
       {
         # {{{
+        ".config/nvim" = {
+          # {{{
+          recursive = true;
+          source = "${minimized}/.config/nvim";
+          force = true;
+        }; # }}}
       } # }}}
       // b.listToAttrs (utils.configFiles [
         # {{{
@@ -50,7 +57,6 @@ in {
       ]) # }}}
       // b.listToAttrs (utils.configCDirs [
         # {{{
-        "nvim"
       ]); # }}}
 
     activation = {

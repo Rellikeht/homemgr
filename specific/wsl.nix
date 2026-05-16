@@ -4,9 +4,10 @@
   # config,
   pkgs,
   unstable,
-  # lib,
   dotfiles,
+  minimized,
   utils,
+  # lib,
   ...
   # }}}
 }: let
@@ -55,6 +56,13 @@ in {
           source = "${dotfiles}/prompts/wsl.bash";
           force = true;
         }; # }}}
+
+        ".config/nvim" = {
+          # {{{
+          recursive = true;
+          source = "${minimized}/.config/nvim";
+          force = true;
+        }; # }}}
       }
       // b.listToAttrs (utils.configFiles [
         # {{{
@@ -64,7 +72,6 @@ in {
       ]) # }}}
       // b.listToAttrs (utils.configCDirs [
         # {{{
-        "nvim"
       ]); # }}}
 
     activation = {

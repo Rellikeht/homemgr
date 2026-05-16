@@ -31,16 +31,18 @@ in {
       {
         # {{{
       } # }}}
+      // b.listToAttrs (utils.minimizedFiles [
+        ".vimrc"
+        ".bashrc"
+        ])
       // b.listToAttrs (utils.configFiles [
         # {{{
-        ".vimrc"
         ".vintrc"
         ".tmux.conf"
         ".guile"
         ".ctags"
 
         ".zshrc"
-        ".bashrc"
         ".inputrc"
 
         ".commonrc"
@@ -49,16 +51,12 @@ in {
         ".varrc"
 
         ".aliasrc.zsh"
-        ".aliasrc.bash"
         ".funcrc.zsh"
-        ".funcrc.bash"
       ]) # }}}
       // b.listToAttrs (utils.configDirs [
         # {{{
-        ".vim"
         ".w3m"
         ".scrs"
-        ".bash"
         "Templates"
       ]) # }}}
       // b.listToAttrs (utils.configCDirs [

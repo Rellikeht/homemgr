@@ -4,11 +4,12 @@
   config,
   pkgs,
   unstable,
+  dotfiles,
+  minimized,
+  utils,
   # old,
   # lib,
-  dotfiles,
   # name,
-  utils,
   ...
   # }}}
 }: let
@@ -64,6 +65,13 @@ in {
           force = true;
         }; # }}}
 
+        ".config/nvim" = {
+          # {{{
+          recursive = true;
+          source = "${minimized}/.config/nvim";
+          force = true;
+        }; # }}}
+
         "storage" = {
           source = mkOutOfStoreSymlink /storage/emulated/0;
           force = true;
@@ -77,7 +85,6 @@ in {
       ]) # }}}
       // b.listToAttrs (utils.configCDirs [
         # {{{
-        "nvim"
       ]); # }}}
 
     activation = {

@@ -1,18 +1,18 @@
 # vim: set et sw=2 ts=2:
 {
   # {{{
-  pkgs,
+  # pkgs,
   lib,
   dotfiles,
-  # name,
+  minimized,
   utils,
+  # name,
   ...
   # }}}
 }: let
   # {{{
   dags = lib.hm.dag;
   b = builtins;
-  dots = "${dotfiles}";
   # }}}
 in {
   home = {
@@ -21,13 +21,13 @@ in {
         # {{{
         ".user.bashrc" = {
           # {{{
-          source = "${dots}/.bashrc";
+          source = "${minimized}/.bashrc";
           force = true;
         }; # }}}
 
         ".user.zshrc" = {
           # {{{
-          source = "${dots}/.zshrc";
+          source = "${dotfiles}/.zshrc";
           force = true;
         }; # }}}
       } # }}}

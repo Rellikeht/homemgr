@@ -6,6 +6,7 @@
   # unstable,
   # lib,
   dotfiles,
+  minimized,
   # name,
   # stateVersion,
   utils,
@@ -21,13 +22,6 @@ in {
   home = {
     file =
       {
-        # ".config/nvim" = {
-        #   # {{{
-        #   recursive = true;
-        #   source = "${dotfiles}/.config/nvim-server";
-        #   force = true;
-        # }; # }}}
-
         ".p10k.zsh" = {
           # {{{
           recursive = true;
@@ -41,6 +35,13 @@ in {
           source = "${dotfiles}/prompts/shallow.bash";
           force = true;
         }; # }}}
+
+        ".config/nvim" = {
+          # {{{
+          recursive = true;
+          source = "${minimized}/.config/nvim";
+          force = true;
+        }; # }}}
       }
       // b.listToAttrs (utils.configFiles [
         # {{{
@@ -50,7 +51,6 @@ in {
       ]) # }}}
       // b.listToAttrs (utils.configCDirs [
         # {{{
-        "nvim"
       ]); # }}}
 
     activation = {

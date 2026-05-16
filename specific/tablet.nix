@@ -1,14 +1,15 @@
 # vim: set et sw=2 ts=2:
 {
   # {{{
-  config,
   pkgs,
   unstable,
+  dotfiles,
+  minimized,
+  utils,
+  # config,
   # old,
   # lib,
-  dotfiles,
   # name,
-  utils,
   ...
   # }}}
 }: let
@@ -74,6 +75,13 @@ in {
           force = true;
         }; # }}}
 
+        ".config/nvim" = {
+          # {{{
+          recursive = true;
+          source = "${minimized}/.config/nvim";
+          force = true;
+        }; # }}}
+
         # TODO sd cart I guess
         # "storage" = {
         #   source = mkOutOfStoreSymlink /storage/emulated/0;
@@ -88,7 +96,6 @@ in {
       ]) # }}}
       // b.listToAttrs (utils.configCDirs [
         # {{{
-        "nvim"
       ]); # }}}
 
     activation = {

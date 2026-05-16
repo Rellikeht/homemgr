@@ -5,6 +5,7 @@
   unstable,
   utils,
   dotfiles,
+  minimized,
   # lib,
   # name,
   ...
@@ -58,7 +59,7 @@ in {
         ".config/nvim" = {
           # {{{
           recursive = true;
-          source = "${dotfiles}/.config/nvim-server";
+          source = "${minimized}/.config/nvim";
           force = true;
         }; # }}}
       } # }}}
