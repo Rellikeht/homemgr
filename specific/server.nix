@@ -51,15 +51,15 @@ in {
         source = "${dotfiles}/p10ks/server.zsh";
         force = true;
       }; #
-
-      activation = {
-        #
-      }; #
-
-      sessionVariables = {
-        #
-      }; #
     };
+
+    activation = {
+      #
+    }; #
+
+    sessionVariables = {
+      #
+    }; #
 
     packages = normalPackages ++ unstablePackages;
   };
