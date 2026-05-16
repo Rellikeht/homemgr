@@ -16,7 +16,6 @@
   # {{{
   # dags = lib.hm.dag;
   b = builtins;
-  # dots = "${dotfiles}";
   # }}}
 
   normalPackages = with pkgs; (
@@ -58,14 +57,15 @@ in {
         force = true;
       }; # }}}
 
-    activation = {
-      # {{{
-    }; # }}}
+      activation = {
+        # {{{
+      }; # }}}
 
-    sessionVariables = {
-      # {{{
-    }; # }}}
+      sessionVariables = {
+        # {{{
+      }; # }}}
 
-    packages = normalPackages ++ unstablePackages;
+      packages = normalPackages ++ unstablePackages;
+    };
   };
 }
