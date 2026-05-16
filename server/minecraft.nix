@@ -4,18 +4,13 @@
   # config,
   pkgs,
   unstable,
-  lib,
+  # lib,
   # dotfiles,
   # name,
   utils,
   ...
   # }}}
 }: let
-  # {{{
-  b = builtins;
-  # dots = "${dotfiles}";
-  # }}}
-
   normalPackages = with pkgs; [
     # {{{
     xz

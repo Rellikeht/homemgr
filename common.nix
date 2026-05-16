@@ -9,11 +9,7 @@
   # packed,
   ... # }}}
 }: let
-  # {{{
   dags = lib.hm.dag;
-  # b = builtins;
-  # dots = "${dotfiles}";
-  # }}}
 
   # mparallel = ( # {{{
   #   pkgs.writeScriptBin

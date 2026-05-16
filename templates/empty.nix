@@ -24,8 +24,6 @@
   unstablePackages = with unstable; [
     # {{{
   ]; # }}}
-
-  dots = "${dotfiles}";
 in {
   home = {
     file = {

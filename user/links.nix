@@ -10,8 +10,6 @@
 }: let
   dags = lib.hm.dag;
   b = builtins;
-  dots = "${dotfiles}";
-  # homeDirectory = "/home/${name}";
 in {
   home = {
     file =
@@ -47,7 +45,7 @@ in {
         # {{{
         dags.entryAfter ["writeBoundary"]
         ''
-          cp --update=none ${dots}/.config/mpv/additional.conf "$HOME/.config/mpv/"
+          cp --update=none ${dotfiles}/.config/mpv/additional.conf "$HOME/.config/mpv/"
           touch "$HOME/.config/mpv/local.conf"
         ''; # }}}
     };

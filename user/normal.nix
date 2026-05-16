@@ -1,24 +1,18 @@
 # vim: set et sw=2 ts=2:
 {
   # {{{
-  config,
+  # config,
   pkgs,
   unstable,
   packed,
-  lib,
-  dotfiles,
-  name,
-  stateVersion,
-  utils,
+  # lib,
+  # dotfiles,
+  # name,
+  # stateVersion,
+  # utils,
   ...
   # }}}
 }: let
-  # {{{
-  dags = lib.hm.dag;
-  b = builtins;
-  dots = "${dotfiles}";
-  # }}}
-
   normalPackages = with pkgs; [
     # {{{
     (packed.python.pythonEssential // {meta.priority = 11;})

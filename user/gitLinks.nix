@@ -2,7 +2,7 @@
 {
   # {{{
   # config,
-  pkgs,
+  # pkgs,
   lib,
   # dotfiles,
   name,
@@ -12,11 +12,7 @@
   ...
   # }}}
 }: let
-  # {{{
   dags = lib.hm.dag;
-  b = builtins;
-  # dots = "${dotfiles}";
-  # }}}
 
   # {{{
   defHomeDir = "/home/${name}";

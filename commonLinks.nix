@@ -1,7 +1,7 @@
 # vim: set et sw=2 ts=2:
 {
   # {{{
-  pkgs,
+  # pkgs,
   unstable,
   lib,
   dotfiles,
@@ -15,7 +15,6 @@
   # {{{
   dags = lib.hm.dag;
   b = builtins;
-  dots = "${dotfiles}";
   # }}}
 
   # {{{
@@ -102,7 +101,7 @@ in {
       commonBinLinks =
         # {{{
         dags.entryAfter ["commonBins"] ''
-          ln -fs ${dots}/bin/* "$HOME/bin"
+          ln -fs ${dotfiles}/bin/* "$HOME/bin"
           ln -fs ${unstable.vim}/bin/vim "$HOME/bin/svim"
         ''; # }}}
 
@@ -151,7 +150,7 @@ in {
         ''
           mkdir -p "$HOME/.config/git"
           touch "$HOME/.config/git/config_local"
-          # cp -L --update=none ${dots}/.config/git/config "$HOME/.config/git/" && \
+          # cp -L --update=none ${dotfiles}/.config/git/config "$HOME/.config/git/" && \
           #   chmod 774 "$HOME/config/git/config"
         ''; # }}}
 

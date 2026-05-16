@@ -9,10 +9,6 @@
   packed,
   ...
 }: let
-  # {{{
-  # b = builtins;
-  # dots = "${dotfiles}";
-  # }}}
   guile-libs = with pkgs; [
     # {{{
     # guile-git

@@ -5,7 +5,7 @@
   pkgs,
   unstable,
   builds,
-  lib,
+  # lib,
   # dotfiles,
   # name,
   # stateVersion,
@@ -13,11 +13,6 @@
   ...
   # }}}
 }: let
-  # {{{
-  dags = lib.hm.dag;
-  b = builtins;
-  # dots = "${dotfiles}";
-  # }}}
 
   # {{{
   # I won't use this anyway

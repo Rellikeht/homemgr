@@ -10,14 +10,10 @@
   ...
   # }}}
 }: let
-  # {{{
   dags = lib.hm.dag;
-  # b = builtins;
-  # dots = "${dotfiles}";
-  # }}}
 
-  normalPackages = with pkgs; (
-    [
+  normalPackages =
+    with pkgs; [
       # {{{
       pkgtop
 
@@ -27,8 +23,9 @@
       (moreutils // {meta.priority = 10;})
       timer
       ripgrep-all
-    ] # }}}
-  );
+    ]
+    # }}}
+    ;
 
   unstable_packages = with unstable; [
     # {{{

@@ -3,17 +3,11 @@
   # {{{
   pkgs,
   unstable,
-  lib,
   packed,
+  # lib,
   ...
   # }}}
 }: let
-  # {{{
-  b = builtins;
-  dags = lib.hm.dag;
-  # dots = "${dotfiles}";
-  # }}}
-
   normalPackages = with pkgs; (
     [
       # {{{

@@ -14,7 +14,6 @@
 }: let
   dags = lib.hm.dag;
   b = builtins;
-  # dots = "${dotfiles}";
 
   normalPackages = with pkgs; [
     #  {{{

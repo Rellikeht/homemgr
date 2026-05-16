@@ -1,14 +1,14 @@
 # vim: set et sw=2 ts=2:
 {
   # {{{
-  config,
+  # config,
   pkgs,
   unstable,
   lib,
-  dotfiles,
-  name,
-  stateVersion,
-  utils,
+  # dotfiles,
+  # name,
+  # stateVersion,
+  # utils,
   ...
   # }}}
 }: let
@@ -25,8 +25,6 @@
   unstablePackages = with unstable; [
     # {{{
   ]; # }}}
-
-  dots = "${dotfiles}";
 in {
   home = {
     file = {

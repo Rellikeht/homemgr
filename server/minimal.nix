@@ -6,17 +6,13 @@
   unstable,
   builds,
   lib,
-  dotfiles,
-  name,
+  # dotfiles,
+  # name,
   utils,
   ...
   # }}}
 }: let
-  # {{{
   dags = lib.hm.dag;
-  b = builtins;
-  dots = "${dotfiles}";
-  # }}}
 
   normalPackages = with pkgs; [
     # {{{

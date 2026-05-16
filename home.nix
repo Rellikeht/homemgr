@@ -1,18 +1,15 @@
 # vim: set et sw=2 ts=2:
 {
   # {{{
-  lib,
-  dotfiles,
   name,
   homeDir ? "",
   stateVersion,
-  utils,
+  # lib,
+  # dotfiles,
+  # utils,
   ... # }}}
 }: let
   # {{{
-  dags = lib.hm.dag;
-  b = builtins;
-  dots = "${dotfiles}";
   defHomeDir = "/home/${name}";
   homeDirectory =
     if homeDir == ""

@@ -4,17 +4,15 @@
   # config,
   pkgs,
   unstable,
-  lib,
+  # lib,
   # dotfiles,
   # name,
-  stateVersion,
+  # stateVersion,
   utils,
   ...
   #  }}}
 }: let
-  dags = lib.hm.dag;
   b = builtins;
-  # dots = "${dotfiles}";
 
   normalPackages = with pkgs; [
     #  {{{
