@@ -58,14 +58,6 @@ in {
         force = true;
       }; # }}}
 
-      ".prompt.bash" = {
-        # {{{
-        recursive = true;
-        source = "${dotfiles}/prompts/server.bash";
-        force = true;
-      }; # }}}
-    };
-
     activation = {
       # {{{
     }; # }}}

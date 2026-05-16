@@ -68,13 +68,6 @@ in {
           force = true;
         }; # }}}
 
-        ".prompt.bash" = {
-          # {{{
-          recursive = true;
-          source = "${dotfiles}/prompts/tablet.bash";
-          force = true;
-        }; # }}}
-
         ".config/nvim" = {
           # {{{
           recursive = true;

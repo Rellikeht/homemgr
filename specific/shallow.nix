@@ -29,13 +29,6 @@ in {
           force = true;
         }; # }}}
 
-        ".prompt.bash" = {
-          # {{{
-          recursive = true;
-          source = "${dotfiles}/prompts/shallow.bash";
-          force = true;
-        }; # }}}
-
         ".config/nvim" = {
           # {{{
           recursive = true;

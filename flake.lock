@@ -448,11 +448,11 @@
     "minimized": {
       "flake": false,
       "locked": {
-        "lastModified": 1778439687,
-        "narHash": "sha256-KJ/gdO3d6XN/mTndqxQ+zTk8f6JgZZLc5wQs8pZ7QjI=",
+        "lastModified": 1778929417,
+        "narHash": "sha256-uyOZqdFfAhElErW80DXF1jpRTkxa+7tAyWlAgYPegNQ=",
         "owner": "Rellikeht",
         "repo": "minimized",
-        "rev": "9e796e7780036efe8c83ee8c1b04ac11e48a5043",
+        "rev": "5c484df78836755a860e2c13459b80c1ef5143cd",
         "type": "github"
       },
       "original": {
