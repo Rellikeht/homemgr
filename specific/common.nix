@@ -39,21 +39,7 @@ in {
   home = {
     file =
       {
-        # # {{{
-        # ".config/nvim" = {
-        #   # {{{
-        #   recursive = true;
-        #   source = "${minimized}/.config/nvim";
-        #   force = true;
-        # }; # }}}
-        #
-        # # {{{
-        # ".config/vifm" = {
-        #   # {{{
-        #   recursive = true;
-        #   source = "${minimized}/.config/nvim";
-        #   force = true;
-        # }; # }}}
+        # {{{
       } # }}}
       // b.listToAttrs (utils.configFiles [
         # {{{
