@@ -105,21 +105,20 @@ in {
       enable = false;
       package = pkgs.gitFull;
 
-      aliases = {};
       attributes = [];
-      extraConfig = {};
 
       hooks = {};
       includes = [];
       ignores = commonIgnores;
-
-      delta = {
-        #  {{{
-        enable = true;
-        package = pkgs.delta;
-        options = {};
-      }; #  }}}
     }; # }}}
+
+    delta = {
+      #  {{{
+      enable = true;
+      package = pkgs.delta;
+      enableGitIntegration = true;
+      options = {};
+    }; #  }}}
 
     mercurial = {
       # {{{
