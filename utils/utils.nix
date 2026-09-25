@@ -66,6 +66,15 @@ in rec {
     };
   });
 
+  minimizedDirs = map (f: {
+    name = f;
+    value = lib.mkDefault {
+      recursive = true;
+      source = "${minimized}/" + f;
+      force = true;
+    };
+  });
+
   configDirs = map (f: {
     name = f;
     value = lib.mkDefault {

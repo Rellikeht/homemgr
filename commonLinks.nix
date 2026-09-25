@@ -33,8 +33,8 @@ in {
       // b.listToAttrs (utils.minimizedFiles [
         ".vimrc"
         ".bashrc"
-        # ".config/nvim/init.lua"
-        # ".config/vifm/vifmrc"
+        ".config/nvim"
+        ".config/vifm"
         ])
       // b.listToAttrs (utils.configFiles [
         # {{{
@@ -68,7 +68,6 @@ in {
         "fastfetch"
         "glow"
         "vis"
-        # "git"
         "git/config"
         "git/ignore"
       ]);
@@ -159,7 +158,6 @@ in {
         # {{{
         dags.entryAfter ["writeBoundary"]
         ''
-          touch "$HOME/.config/vifm/vifmrc-local"
         ''; # }}}
     };
 
