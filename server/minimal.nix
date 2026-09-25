@@ -22,7 +22,7 @@
     lftp
     megatools
     rclone
-    transmission
+    transmission_4
     gdown
   ]; # }}}
 
