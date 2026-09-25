@@ -33,6 +33,8 @@ in {
       // b.listToAttrs (utils.minimizedFiles [
         ".vimrc"
         ".bashrc"
+        # ".config/nvim/init.lua"
+        # ".config/vifm/vifmrc"
         ])
       // b.listToAttrs (utils.configFiles [
         # {{{
@@ -62,7 +64,6 @@ in {
         # {{{
         "bpython"
         "ocaml"
-        "vifm"
         "direnv"
         "fastfetch"
         "glow"

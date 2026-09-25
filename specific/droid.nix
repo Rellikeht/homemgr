@@ -58,12 +58,12 @@ in {
           force = true;
         }; # }}}
 
-        ".config/nvim" = {
-          # {{{
-          recursive = true;
-          source = "${minimized}/.config/nvim";
-          force = true;
-        }; # }}}
+        # ".config/nvim" = {
+        #   # {{{
+        #   recursive = true;
+        #   source = "${minimized}/.config/nvim";
+        #   force = true;
+        # }; # }}}
 
         "storage" = {
           source = mkOutOfStoreSymlink /storage/emulated/0;

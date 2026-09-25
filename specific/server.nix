@@ -38,12 +38,12 @@
 in {
   home = {
     file = {
-      ".config/nvim" = {
-        #
-        recursive = true;
-        source = "${minimized}/.config/nvim";
-        force = true;
-      }; #
+      # ".config/nvim" = {
+      #   #
+      #   recursive = true;
+      #   source = "${minimized}/.config/nvim";
+      #   force = true;
+      # }; #
 
       ".p10k.zsh" = {
         #

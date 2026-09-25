@@ -68,12 +68,12 @@ in {
           force = true;
         }; # }}}
 
-        ".config/nvim" = {
-          # {{{
-          recursive = true;
-          source = "${minimized}/.config/nvim";
-          force = true;
-        }; # }}}
+        # ".config/nvim" = {
+        #   # {{{
+        #   recursive = true;
+        #   source = "${minimized}/.config/nvim";
+        #   force = true;
+        # }; # }}}
 
         # TODO sd cart I guess
         # "storage" = {
