@@ -33,9 +33,11 @@ in {
       // b.listToAttrs (utils.minimizedFiles [
         ".vimrc"
         ".bashrc"
+      ])
+      // b.listToAttrs (utils.minimizedDirs [
         ".config/nvim"
         ".config/vifm"
-        ])
+      ])
       // b.listToAttrs (utils.configFiles [
         # {{{
         ".vintrc"
